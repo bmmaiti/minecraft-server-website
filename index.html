@@ -425,6 +425,30 @@
                 transform: translateX(0);
             }
             
+            /* 从左侧滑入动画 */
+            .slide-in-left-alt {
+                opacity: 0;
+                transform: translateX(-100px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .slide-in-left-alt.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            /* 从右侧滑入动画 */
+            .slide-in-right-alt {
+                opacity: 0;
+                transform: translateX(100px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .slide-in-right-alt.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
             /* ==================== CTA按钮样式 ==================== */
             /* 美化后的主CTA按钮样式 */
             .cta-btn {
@@ -490,6 +514,33 @@
                 max-width: 100px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+            }
+            
+            /* MOTD内容样式 */
+            .motd-content {
+                font-family: 'Courier New', monospace;
+                font-size: 0.9rem;
+                line-height: 1.4;
+                word-break: break-word;
+                min-height: 1.4em;
+                text-align: center;
+                padding: 0.5rem 0;
+                margin: 0;
+            }
+            
+            /* 响应式设计 - 在小屏幕上调整MOTD字体大小 */
+            @media (max-width: 768px) {
+                .motd-content {
+                    font-size: 0.8rem;
+                }
+            }
+            
+            /* 大屏幕设备上的MOTD样式调整 */
+            @media (min-width: 768px) {
+                .motd-content {
+                    font-size: 1rem;
+                    padding: 0.75rem 0;
+                }
             }
             
             /* 插件列表样式 */
@@ -795,7 +846,7 @@
     </section>
 
     <!-- 服务器连接信息（我的世界风格） -->
-        <section id="connection" class="py-16 bg-dark relative overflow-hidden slide-in-left">
+        <section id="connection" class="py-12 bg-dark relative overflow-hidden slide-in-left">
         <!-- 装饰性方块 -->
                 <div class="absolute bottom-16 left-16 w-64 h-64 stone-texture mc-border opacity-10 rotate-12 animate-float" style="animation-delay: 0.5s;"></div>
                 <div class="absolute top-16 right-16 w-64 h-64 dirt-texture mc-border opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
@@ -809,29 +860,18 @@
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow-lg slide-in-left">服务器连接信息</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-8 text-primary text-shadow-lg slide-in-left">服务器连接信息</h2>
             
             <div class="max-w-2xl mx-auto">
-                <div class="bg-dark p-8 md:p-12 rounded mc-border blocky text-center hover-lift transition-all slide-in-left">
-                    <div class="mb-6 slide-in-left" style="transition-delay: 0.1s;">
-                        <i class="fa fa-server text-6xl text-primary"></i>
+                <div class="bg-dark p-4 md:p-6 rounded mc-border blocky text-center hover-lift transition-all slide-in-left">
+                    <div class="mb-2 slide-in-left" style="transition-delay: 0.1s;">
+                        <i class="fa fa-server text-3xl text-primary"></i>
                     </div>
-                    <p class="font-minecraft text-xl mb-6 slide-in-left blocky" style="transition-delay: 0.2s;">服务器地址</p>
-                    <p class="text-3xl md:text-5xl font-minecraft text-secondary mb-8 py-4 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.top</p>
-                    <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-6 py-3 rounded mc-border text-lg function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.top')">
-                            <i class="fa fa-copy mr-2"></i>复制地址
+                    <p class="font-minecraft text-base mb-3 slide-in-left blocky" style="transition-delay: 0.2s;">服务器地址</p>
+                    <p class="text-xl md:text-2xl font-minecraft text-secondary mb-4 py-2 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.top</p>
+                    <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-3 py-1.5 rounded mc-border text-sm function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.top')">
+                            <i class="fa fa-copy mr-1"></i>复制地址
                         </button>
-                    
-                    <div class="mt-8 grid md:grid-cols-2 gap-6">
-                            <div class="bg-dark/50 p-4 rounded mc-border blocky hover-lift transition-all slide-in-left" style="transition-delay: 0.5s;">
-                                <p class="font-minecraft mb-2 text-primary">游戏版本</p>
-                                <p class="text-xl">1.21.8</p>
-                            </div>
-                            <div class="bg-dark/50 p-4 rounded mc-border blocky hover-lift transition-all slide-in-left" style="transition-delay: 0.6s;">
-                                <p class="font-minecraft mb-2 text-primary">服务器类型</p>
-                                <p class="text-xl">公益群组服</p>
-                            </div>
-                        </div>
                 </div>
             </div>
         </div>
@@ -890,6 +930,13 @@
                         </div>
                         <p id="server-ping" class="text-3xl font-bold text-center blocky">--</p>
                         <p class="text-sm text-center blocky">毫秒 (ms)</p>
+                    </div>
+                    
+                    <!-- 服务器MOTD -->
+                    <div class="md:col-span-2 bg-dark-secondary rounded p-4 mc-border blocky hover-lift transition-all slide-in-right" style="transition-delay: 0.5s;">
+                        <div id="server-motd" class="text-center blocky motd-content">
+                            加载中...
+                        </div>
                     </div>
                 </div>
                 
@@ -1837,137 +1884,7 @@
             window.requestAnimationFrame(step);
         }
         
-        // 服务器状态API调用 - 使用uapis.cn的API
-        async function fetchServerStatus() {
-            const serverHost = 'mcyggdrasill.top';
-            const serverApiUrl = `https://uapis.cn/api/v1/game/minecraft/serverstatus?server=${encodeURIComponent(serverHost)}`;
-            const statusIndicator = document.getElementById('server-status-indicator').querySelector('div');
-            const statusText = document.getElementById('status-text');
-            const playersOnline = document.getElementById('players-online');
-            const playersMax = document.getElementById('players-max');
-            const serverVersion = document.getElementById('server-version');
-            const serverLogo = document.getElementById('server-logo');
-            const playersProgress = document.getElementById('players-progress');
-            const playersPercentage = document.getElementById('players-percentage');
-            const serverPing = document.getElementById('server-ping'); // 获取延迟显示元素
-
-            try {
-                // 显示加载状态
-                statusIndicator.className = 'w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4 mc-border animate-pulse';
-                statusText.className = 'text-yellow-500';
-                statusText.textContent = '加载中...';
-
-                // 记录请求开始时间
-                const startTime = Date.now();
-
-                // 调用uapis.cn的API获取服务器状态
-                const response = await fetch(serverApiUrl, { 
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-                    }
-                });
-                
-                // 计算请求延迟
-                const endTime = Date.now();
-                const ping = endTime - startTime;
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // 检查API是否返回有效数据
-                if (!data || typeof data !== 'object') {
-                    throw new Error('API返回数据格式错误');
-                }
-
-                // 更新服务器状态显示
-                // uapis.cn API返回的在线状态字段是online
-                const isOnline = data.online === true;
-                
-                if (isOnline) {
-                    // 服务器在线
-                    statusIndicator.className = 'w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4 mc-border';
-                    statusText.className = 'text-green-500';
-                    statusText.textContent = '在线';
-
-                    // 更新玩家信息
-                    const onlineCount = data.players || 0;
-                    const maxCount = data.max_players || 0;
-                    
-                    // 添加数字变化动画
-                    animateNumber(playersOnline, parseInt(playersOnline.textContent) || 0, onlineCount);
-                    playersMax.textContent = ` / ${maxCount}`;
-                    
-                    // 更新进度条和百分比
-                    const percentage = maxCount > 0 ? Math.round((onlineCount / maxCount) * 100) : 0;
-                    playersProgress.style.width = `${percentage}%`;
-                    playersPercentage.textContent = `${percentage}%`;
-                    
-                    // 根据在线人数调整进度条颜色
-                    if (percentage > 75) {
-                        playersProgress.className = 'h-full bg-red-500 transition-all duration-1000 ease-out';
-                    } else if (percentage > 50) {
-                        playersProgress.className = 'h-full bg-yellow-500 transition-all duration-1000 ease-out';
-                    } else {
-                        playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
-                    }
-
-                    // 更新服务器版本
-                    serverVersion.textContent = data.version || '未知';
-
-                    // 如果有服务器favicon
-                    if (data.favicon && data.favicon.startsWith('data:image/')) {
-                        serverLogo.src = data.favicon;
-                        serverLogo.classList.remove('hidden');
-                    } else {
-                        serverLogo.classList.add('hidden');
-                    }
-                    
-                    // 显示延迟信息
-                    serverPing.textContent = ping;
-                } else {
-                    // 服务器离线
-                    statusIndicator.className = 'w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4 mc-border';
-                    statusText.className = 'text-red-500';
-                    statusText.textContent = '离线';
-                    
-                    // 重置玩家信息
-                    playersOnline.textContent = '0';
-                    playersMax.textContent = ' / 0';
-                    playersProgress.style.width = '0%';
-                    playersPercentage.textContent = '0%';
-                    playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
-                    serverVersion.textContent = '未知';
-                    serverLogo.classList.add('hidden');
-                    
-                    // 重置延迟信息
-                    serverPing.textContent = '--';
-                }
-            } catch (error) {
-                // 处理错误情况
-                console.error('获取服务器状态失败，详细错误:', error);
-                
-                statusIndicator.className = 'w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4 mc-border';
-                statusText.className = 'text-red-500';
-                statusText.textContent = '连接错误';
-                
-                // 重置玩家信息
-                playersOnline.textContent = '0';
-                playersMax.textContent = ' / 0';
-                playersProgress.style.width = '0%';
-                playersPercentage.textContent = '0%';
-                playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
-                serverVersion.textContent = '未知';
-                serverLogo.classList.add('hidden');
-                
-                // 重置延迟信息
-                serverPing.textContent = '--';
-            }
-        }
+        
 
         // 插件列表数据 - 从外部文件读取
         let serverPlugins = [];
@@ -2144,6 +2061,175 @@
             }
         }
         
+        // 获取服务器状态函数
+        async function fetchServerStatus() {
+            const serverHost = 'mcyggdrasill.top';
+            const serverApiUrl = `https://uapis.cn/api/v1/game/minecraft/serverstatus?server=${encodeURIComponent(serverHost)}`;
+            const statusIndicator = document.getElementById('server-status-indicator').querySelector('div');
+            const statusText = document.getElementById('status-text');
+            const playersOnline = document.getElementById('players-online');
+            const playersMax = document.getElementById('players-max');
+            const serverVersion = document.getElementById('server-version');
+            const serverLogo = document.getElementById('server-logo');
+            const playersProgress = document.getElementById('players-progress');
+            const playersPercentage = document.getElementById('players-percentage');
+            const serverPing = document.getElementById('server-ping'); // 获取延迟显示元素
+            const serverMotd = document.getElementById('server-motd'); // 获取MOTD显示元素
+
+            try {
+                // 显示加载状态
+                statusIndicator.className = 'w-12 h-12 bg-yellow-500 rounded flex items-center justify-center mr-4 mc-border animate-pulse';
+                statusText.className = 'text-yellow-500';
+                statusText.textContent = '加载中...';
+
+                // 记录请求开始时间
+                const startTime = Date.now();
+
+                // 调用uapis.cn的API获取服务器状态
+                // 移除User-Agent头部以避免CORS问题
+                const response = await fetch(serverApiUrl, { 
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                // 计算请求延迟
+                const endTime = Date.now();
+                const ping = endTime - startTime;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // 检查API是否返回有效数据
+                if (!data || typeof data !== 'object') {
+                    throw new Error('API返回数据格式错误');
+                }
+
+                // 更新服务器状态显示
+                // uapis.cn API返回的在线状态字段是online
+                const isOnline = data.online === true;
+                
+                if (isOnline) {
+                    // 服务器在线
+                    statusIndicator.className = 'w-12 h-12 bg-green-500 rounded flex items-center justify-center mr-4 mc-border';
+                    statusText.className = 'text-green-500';
+                    statusText.textContent = '在线';
+
+                    // 更新玩家信息
+                    const onlineCount = data.players || 0;
+                    const maxCount = data.max_players || 0;
+                    
+                    // 添加数字变化动画
+                    animateNumber(playersOnline, parseInt(playersOnline.textContent) || 0, onlineCount);
+                    playersMax.textContent = ` / ${maxCount}`;
+                    
+                    // 更新进度条和百分比
+                    const percentage = maxCount > 0 ? Math.round((onlineCount / maxCount) * 100) : 0;
+                    playersProgress.style.width = `${percentage}%`;
+                    playersPercentage.textContent = `${percentage}%`;
+                    
+                    // 根据在线人数调整进度条颜色
+                    if (percentage > 75) {
+                        playersProgress.className = 'h-full bg-red-500 transition-all duration-1000 ease-out';
+                    } else if (percentage > 50) {
+                        playersProgress.className = 'h-full bg-yellow-500 transition-all duration-1000 ease-out';
+                    } else {
+                        playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
+                    }
+
+                    // 更新服务器版本
+                    serverVersion.textContent = data.version || '未知';
+
+                    // 如果有服务器favicon
+                    if (data.favicon && data.favicon.startsWith('data:image/')) {
+                        serverLogo.src = data.favicon;
+                        serverLogo.classList.remove('hidden');
+                    } else {
+                        serverLogo.classList.add('hidden');
+                    }
+                    
+                    // 显示延迟信息
+                    serverPing.textContent = ping;
+                    
+                    // 显示服务器MOTD
+                    if (data.motd_html) {
+                        serverMotd.innerHTML = data.motd_html;
+                    } else {
+                        serverMotd.textContent = '无消息';
+                    }
+                } else {
+                    // 服务器离线
+                    statusIndicator.className = 'w-12 h-12 bg-red-500 rounded flex items-center justify-center mr-4 mc-border';
+                    statusText.className = 'text-red-500';
+                    statusText.textContent = '离线';
+                    
+                    // 重置玩家信息
+                    playersOnline.textContent = '0';
+                    playersMax.textContent = ' / 0';
+                    playersProgress.style.width = '0%';
+                    playersPercentage.textContent = '0%';
+                    playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
+                    serverVersion.textContent = '未知';
+                    serverLogo.classList.add('hidden');
+                    
+                    // 重置延迟信息
+                    serverPing.textContent = '--';
+                    
+                    // 重置MOTD显示
+                    serverMotd.textContent = '无消息';
+                }
+            } catch (error) {
+                // 处理错误情况
+                console.error('获取服务器状态失败，详细错误:', error);
+                
+                statusIndicator.className = 'w-12 h-12 bg-red-500 rounded flex items-center justify-center mr-4 mc-border';
+                statusText.className = 'text-red-500';
+                statusText.textContent = '连接错误';
+                
+                // 重置玩家信息
+                playersOnline.textContent = '0';
+                playersMax.textContent = ' / 0';
+                playersProgress.style.width = '0%';
+                playersPercentage.textContent = '0%';
+                playersProgress.className = 'h-full bg-secondary transition-all duration-1000 ease-out';
+                serverVersion.textContent = '未知';
+                serverLogo.classList.add('hidden');
+                
+                // 重置延迟信息
+                serverPing.textContent = '--';
+                
+                // 重置MOTD显示
+                serverMotd.textContent = '无消息';
+            }
+        }
+
+        // 数字变化动画函数
+        function animateNumber(element, start, end) {
+            const duration = 1000; // 动画持续时间（毫秒）
+            const startTime = performance.now();
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // 使用缓动函数使动画更平滑
+                const easeOutQuad = 1 - Math.pow(1 - progress, 2);
+                const currentValue = Math.floor(start + (end - start) * easeOutQuad);
+                
+                element.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+        
         // 滚动动画效果 - 检测元素是否在视口中
         function isInViewport(element) {
             const rect = element.getBoundingClientRect();
@@ -2161,7 +2247,7 @@
         
         // 处理滚动动画
         function handleScrollAnimations() {
-            const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right');
+            const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-left-alt, .slide-in-right-alt');
             
             animatedElements.forEach(element => {
                 if (isInViewport(element)) {
@@ -2177,7 +2263,7 @@
             });
         }
         
-        // 页面加载完成后立即获取一次服务器状态
+        // 页面加载完成后立即加载图片
         document.addEventListener('DOMContentLoaded', () => {
             try {
                 // 加载风景图片
@@ -2209,27 +2295,41 @@
                         console.error('定时获取服务器状态失败:', error);
                     });
                 }, 60000);
+                
+                // 添加刷新按钮点击事件
+                const refreshButton = document.getElementById('refresh-status');
+                if (refreshButton) {
+                    refreshButton.addEventListener('click', function() {
+                        // 添加加载动画
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-refresh');
+                            icon.classList.add('fa-spinner', 'fa-spin');
+                        }
+                        
+                        // 禁用按钮防止重复点击
+                        this.disabled = true;
+                        
+                        // 获取服务器状态
+                        fetchServerStatus()
+                            .catch(error => {
+                                console.error('手动刷新服务器状态失败:', error);
+                            })
+                            .finally(() => {
+                                // 恢复按钮状态
+                                if (icon) {
+                                    icon.classList.remove('fa-spinner', 'fa-spin');
+                                    icon.classList.add('fa-refresh');
+                                }
+                                this.disabled = false;
+                            });
+                    });
+                }
             } catch (error) {
                 console.error('页面初始化时出错:', error);
             }
             
-            // 为刷新按钮添加点击事件
-            document.getElementById('refresh-status').addEventListener('click', () => {
-                // 显示刷新动画
-                const refreshBtn = document.getElementById('refresh-status');
-                const icon = refreshBtn.querySelector('i');
-                icon.classList.add('fa-spin');
-                
-                // 禁用按钮防止重复点击
-                refreshBtn.disabled = true;
-                
-                // 重新获取服务器状态
-                fetchServerStatus().then(() => {
-                    // 恢复按钮状态
-                    icon.classList.remove('fa-spin');
-                    refreshBtn.disabled = false;
-                });
-            });
+            
             
             // 初始化滚动动画
             handleScrollAnimations(); // 初始检查
@@ -2349,22 +2449,22 @@
             const firstColumn = currentSponsors.slice(0, half);
             const secondColumn = currentSponsors.slice(half);
             
-            // 第一列
+            // 第一列 - 从左侧滑入
             sponsorsHTML += '<div class="space-y-3"><ul class="space-y-3">';
-            firstColumn.forEach(sponsor => {
+            firstColumn.forEach((sponsor, index) => {
                 sponsorsHTML += `
-                <li class="flex items-center p-3 bg-mc-gold/20 rounded mc-border">
+                <li class="flex items-center p-3 bg-mc-gold/20 rounded mc-border slide-in-left-alt">
                     <i class="fa fa-heart text-red-500 mr-3"></i>
                     <span class="font-minecraft">${sponsor}</span>
                 </li>`;
             });
             sponsorsHTML += '</ul></div>';
             
-            // 第二列
+            // 第二列 - 从右侧滑入
             sponsorsHTML += '<div class="space-y-3"><ul class="space-y-3">';
-            secondColumn.forEach(sponsor => {
+            secondColumn.forEach((sponsor, index) => {
                 sponsorsHTML += `
-                <li class="flex items-center p-3 bg-mc-gold/20 rounded mc-border">
+                <li class="flex items-center p-3 bg-mc-gold/20 rounded mc-border slide-in-right-alt">
                     <i class="fa fa-heart text-red-500 mr-3"></i>
                     <span class="font-minecraft">${sponsor}</span>
                 </li>`;
@@ -2376,7 +2476,7 @@
             // 添加分页控件
             if (totalPages > 1) {
                 sponsorsHTML += `
-                <div class="flex justify-center items-center mt-8 space-x-4">
+                <div class="flex justify-center items-center mt-8 space-x-4 slide-in-left-alt">
                     <button id="prev-page" class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-4 py-2 rounded mc-border transition-all blocky ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === 1 ? 'disabled' : ''}>
                         <i class="fa fa-chevron-left mr-2"></i>上一页
                     </button>
@@ -2389,7 +2489,7 @@
             
             // 添加感谢文本和按钮
             sponsorsHTML += `
-            <div class="mt-8 text-center">
+            <div class="mt-8 text-center slide-in-right-alt">
                 <p class="mb-4">感谢所有赞助者对服务器的支持！</p>
                 <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="inline-block bg-secondary hover:bg-secondary/80 text-dark font-minecraft px-6 py-2 rounded mc-border transition-all sponsor-btn blocky">
                     <i class="fa fa-heart mr-2"></i>成为赞助者
