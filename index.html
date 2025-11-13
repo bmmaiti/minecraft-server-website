@@ -871,7 +871,7 @@
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
                 <!-- 世界树Logo -->
-                <div class="w-32 h-32 md:w-40 md:h-40 mb-6 mx-auto animate-float">
+                <div class="w-32 h-32 md:w-40 md:h-40 mb-6 mx-auto animate-float logo-glow">
                     <img src="logos/yggdrasill_logo.png" alt="Yggdrasill世界树" class="w-full h-full object-contain">
                 </div>
                 
@@ -2590,6 +2590,40 @@
     <!-- 光标拖尾效果JavaScript -->
     <script src="cursor-effects.js"></script>
     
+    <!-- Logo发光效果样式 -->
+    <style>
+        .logo-glow {
+            animation: rainbowGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes rainbowGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(255, 192, 192, 0.3)) drop-shadow(0 0 20px rgba(255, 192, 192, 0.15));
+            }
+            14.28% {
+                filter: drop-shadow(0 0 10px rgba(255, 220, 127, 0.3)) drop-shadow(0 0 20px rgba(255, 220, 127, 0.15));
+            }
+            28.56% {
+                filter: drop-shadow(0 0 10px rgba(255, 255, 127, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 127, 0.15));
+            }
+            42.84% {
+                filter: drop-shadow(0 0 10px rgba(127, 255, 127, 0.3)) drop-shadow(0 0 20px rgba(127, 255, 127, 0.15));
+            }
+            57.12% {
+                filter: drop-shadow(0 0 10px rgba(127, 255, 255, 0.3)) drop-shadow(0 0 20px rgba(127, 255, 255, 0.15));
+            }
+            71.4% {
+                filter: drop-shadow(0 0 10px rgba(192, 192, 255, 0.3)) drop-shadow(0 0 20px rgba(192, 192, 255, 0.15));
+            }
+            85.68% {
+                filter: drop-shadow(0 0 10px rgba(255, 192, 255, 0.3)) drop-shadow(0 0 20px rgba(255, 192, 255, 0.15));
+            }
+            100% {
+                filter: drop-shadow(0 0 10px rgba(255, 192, 192, 0.3)) drop-shadow(0 0 20px rgba(255, 192, 192, 0.15));
+            }
+        }
+    </style>
+
     <!-- 我的世界风格固定返回顶部按钮 -->
     <button id="minecraft-back-to-top" class="fixed bottom-6 right-4 bg-primary hover:bg-primary/80 text-dark font-minecraft py-3 px-3 rounded mc-border transition-all blocky z-50 hidden" title="回到顶部">
         <i class="fa fa-arrow-up text-xl"></i>
