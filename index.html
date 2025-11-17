@@ -766,6 +766,40 @@
             .section-transition:hover {
                 background-color: rgba(34, 197, 94, 0.1);
             }
+            
+            /* 添加弹性动画类 */
+            .animate-bounce-scale {
+                animation: bounceScale 2s infinite;
+            }
+            
+            @keyframes bounceScale {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+            
+            /* 徽章动画类 - 结合旋转和弹跳效果 */
+            .badge-animation {
+                animation: badgeBounceAndRotate 3s infinite;
+            }
+            
+            @keyframes badgeBounceAndRotate {
+                0%, 100% {
+                    transform: rotate(15deg) scale(1);
+                }
+                25% {
+                    transform: rotate(15deg) scale(1.1);
+                }
+                50% {
+                    transform: rotate(15deg) scale(1);
+                }
+                75% {
+                    transform: rotate(15deg) scale(1.1);
+                }
+            }
         }
     </style>
     <!-- 本地字体支持 - CKTKingkong -->
@@ -1001,28 +1035,39 @@
                 <div class="relative inline-block">
                     <h1 class="font-minecraft text-4xl md:text-6xl mb-2 text-shadow-lg text-primary blocky">Yggdrasill-世界树</h1>
                     <!-- 添加我的世界风格徽章 -->
-                    <div class="absolute -top-4 -right-4 bg-mc-gold text-dark font-minecraft text-xs px-2 py-1 mc-border rotate-12 animate-pulse">
+                    <div class="absolute -top-4 -right-16 text-yellow-400 text-xl font-bold badge-animation" style="padding: 0.5rem 0.5rem; background: transparent; border: none; outline: none;">
                         主世界永不删档
                     </div>
                 </div>
                 <h2 class="font-minecraft text-xl md:text-2xl mb-6 text-shadow-lg text-secondary animate-float blocky">公益群组服</h2>
-                <p class="text-xl md:text-2xl mb-8 text-shadow animate-float blocky" style="animation-delay: 0.5s">欢迎加入我们的Minecraft大家庭</p>
+                <div class="flex justify-center mb-8">
+  <p class="text-2xl md:text-3xl text-shadow animate-float blocky" style="animation-delay: 0.5s;">
+    <span class="border-y-2 border-primary py-2">支持正版与第三方登录</span>
+  </p>
+</div>
                 
                 <!-- 服务器状态 -->
                 <div class="inline-flex items-center bg-dark px-6 py-3 rounded mc-border mb-10 hover-lift blocky">
                     <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                    <span class="font-minecraft">服务器长期开放中</span>
+                    <span>服务器长期开放中</span>
+                </div>
+                
+                <!-- 注册第三方登录账号按钮 -->
+                <div class="flex justify-center mt-2 mb-6">
+                    <a href="https://littleskin.cn/user/player" target="_blank" class="bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 text-lg rounded mc-border cta-btn blocky">
+                        <i class="fa fa-user-plus mr-2"></i> 注册第三方登录账号
+                    </a>
                 </div>
                 
                 <!-- 快速操作按钮 -->
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#connection" class="font-minecraft bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
+                    <a href="#connection" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-plug mr-2"></i> 连接服务器
                     </a>
-                    <a href="http://mc.mcyggdrasill.top:8100/" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 rounded mc-border cta-btn blocky">
+                    <a href="http://mc.mcyggdrasill.top:8100/" target="_blank" class="bg-blue-300 text-dark hover:bg-blue-200 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-map mr-2"></i> 世界地图
                     </a>
-                    <a href="#servers" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 rounded mc-border cta-btn blocky">
+                    <a href="#servers" class="bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-gamepad mr-2"></i> 服务器介绍
                     </a>
                 </div>
