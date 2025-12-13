@@ -527,6 +527,18 @@
                 transition: opacity 0.8s ease, transform 0.8s ease;
             }
             
+            /* 初始隐藏状态类 - 用于页面顶部时隐藏内容 */
+            .initial-hidden {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            
+            .initial-hidden.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
             .slide-in-left.visible {
                 opacity: 1;
                 transform: translateX(0);
@@ -1063,10 +1075,10 @@
                     <a href="#connection" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-plug mr-2"></i> 连接服务器
                     </a>
-                    <a href="http://mc.mcyggdrasill.top:8100/" target="_blank" class="bg-blue-300 text-dark hover:bg-blue-200 px-6 py-3 rounded mc-border cta-btn blocky">
+                    <a href="http://dt.mcyggdrasill.com:8100/" target="_blank" class="bg-blue-300 text-dark hover:bg-blue-200 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-map mr-2"></i> 世界地图
                     </a>
-                    <a href="#servers" class="bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 rounded mc-border cta-btn blocky">
+                    <a href="#servers" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-gamepad mr-2"></i> 服务器介绍
                     </a>
                 </div>
@@ -1081,7 +1093,7 @@
     </section>
 
     <!-- 服务器连接信息（我的世界风格） -->
-        <section id="connection" class="py-12 relative overflow-hidden slide-in-left">
+        <section id="connection" class="py-12 relative overflow-hidden initial-hidden">
         <!-- 装饰性方块 -->
                 <div class="absolute bottom-16 left-16 w-64 h-64 stone-texture mc-border opacity-10 rotate-12 animate-float" style="animation-delay: 0.5s;"></div>
                 <div class="absolute top-16 right-16 w-64 h-64 dirt-texture mc-border opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
@@ -2530,6 +2542,18 @@
                     }
                 }
             });
+            
+            // 处理初始隐藏元素（页面顶部时隐藏，滚动时显示）
+            const initialHiddenElements = document.querySelectorAll('.initial-hidden');
+            initialHiddenElements.forEach(element => {
+                if (window.scrollY > 100) {
+                    // 用户已滚动超过100px，显示元素
+                    element.classList.add('show');
+                } else {
+                    // 用户在页面顶部附近，隐藏元素
+                    element.classList.remove('show');
+                }
+            });
         }
         
         // 页面加载完成后立即加载图片
@@ -2603,6 +2627,18 @@
             // 初始化滚动动画
             handleScrollAnimations(); // 初始检查
             window.addEventListener('scroll', handleScrollAnimations); // 监听滚动事件
+            
+            // 添加窗口滚动事件监听器，专门处理初始隐藏元素
+            window.addEventListener('scroll', function() {
+                const initialHiddenElements = document.querySelectorAll('.initial-hidden');
+                initialHiddenElements.forEach(element => {
+                    if (window.scrollY > 100) {
+                        element.classList.add('show');
+                    } else {
+                        element.classList.remove('show');
+                    }
+                });
+            });
             
             // 生成插件列表
             generatePluginList();
