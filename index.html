@@ -32,7 +32,6 @@
     <link rel="manifest" href="site.webmanifest">
     
     <!-- ==========================================
-         移除了Vite相关引用，因为这是一个简单的静态网站
          ========================================== -->
     <script>
         // ==========================================
@@ -997,7 +996,7 @@
     </script>
 
     <!-- 首页横幅 - 我的世界风格 -->
-    <section id="home" class="grass-texture py-16 md:py-24 relative overflow-hidden transition-all">
+    <section id="home" class="py-16 md:py-24 relative overflow-hidden transition-all">
         <!-- 装饰性我的世界方块 -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <div class="absolute top-1/4 left-1/4 w-16 h-16 dirt-texture minecraft-border animate-float" style="animation-delay: 0s"></div>
@@ -1104,8 +1103,8 @@
                         <i class="fa fa-server text-3xl text-primary"></i>
                     </div>
                     <p class="font-minecraft text-base mb-3 slide-in-left blocky" style="transition-delay: 0.2s;">服务器地址</p>
-                    <p class="text-xl md:text-2xl font-minecraft text-secondary mb-4 py-2 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.top</p>
-                    <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-3 py-1.5 rounded mc-border text-sm function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.top')">
+                    <p class="text-xl md:text-2xl font-minecraft text-secondary mb-4 py-2 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.com</p>
+                    <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-3 py-1.5 rounded mc-border text-sm function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.com')">
                             <i class="fa fa-copy mr-1"></i>复制地址
                         </button>
                 </div>
@@ -1114,7 +1113,7 @@
     </section>
 
     <!-- 服务器状态面板（我的世界风格） -->
-        <section id="server-status" class="py-16 stone-texture relative overflow-hidden slide-in-right">
+        <section id="server-status" class="py-16 relative overflow-hidden slide-in-right">
         <!-- 装饰方块 -->
         <div class="absolute bottom-10 left-10 w-40 h-40 dirt-texture mc-border opacity-20 rotate-12 animate-float"></div>
         <div class="absolute top-10 right-10 w-40 h-40 grass-texture mc-border opacity-20 -rotate-12 animate-float" style="animation-delay: 1s;"></div>
@@ -1198,7 +1197,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 0.2s;">原版生存</h3>
                             <div class="bg-secondary text-dark px-2 py-1 text-sm font-minecraft mc-border blocky function-btn server-tag">
-                                1.21.8
+                                休闲建造
                             </div>
                         </div>
                         
@@ -1237,7 +1236,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 0.6s;">Mod休闲生存</h3>
                             <div class="bg-secondary text-dark px-2 py-1 text-sm font-minecraft mc-border blocky function-btn server-tag">
-                                1.21.8
+                                模组冒险
                             </div>
                         </div>
                         
@@ -1249,21 +1248,45 @@
                     </div>
                 </div>
                 
-                <!-- 小游戏 -->
+                <!-- 天空网格 高难度生存 -->
                 <div class="bg-dark mc-border rounded-lg overflow-hidden blocky hover-lift transition-all slide-in-left" style="transition-delay: 0.9s;">
                     
                     <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 1s;">小游戏</h3>
+                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 1s;">天空网格</h3>
+                            <div class="bg-red-600 text-dark px-2 py-1 text-sm font-minecraft mc-border blocky function-btn server-tag">
+                                高难度
+                            </div>
+                        </div>
+                        
+                        <p class="mb-6 slide-in-left" style="transition-delay: 1.1s;">在这个满是混乱方块的地方活下去吧！注意脚下！高难度生存模式等你挑战！</p>
+                        
+                        <div class="grid grid-cols-1 gap-2 mt-4">
+                            <img src="logos/002.webp" alt="天空网格景观2" class="rounded mc-border w-[95%] h-auto mx-auto">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 小游戏 -->
+                <div class="bg-dark mc-border rounded-lg overflow-hidden blocky hover-lift transition-all slide-in-left" style="transition-delay: 1.3s;">
+                    
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 1.4s;">小游戏</h3>
                             <div class="bg-secondary text-dark px-2 py-1 text-sm font-minecraft mc-border blocky function-btn server-tag animate-pulse">
                                 开放中
                             </div>
                         </div>
                         
-                        <p class="mb-4 slide-in-left" style="transition-delay: 1.1s;">多种趣味小游戏，与其他玩家一起竞技互动</p>
-                        <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky" style="transition-delay: 1.2s;">
+                        <p class="mb-4 slide-in-left" style="transition-delay: 1.5s;">多种趣味小游戏，与其他玩家一起竞技互动</p>
+                        <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky" style="transition-delay: 1.6s;">
                             <p class="font-minecraft text-yellow-400">
                                 <i class="fa fa-info-circle mr-1"></i>战争模拟器
+                            </p>
+                        </div>
+                        <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky mt-2" style="transition-delay: 1.7s;">
+                            <p class="font-minecraft text-yellow-400">
+                                <i class="fa fa-info-circle mr-1"></i>背刺
                             </p>
                         </div>
                     </div>
@@ -1273,7 +1296,7 @@
     </section>
 
     <!-- 服务器风景展示 -->
-        <section id="scenery" class="py-16 grass-texture relative overflow-hidden slide-in-right">
+        <section id="scenery" class="py-16 relative overflow-hidden slide-in-right">
         <!-- 装饰性方块 -->
         <div class="absolute -bottom-16 -left-16 w-64 h-64 dirt-texture opacity-20 rotate-12 animate-float mc-border" style="animation-delay: 0.5s;"></div>
         <div class="absolute -top-16 -right-16 w-64 h-64 stone-texture opacity-20 -rotate-12 animate-float mc-border" style="animation-delay: 1.5s;"></div>
@@ -1320,7 +1343,7 @@
     </section>
 
     <!-- 大合照 -->
-        <section id="photos" class="py-16 stone-texture relative overflow-hidden slide-in-left">
+        <section id="photos" class="py-16 relative overflow-hidden slide-in-left">
         <!-- 装饰性方块 -->
         <div class="absolute -bottom-16 -left-16 w-64 h-64 dirt-texture opacity-20 rotate-12 animate-float minecraft-border" style="animation-delay: 0.5s;"></div>
         <div class="absolute -top-16 -right-16 w-64 h-64 grass-texture opacity-20 -rotate-12 animate-float minecraft-border" style="animation-delay: 1.5s;"></div>
@@ -1409,7 +1432,7 @@
     </section>
 
     <!-- 服务器规则 -->
-        <section id="rules" class="py-16 grass-texture relative overflow-hidden slide-in-left">
+        <section id="rules" class="py-16 relative overflow-hidden slide-in-left">
         <!-- 装饰性方块 -->
         <div class="absolute -bottom-16 -left-16 w-64 h-64 stone-texture opacity-20 rotate-12 animate-float mc-border" style="animation-delay: 0.5s;"></div>
         <div class="absolute -top-16 -right-16 w-64 h-64 dirt-texture opacity-20 -rotate-12 animate-float mc-border" style="animation-delay: 1.5s;"></div>
@@ -1591,7 +1614,7 @@
                 </div>
             </div>
             <p class="text-sm mb-2">
-                <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号-1</a>
+                <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号</a>
             </p>
             <p class="text-sm font-minecraft">© 2020 Yggdrasill-世界树-公益群组服 - 保留所有权利</p>
 			
@@ -1711,7 +1734,8 @@
         async function detectImagesByListing(folder, folderName) {
     
             const images = await parseDirectoryListing(folder);
-            return images;
+            // 限制最多显示10张图片
+            return images.slice(0, 10);
         }
         
         // 保留原有的检测函数作为备选方案
@@ -1719,10 +1743,10 @@
     
             
             const detectedImages = [];
-            const maxAttempts = 6; // 根据实际文件结构调整尝试范围
+            const maxAttempts = 10; // 根据实际文件结构调整尝试范围
             let attempts = 0;
             const maxTotalAttempts = 30; // 增加总请求数以确保找到所有图片
-            const maxImagesToDetect = 20; // 增加最多检测的图片数
+            const maxImagesToDetect = 10; // 最多检测10张图片
             
             // 尝试数字序列命名的图片 (1-6)
             for (let i = 1; i <= maxAttempts && detectedImages.length < maxImagesToDetect && attempts < maxTotalAttempts; i++) {
@@ -1734,7 +1758,7 @@
                 let extensionsToTry;
                 if (i === 1) {
                     extensionsToTry = ['.jpg', '.png', '.jpeg'];
-                } else if (i >= 2 && i <= 5) {
+                } else if (i >= 2 && i <= 10) {
                     extensionsToTry = ['.png'];
                 } else if (i === 6) {
                     // 6只有带括号的文件，跳过不带括号的尝试
@@ -1760,7 +1784,7 @@
                 
                 // 如果没有找到图片，尝试带括号的命名方式 (如 4 (1).jpg)
                 // 但只在特定数字范围内尝试，避免过多请求
-                if (attempts < maxTotalAttempts && (i === 4 || i === 6)) {
+                if (attempts < maxTotalAttempts && (i === 4 || i === 10)) {
                     // 根据实际文件结构，调整j的范围
                     const maxBracketAttempts = (i === 4) ? 4 : 5; // 4文件夹有4个带括号的文件，6文件夹有5个
                     for (let j = 1; j <= maxBracketAttempts && attempts < maxTotalAttempts; j++) {
@@ -2308,7 +2332,7 @@
         
         // 获取服务器状态函数
         async function fetchServerStatus() {
-            const serverHost = 'mcyggdrasill.top';
+            const serverHost = 'mcyggdrasill.com';
             const serverApiUrl = `https://uapis.cn/api/v1/game/minecraft/serverstatus?server=${encodeURIComponent(serverHost)}`;
             const statusIndicator = document.getElementById('server-status-indicator').querySelector('div');
             const statusText = document.getElementById('status-text');
