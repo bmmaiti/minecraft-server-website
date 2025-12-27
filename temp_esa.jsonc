@@ -1,6 +1,6 @@
 {
-  "name": "minecraft-server-website",
-  "entry": "./index.html",
+  "name": "todo",
+  "entry": "./src/index.js",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
   "assets": {
