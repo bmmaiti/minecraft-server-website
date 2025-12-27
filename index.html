@@ -6,12 +6,12 @@
          ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yggdrasill-世界树-我的世界服务器</title>
+    <title>Yggdrasill-世界树-我的世界</title>
     
     <!-- ==========================================
          SEO优化关键词（对用户不可见）
          ========================================== -->
-    <meta name="keywords" content="我的世界《Yggdrasill-世界树》服务器官网,我的世界,我的世界服务器,我的世界java版服务器,我的世界世界树服务器,我的世界公益服务器,我的世界群组服,yggdrasill世界树,yggdrasill,我的世界世界树,mcyggdrasill">
+    <meta name="keywords" content="欢迎来到我的世界《Yggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
     <meta name="description" content="欢迎来到我的世界《Yggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
     
     <!-- ==========================================
@@ -485,6 +485,35 @@
                 transform-origin: left;
             }
             
+            /* ==================== 友链按钮样式 ==================== */
+            /* 友链按钮使用绿色主题 */
+            .link-btn {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                border-radius: 4px;
+            }
+            .link-btn::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #22c55e; /* 绿色 */
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease;
+            }
+            .link-btn:hover {
+                color: #22c55e; /* 绿色 */
+                background-color: rgba(34, 197, 94, 0.1); /* 绿色半透明背景 */
+            }
+            .link-btn:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            
             /* ==================== 赞助按钮样式 ==================== */
             /* 美化后的赞助按钮样式 */
             .sponsor-btn {
@@ -903,7 +932,7 @@
     <div id="loading-screen" class="fixed inset-0 bg-dark z-50 flex items-center justify-center">
         <div class="text-center">
             <div class="mx-auto mb-4 w-16 h-16 bg-primary mc-border animate-bounce"></div>
-            <p class="font-minecraft text-xl text-primary">Yggdrasill World is Loading...</p>
+            <p class="font-minecraft text-xl text-primary">加载中...</p>
         </div>
     </div>
     <!-- 导航栏 - 我的世界风格 -->
@@ -911,17 +940,18 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
-                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg">Yggdrasill-世界树|我的世界服务器</h1>
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg">Yggdrasill-世界树|我的世界</h1>
                 </div>
                 
                 <!-- 桌面导航 - 方块按钮 -->
                 <div class="hidden md:flex space-x-2">
                     <a href="#home" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">首页</a>
-                    <a href="#servers" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">服务器</a>
+                    <a href="#servers" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">类型</a>
                     <a href="#scenery" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">风景展示</a>
                     <a href="#connection" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">连接信息</a>
                     <a href="#info" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">信息</a>
                     <a href="#rules" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">规则</a>
+                    <a href="links.html" class="font-minecraft hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky link-btn">友链</a>
                     <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-4 py-1 mc-border transition-colors sponsor-btn blocky">
                         <i class="fa fa-heart mr-1"></i> 赞助
                     </a>
@@ -936,11 +966,12 @@
             <!-- 移动端导航菜单 -->
             <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border hover-lift">
                 <a href="#home" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">首页</a>
-                <a href="#servers" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">服务器</a>
+                <a href="#servers" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">类型</a>
                 <a href="#scenery" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">风景展示</a>
                 <a href="#connection" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">连接信息</a>
                 <a href="#info" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">信息</a>
                 <a href="#rules" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">规则</a>
+                <a href="links.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky link-btn">友链</a>
                 <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="block px-2 py-1 font-minecraft bg-secondary text-dark hover:bg-secondary/80 rounded text-center sponsor-btn blocky">
                     <i class="fa fa-heart mr-1"></i> 赞助
                 </a>
@@ -1060,7 +1091,7 @@
                 <!-- 服务器状态 -->
                 <div class="inline-flex items-center bg-dark px-6 py-3 rounded mc-border mb-10 hover-lift blocky">
                     <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                    <span>服务器长期开放中</span>
+                    <span>长期开放中</span>
                 </div>
                 
                 <!-- 注册第三方登录账号按钮 -->
@@ -1073,13 +1104,13 @@
                 <!-- 快速操作按钮 -->
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="#connection" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
-                        <i class="fa fa-plug mr-2"></i> 连接服务器
+                        <i class="fa fa-plug mr-2"></i> 连接
                     </a>
                     <a href="http://dt.mcyggdrasill.com:8100/" target="_blank" class="bg-blue-300 text-dark hover:bg-blue-200 px-6 py-3 rounded mc-border cta-btn blocky">
                         <i class="fa fa-map mr-2"></i> 世界地图
                     </a>
                     <a href="#servers" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
-                        <i class="fa fa-gamepad mr-2"></i> 服务器介绍
+                        <i class="fa fa-gamepad mr-2"></i> 介绍
                     </a>
                 </div>
             </div>
@@ -1107,14 +1138,14 @@
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-8 text-primary text-shadow-lg slide-in-left">服务器连接信息</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-8 text-primary text-shadow-lg slide-in-left">连接信息</h2>
             
             <div class="max-w-2xl mx-auto">
                 <div class="bg-dark p-4 md:p-6 rounded mc-border blocky text-center hover-lift transition-all slide-in-left">
                     <div class="mb-2 slide-in-left" style="transition-delay: 0.1s;">
                         <i class="fa fa-server text-3xl text-primary"></i>
                     </div>
-                    <p class="font-minecraft text-base mb-3 slide-in-left blocky" style="transition-delay: 0.2s;">服务器地址</p>
+                    <p class="font-minecraft text-base mb-3 slide-in-left blocky" style="transition-delay: 0.2s;">地址</p>
                     <p class="text-xl md:text-2xl font-minecraft text-secondary mb-4 py-2 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.com</p>
                     <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-3 py-1.5 rounded mc-border text-sm function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.com')">
                             <i class="fa fa-copy mr-1"></i>复制地址
@@ -1131,7 +1162,7 @@
         <div class="absolute top-10 right-10 w-40 h-40 grass-texture mc-border opacity-20 -rotate-12 animate-float" style="animation-delay: 1s;"></div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg slide-in-right">服务器状态</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg slide-in-right">状态</h2>
             
             <div class="max-w-4xl mx-auto bg-dark mc-border rounded p-8 blocky hover-lift transition-all slide-in-right">
                 <div class="flex flex-col md:flex-row items-center justify-between mb-8">
@@ -1140,7 +1171,7 @@
                             <i class="fa fa-server text-dark text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-right blocky" style="transition-delay: 0.2s;">服务器状态：<span id="status-text" class="text-red-500">离线</span></h3>
+                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-right blocky" style="transition-delay: 0.2s;">状态：<span id="status-text" class="text-red-500">离线</span></h3>
                         </div>
                     </div>
                     <div class="text-center md:text-right slide-in-right" style="transition-delay: 0.3s;">
@@ -1172,7 +1203,7 @@
                     <!-- 延迟 -->
                     <div class="bg-dark-secondary rounded p-2 mc-border blocky hover-lift transition-all slide-in-right" style="transition-delay: 0.4s;">
                         <div class="flex items-center justify-between mb-2">
-                            <h4 class="font-minecraft text-primary blocky">服务器延迟</h4>
+                            <h4 class="font-minecraft text-primary blocky">延迟</h4>
                             <i class="fa fa-signal text-secondary"></i>
                         </div>
                         <p id="server-ping" class="text-2xl font-bold text-center blocky">--</p>
@@ -1199,7 +1230,7 @@
         <div class="absolute bottom-20 right-10 w-40 h-40 bg-grass-texture opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow-lg slide-in-left">服务器类型</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow-lg slide-in-left">类型</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- 原版生存 -->
@@ -1218,7 +1249,7 @@
                         <!-- 服务器乐趣插件列表 (可折叠) -->
                         <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky mb-4" style="transition-delay: 0.4s;">
                             <div class="flex justify-between items-center cursor-pointer" onclick="togglePluginList(this)">
-                                <p class="font-minecraft mb-2">服务器乐趣插件:</p>
+                                <p class="font-minecraft mb-2">乐趣插件:</p>
                                 <i class="fa fa-chevron-down transition-transform duration-300"></i>
                             </div>
                             <div id="plugin-list-container" class="hidden mt-2">
@@ -1326,7 +1357,7 @@
         <div class="absolute top-10 right-10 w-12 h-12 leaves-texture animate-float mc-border" style="animation-delay: 1.3s;"></div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg slide-in-right blocky">服务器风景展示</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg slide-in-right blocky">风景展示</h2>
             
             <div class="max-w-5xl mx-auto">
                 <!-- 图片轮播容器 -->
@@ -1348,7 +1379,7 @@
                 </div>
                 
                 <div class="mt-8 text-center">
-                    <p class="font-minecraft text-lg text-shadow slide-in-right blocky" style="transition-delay: 0.2s;">这些是玩家们在服务器中建造的精彩作品和探索发现的美丽风景</p>
+                    <p class="font-minecraft text-lg text-shadow slide-in-right blocky" style="transition-delay: 0.2s;">这些是玩家们在里面建造的精彩作品和探索发现的美丽风景</p>
                 </div>
             </div>
         </div>
@@ -1395,7 +1426,7 @@
                 </div>
                 
                 <div class="mt-8 text-center">
-                    <p class="font-minecraft text-lg text-shadow slide-in-left blocky" style="transition-delay: 0.2s;">这些是玩家们在服务器中一起冒险的精彩瞬间</p>
+                    <p class="font-minecraft text-lg text-shadow slide-in-left blocky" style="transition-delay: 0.2s;">这些是玩家们在一起冒险的精彩瞬间</p>
                 </div>
             </div>
         </div>
@@ -1407,7 +1438,7 @@
         <div class="absolute bottom-0 left-0 w-full h-2 bg-primary/20 border-t-4 border-primary/40"></div>
         
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow slide-in-right blocky">服务器信息</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow slide-in-right blocky">信息</h2>
             
             <div class="max-w-3xl mx-auto bg-dark p-6 md:p-8 rounded-lg mc-border slide-in-right blocky">
                 <div class="grid md:grid-cols-2 gap-6">
@@ -1428,7 +1459,7 @@
                             </li>
                             <li class="flex items-start slide-in-right" style="transition-delay: 0.5s;">
                                 <i class="fa fa-clock-o text-secondary mt-1 mr-3 minecraft-icon"></i>
-                                <span>服务器长期开放，随时可以加入</span>
+                                <span>长期开放，随时可以加入</span>
                             </li>
                         </ul>
                     </div>
@@ -1462,7 +1493,7 @@
         <div class="absolute top-10 right-10 w-12 h-12 obsidian-texture animate-float mc-border" style="animation-delay: 1.3s;"></div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg blocky">服务器规则</h2>
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-shadow-lg blocky">规则</h2>
             
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- 不当行为规则 -->
@@ -1504,17 +1535,17 @@
                         <div class="w-10 h-10 bg-red-500 rounded flex items-center justify-center mr-3 mc-border">
                             <i class="fa fa-ban text-dark animate-pulse"></i>
                         </div>
-                        <h3 class="text-2xl font-minecraft text-primary slide-in-right blocky">严禁影响服务器运行</h3>
+                        <h3 class="text-2xl font-minecraft text-primary slide-in-right blocky">严禁影响运行</h3>
                     </div>
                     
                     <ul class="space-y-3 pl-2">
                         <li class="flex items-start hover-lift transition-all slide-in-right" style="transition-delay: 0.1s;">
                             <i class="fa fa-times-circle text-red-500 mt-1 mr-3 minecraft-icon"></i>
-                            <span>故意卡服、延迟攻击等影响服务器性能</span>
+                            <span>故意卡服、延迟攻击等影响性能</span>
                         </li>
                         <li class="flex items-start hover-lift transition-all slide-in-right" style="transition-delay: 0.2s;">
                             <i class="fa fa-times-circle text-red-500 mt-1 mr-3 minecraft-icon"></i>
-                            <span>利用漏洞造成服务器崩溃（炸服）</span>
+                            <span>利用漏洞造成崩溃（炸服）</span>
                         </li>
                         <li class="flex items-start hover-lift transition-all slide-in-right" style="transition-delay: 0.3s;">
                             <i class="fa fa-times-circle text-red-500 mt-1 mr-3 minecraft-icon"></i>
@@ -1526,7 +1557,7 @@
                         </li>
                         <li class="flex items-start hover-lift transition-all slide-in-right" style="transition-delay: 0.5s;">
                             <i class="fa fa-times-circle text-red-500 mt-1 mr-3 minecraft-icon"></i>
-                            <span>其他影响服务器稳定运行的行为</span>
+                            <span>其他影响稳定运行的行为</span>
                         </li>
                     </ul>
                 </div>
@@ -1609,21 +1640,16 @@
             <!-- 赞助按钮 -->
             <div class="mb-6">
                 <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="bg-secondary hover:bg-secondary/80 text-dark font-minecraft py-2 px-6 rounded mc-border transition-all sponsor-btn blocky">
-                    <i class="fa fa-heart mr-2"></i>支持服务器
+                    <i class="fa fa-heart mr-2"></i>支持一下
                 </a>
             </div>
             
             
 
             <div class="mb-4 text-center">
-                <h3 class="text-secondary font-bold mb-2">友情链接</h3>
-                <div class="flex justify-center">
-                    <hr class="border-black border-t mb-2 w-64">
-                </div>
-                <div class="flex justify-center space-x-4">
-                    <a href="https://www.rockaz.top" target="_blank" class="text-secondary hover:text-primary transition-colors">rockaz的奇幻世界</a>
-                    <a href="https://20070223.xyz/" target="_blank" class="text-secondary hover:text-primary transition-colors">Timeless永恒服务器</a>
-                </div>
+                <a href="links.html" class="bg-primary hover:bg-primary/80 text-dark font-minecraft py-2 px-6 rounded mc-border transition-all blocky">
+                    <i class="fa fa-link mr-2"></i>友情链接
+                </a>
             </div>
             <p class="text-sm mb-2">
                 <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号</a>

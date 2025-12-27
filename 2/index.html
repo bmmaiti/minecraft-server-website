@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcYggdrasill-『世界树』 - 首页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 装饰性圆形元素 -->
+    <div class="decoration-circle circle-1"></div>
+    <div class="decoration-circle circle-2"></div>
+
+    <!-- 导航栏 -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">mcYggdrasill-『世界树』</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="blog.html">博客</a></li>
+                <li><a href="photography.html">摄影分享</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">联系我</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+        <div class="container">
+            <h1>欢迎来到我的个人博客</h1>
+            <p>分享我的生活、技术和思考</p>
+            <a href="blog.html" class="btn">浏览文章</a>
+        </div>
+    </section>
+
+    <!-- 最新文章 -->
+    <section class="latest-posts">
+        <div class="container">
+            <h2 class="fade-in-up">最新文章</h2>
+            <div class="posts-grid">
+                <!-- 文章卡片1 -->
+                <article class="post-card fade-in-up" style="animation-delay: 0.1s">
+                    <img src="https://picsum.photos/600/200?random=1" alt="文章图片" class="post-img">
+                    <div class="post-content">
+                        <span class="post-date">2023年10月15日</span>
+                        <h3><a href="blog-single.html">学习前端开发的心得与体会</a></h3>
+                        <p>在学习前端开发的过程中，我遇到了许多挑战，也收获了很多知识和技能。这篇文章我将分享我的学习历程和一些实用的学习方法...</p>
+                        <a href="blog-single.html" class="read-more">阅读更多</a>
+                    </div>
+                </article>
+                
+                <!-- 文章卡片2 -->
+                <article class="post-card fade-in-up" style="animation-delay: 0.2s">
+                    <img src="https://picsum.photos/600/200?random=2" alt="文章图片" class="post-img">
+                    <div class="post-content">
+                        <span class="post-date">2023年10月10日</span>
+                        <h3><a href="blog-single.html">CSS Grid布局完全指南</a></h3>
+                        <p>CSS Grid是一种强大的布局工具，可以帮助我们创建复杂的网页布局。本文将详细介绍CSS Grid的各种功能和使用方法...</p>
+                        <a href="blog-single.html" class="read-more">阅读更多</a>
+                    </div>
+                </article>
+                
+                <!-- 文章卡片3 -->
+                <article class="post-card fade-in-up" style="animation-delay: 0.3s">
+                    <img src="https://picsum.photos/600/200?random=3" alt="文章图片" class="post-img">
+                    <div class="post-content">
+                        <span class="post-date">2023年10月5日</span>
+                        <h3><a href="blog-single.html">JavaScript异步编程详解</a></h3>
+                        <p>异步编程是JavaScript中非常重要的概念，掌握好异步编程可以让我们编写更加高效的代码。本文将介绍Promise、async/await等异步编程方式...</p>
+                        <a href="blog-single.html" class="read-more">阅读更多</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分类标签 -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="fade-in-up">文章分类</h2>
+            <div class="category-tags">
+                <a href="blog.html?category=frontend" class="fade-in-up" style="animation-delay: 0.1s">前端开发</a>
+                <a href="blog.html?category=backend" class="fade-in-up" style="animation-delay: 0.2s">后端开发</a>
+                <a href="blog.html?category=tips" class="fade-in-up" style="animation-delay: 0.3s">开发技巧</a>
+                <a href="blog.html?category=tools" class="fade-in-up" style="animation-delay: 0.4s">开发工具</a>
+                <a href="blog.html?category=experience" class="fade-in-up" style="animation-delay: 0.5s">经验分享</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>关于mcYggdrasill-『世界树』</h3>
+                    <p>这是mcYggdrasill-『世界树』的个人技术博客，主要分享前端开发、编程技巧和学习心得。</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="blog.html">博客</a></li>
+                        <li><a href="photography.html">摄影分享</a></li>
+                        <li><a href="about.html">关于我</a></li>
+                        <li><a href="contact.html">联系我</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>关注我</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 mcYggdrasill-『世界树』 版权所有</p>
+                <p><a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：粤ICP备2025476020号-1</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

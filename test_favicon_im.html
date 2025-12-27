@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon.im 服务测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .test-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+        }
+        .test-card img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+        }
+        .test-card p {
+            margin: 5px 0;
+            word-break: break-all;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Favicon.im 服务测试</h1>
+    <div class="test-container">
+        <div class="test-card">
+            <img src="https://favicon.im/www.mcyggdrasill.com" alt="www.mcyggdrasill.com favicon" onerror="handleError(this, 'https://favicon.im/www.mcyggdrasill.com')">
+            <p>www.mcyggdrasill.com</p>
+            <p>https://favicon.im/www.mcyggdrasill.com</p>
+            <div class="result success">正确域名</div>
+        </div>
+        <div class="test-card">
+            <img src="https://favicon.im/mcyggdrasill.com" alt="mcyggdrasill.com favicon" onerror="handleError(this, 'https://favicon.im/mcyggdrasill.com')">
+            <p>mcyggdrasill.com</p>
+            <p>https://favicon.im/mcyggdrasill.com</p>
+            <div class="result error">缺少www</div>
+        </div>
+        <div class="test-card">
+            <img src="https://favicon.im/www.mcyggdrasill.com/zh-hans" alt="www.mcyggdrasill.com/zh-hans favicon" onerror="handleError(this, 'https://favicon.im/www.mcyggdrasill.com/zh-hans')">
+            <p>www.mcyggdrasill.com/zh-hans</p>
+            <p>https://favicon.im/www.mcyggdrasill.com/zh-hans</p>
+            <div class="result error">包含路径</div>
+        </div>
+    </div>
+
+    <script>
+        function handleError(imgElement, src) {
+            console.log('图标加载失败:', src);
+            // 不替换为默认图标，保持空白以显示加载失败
+        }
+    </script>
+</body>
+</html>

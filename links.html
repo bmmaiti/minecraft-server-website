@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>友链接 - mcYggdrasill-世界树</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 使用CDN引入Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 保留本地引用作为备用 -->
+    <link href="fonts/font-awesome.min.css" rel="stylesheet">
+    
+    <script>
+        // ==========================================
+        // Tailwind自定义主题配置
+        // 采用我的世界风格色调
+        // ==========================================
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#22c55e', // 我的世界绿色
+                        secondary: '#f59e0b', // 橙色强调
+                        dark: '#1e293b',
+                        light: '#f8fafc',
+                        grass: '#7cfc00', // 草地绿
+                        dirt: '#8b4513',  // 泥土棕
+                        stone: '#a9a9a9', // 石头灰
+                    },
+                    fontFamily: {
+                        minecraft: ['var(--minecraft-font-family)'],
+                        sans: ['system-ui', 'sans-serif', 'Arial', 'Helvetica'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 添加我的世界风格字体和样式 */
+        :root {
+            --minecraft-font-family: 'CKTKingkong', monospace, 'Courier New', Courier, monospace;
+            
+            /* 添加更多我的世界风格的颜色变量 */
+            --mc-green: #7CFC00;
+            --mc-dirt: #8B4513;
+            --mc-stone: #A9A9A9;
+            --mc-water: #1E90FF;
+            --mc-lava: #FF4500;
+            --mc-wood: #8B4513;
+            --mc-leaf: #228B22;
+            --mc-diamond: #00FFFF;
+            --mc-gold: #FFD700;
+            --mc-iron: #C0C0C0;
+            --mc-coal: #2F4F4F;
+            --mc-redstone: #FF0000;
+            --mc-obsidian: #4B0082;
+            
+            /* 新增深板岩矿物背景纹理 */
+            --stone-texture: url('tietu3/Stone_28texture_29_JE5_BE3.png');
+            --deepslate-texture: url('tietu3/Deepslate_28top_texture_29_JE2.png');
+            --coal-ore-stone: url('tietu3/Coal_Ore_28texture_29_JE5_BE4.png');
+            --iron-ore-stone: url('tietu3/Iron_Ore_28texture_29_JE6_BE4.png');
+            --gold-ore-stone: url('tietu3/Gold_Ore_28texture_29_JE7_BE4.png');
+            --diamond-ore-stone: url('tietu3/Diamond_Ore_28texture_29_JE5_BE5.png');
+            --redstone-ore-stone: url('tietu3/Redstone_Ore_28texture_29_JE4_BE3.png');
+            --coal-ore-deepslate: url('tietu3/Deepslate_Coal_Ore_28texture_29_JE2_BE1.png');
+            --iron-ore-deepslate: url('tietu3/Deepslate_Iron_Ore_28texture_29_JE2_BE1.png');
+            --gold-ore-deepslate: url('tietu3/Deepslate_Gold_Ore_28texture_29_JE2_BE1.png');
+            --diamond-ore-deepslate: url('tietu3/Deepslate_Diamond_Ore_28texture_29_JE2_BE1.png');
+            --lapis-ore-deepslate: url('tietu3/Deepslate_Lapis_Lazuli_Ore_28texture_29_JE3_BE2.png');
+        }
+        
+        .grass-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .dirt-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .stone-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .wood-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .leaves-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .diamond-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .gold-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .iron-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .redstone-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .obsidian-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        
+        /* 添加我的世界风格的方块按钮样式 */
+        .blocky {
+            transform: translateY(0);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .blocky:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blocky-btn {
+            clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+            transition: all 0.2s ease;
+        }
+        .blocky-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 友链按钮样式 - 绿色背景黑色字体 */
+        .link-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            background-color: #22c55e; /* 绿色背景 */
+            color: #000; /* 黑色字体 */
+        }
+        .link-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000; /* 黑色下划线 */
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        .link-btn:hover {
+            color: #000; /* 黑色字体 */
+            background-color: #16a34a; /* 深一点的绿色背景 */
+        }
+        .link-btn:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* 赞助按钮样式 - 与index.html保持一致 */
+        .sponsor-btn {
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #000; /* 添加边框 */
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+        }
+        .sponsor-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .sponsor-btn:hover::before {
+            left: 100%;
+        }
+        .sponsor-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 针对导航栏中的按钮增强样式 */
+        nav .blocky {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin: 0 0.125rem;
+        }
+        
+        nav .nav-btn.blocky {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #000; /* mc-border */
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3); /* mc-border shadow */
+            border-radius: 4px; /* 保持圆角 */
+            background-color: #1e293b; /* bg-dark */
+            color: white;
+        }
+        
+        nav .nav-btn.blocky::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color, #f0a500);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        nav .nav-btn.blocky:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        nav .link-btn.blocky {
+            background-color: #22c55e; /* 绿色背景 */
+            color: #000; /* 黑色字体 */
+        }
+        
+        nav .link-btn.blocky::after {
+            background: #000; /* 黑色下划线 */
+        }
+        
+        nav .link-btn.blocky:hover {
+            color: #000; /* 黑色字体 */
+            background-color: #16a34a; /* 深一点的绿色背景 */
+        }
+        
+        nav .sponsor-btn.blocky {
+            background-color: #f59e0b; /* bg-secondary */
+            color: #1e293b; /* text-dark */
+            border-radius: 6px;
+        }
+        
+        nav .sponsor-btn.blocky:hover {
+            background-color: #d97706; /* hover:bg-secondary/80 */
+        }
+        
+        /* ==========================================
+           深板岩矿物背景类 - 用于网站整体背景效果
+           ========================================== */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        .base-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        .cell {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background-size: 32px 32px;
+            background-repeat: no-repeat;
+        }
+        
+        .stone {
+            background-image: url('tietu3/Stone_28texture_29_JE5_BE3.png');
+        }
+        
+        .deepslate {
+            background-image: url('tietu3/Deepslate_28top_texture_29_JE2.png');
+        }
+        
+        .ores-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .ore {
+            position: absolute;
+            background-size: 32px 32px;
+            background-repeat: no-repeat;
+            width: 32px;
+            height: 32px;
+        }
+        
+        /* 石头矿物 */
+        .diamond-ore-stone {
+            background-image: url('tietu3/Diamond_Ore_28texture_29_JE5_BE5.png');
+        }
+        
+        .gold-ore-stone {
+            background-image: url('tietu3/Gold_Ore_28texture_29_JE7_BE4.png');
+        }
+        
+        .iron-ore-stone {
+            background-image: url('tietu3/Iron_Ore_28texture_29_JE6_BE4.png');
+        }
+        
+        .redstone-ore-stone {
+            background-image: url('tietu3/Redstone_Ore_28texture_29_JE4_BE3.png');
+        }
+        
+        .coal-ore-stone {
+            background-image: url('tietu3/Coal_Ore_28texture_29_JE5_BE4.png');
+        }
+        
+        /* 深板岩矿物 */
+        .diamond-ore-deepslate {
+            background-image: url('tietu3/Deepslate_Diamond_Ore_28texture_29_JE2_BE1.png');
+        }
+        
+        .gold-ore-deepslate {
+            background-image: url('tietu3/Deepslate_Gold_Ore_28texture_29_JE2_BE1.png');
+        }
+        
+        .iron-ore-deepslate {
+            background-image: url('tietu3/Deepslate_Iron_Ore_28texture_29_JE2_BE1.png');
+        }
+        
+        .redstone-ore-deepslate {
+            background-image: url('tietu3/Redstone_Ore_28texture_29_JE4_BE3.png');
+        }
+        
+        .coal-ore-deepslate {
+            background-image: url('tietu3/Coal_Ore_28texture_29_JE5_BE4.png');
+        }
+        
+        .lapis-ore-deepslate {
+            background-image: url('tietu3/Deepslate_Lapis_Lazuli_Ore_28texture_29_JE3_BE2.png');
+        }
+        
+        /* 添加我的世界风格的方块元素 */
+        .mc-block {
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 2px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: var(--primary-color);
+            transition: transform 0.2s ease;
+        }
+        
+        .mc-block:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* 动画效果 */
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* 修复其他纹理类使用正确的CSS变量 */
+        .lapis-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        .emerald-texture {
+            background-image: var(--texture-image);
+            background-repeat: repeat;
+        }
+        
+        /* 为不同类型的按钮添加特定样式 */
+        .btn-primary {
+            background-color: #22c55e;
+            color: #1e293b;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #16a34a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #f59e0b;
+            color: #1e293b;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: #22c55e;
+        }
+        
+        /* 链接卡片样式 */
+        .link-card {
+            transition: all 0.3s ease;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .link-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 搜索框样式 */
+        .search-box {
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            border-top: 4px solid #22c55e;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+    </style>
+    
+    <!-- ==========================================
+         网站图标和manifest设置
+         ========================================== -->
+    <link rel="icon" href="logos/yggdrasill_logo.png" type="image/png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="logos/yggdrasill_logo.png">
+    <link rel="manifest" href="site.webmanifest">
+</head>
+<body class="text-light font-sans">
+    <!-- 加载动画 -->
+    <div id="loading-screen" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="spinner-border text-green-500" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">加载中...</span>
+            </div>
+            <p class="text-white mt-4 font-minecraft">正在生成Minecraft风格背景...</p>
+        </div>
+    </div>
+
+    <!-- 深板岩矿物背景 -->
+    <div class="background-container">
+        <!-- 基岩层 -->
+        <div class="base-layer" id="baseLayer"></div>
+        
+        <!-- 矿物层 -->
+        <div class="ores-layer" id="oresLayer"></div>
+    </div>
+    
+
+    
+    <!-- 导航栏 - 我的世界风格 -->
+    <nav class="bg-primary/90 backdrop-blur-sm fixed top-0 w-full z-50 transition-all duration-300 max-w-full" style="background-image: url('logos/xx1.jpg'); background-size: contain; background-repeat: repeat-x; background-position: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg text-white">Yggdrasill-世界树|友情链接</h1>
+                </div>
+                
+                <!-- 桌面导航 - 方块按钮 -->
+                <div class="hidden md:flex space-x-2">
+                    <a href="index.html" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">首页</a>
+                    <a href="index.html#servers" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">服务器</a>
+                    <a href="index.html#scenery" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">风景展示</a>
+                    <a href="index.html#connection" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">连接信息</a>
+                    <a href="index.html#info" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">信息</a>
+                    <a href="index.html#rules" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">规则</a>
+                    <a href="links.html" class="font-minecraft hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky link-btn">友链</a>
+                    <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-4 py-1 mc-border transition-colors sponsor-btn blocky">
+                        <i class="fa fa-heart mr-1"></i> 赞助
+                    </a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="md:hidden text-2xl sponsor-btn mc-border blocky-btn">
+                    <i class="fa fa-cube"></i>
+                </button>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border hover-lift">
+                <a href="index.html" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">首页</a>
+                <a href="index.html#servers" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">服务器</a>
+                <a href="index.html#scenery" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">风景展示</a>
+                <a href="index.html#connection" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">连接信息</a>
+                <a href="index.html#info" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">信息</a>
+                <a href="index.html#rules" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">规则</a>
+                <a href="links.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky link-btn">友链</a>
+                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="block px-2 py-1 font-minecraft bg-secondary text-dark hover:bg-secondary/80 rounded text-center sponsor-btn blocky">
+                    <i class="fa fa-heart mr-1"></i> 赞助
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+
+    <!-- 友情链接 -->
+    <section id="links" class="py-16 relative overflow-hidden slide-in-left">
+        <!-- 装饰性元素 -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-stone-texture opacity-10 rotate-12 animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-40 h-40 bg-grass-texture opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-12 text-primary text-shadow-lg slide-in-left"></h2>
+            
+            <div class="grid md:grid-cols-4 gap-8" id="linksContainer">
+                <!-- 友链卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+
+<script>
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 隐藏加载动画
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                // 监听背景生成完成事件
+                document.addEventListener('backgroundGenerationComplete', () => {
+                    loadingScreen.classList.add('hidden');
+                });
+                
+                // 备用方案：如果背景生成模块未加载，则在一定时间后隐藏加载动画
+                setTimeout(() => {
+                    if (!document.querySelector('.cell')) {
+                        // 如果没有生成任何背景方块，则可能是模块未加载，隐藏加载动画
+                        loadingScreen.classList.add('hidden');
+                    }
+                }, 2000);
+            }
+            
+            loadLinks();
+            
+            // 为移动端菜单按钮添加点击事件（如果之前没有添加）
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // 点击导航链接后隐藏移动端菜单
+                const navLinks = document.querySelectorAll('.nav-btn, .sponsor-btn');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+        
+        // 加载友链
+          async function loadLinks() {
+            try {
+                const response = await fetch('links.json');
+                if (!response.ok) {
+                    throw new Error(`加载友链数据失败: ${response.status} ${response.statusText}`);
+                }
+                const links = await response.json();
+                
+                // 渲染友链（由于createLinkElement是异步的，我们需要逐个处理）
+                const container = document.getElementById('linksContainer');
+                container.innerHTML = '';
+                
+                for (const link of links) {
+                    const linkElement = await createLinkElement(link);
+                    container.appendChild(linkElement);
+                }
+            } catch (error) {
+                console.error('加载友链数据失败:', error);
+                
+                // 显示错误信息
+                const linksContainer = document.getElementById('linksContainer');
+                if (linksContainer) {
+                    linksContainer.innerHTML = '<p class="text-center text-red-500 py-10">加载友链数据失败，请稍后重试</p>';
+                }
+            }
+        }
+        
+        // 创建友链元素（优化版，不等待图标加载）
+        function createLinkElement(link) {
+            const card = document.createElement('div');
+            card.className = 'bg-dark mc-border rounded-lg overflow-hidden blocky hover-lift transition-all slide-in-left flex flex-col';
+            
+            // 立即显示友链，使用默认图标
+            card.innerHTML = `
+                <div class="p-5 flex flex-col h-full">
+                    <div class="flex flex-col items-center mb-3">
+                        <img src="/default-logo.svg" alt="${link.name} logo" class="w-12 h-12 rounded mb-2 object-contain" data-url="${link.url}" referrerpolicy="no-referrer">
+                        <h3 class="text-xl font-minecraft text-primary text-shadow slide-in-left blocky text-center">${link.name}</h3>
+                    </div>
+                    <p class="mb-4 slide-in-left flex-grow text-center">${link.description || '暂无描述'}</p>
+                    <a href="${link.url}" class="bg-primary text-dark hover:bg-primary/80 px-3 py-1.5 rounded mc-border cta-btn blocky text-center mt-auto text-sm" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-external-link mr-1 text-xs"></i> 访问
+                    </a>
+                </div>
+            `;
+            
+            // 异步加载图标，不影响友链显示
+            loadLogoAsync(card.querySelector('img'), link.url, link.name, link.logo || '');
+            
+            return card;
+        }
+        
+        // 异步加载logo的函数（优化版）
+        async function loadLogoAsync(imgElement, url = '', siteName = '', logoPath = '') {
+            if (!imgElement || (!url && !logoPath)) {
+                console.warn('缺少img元素或URL参数');
+                // 使用默认SVG图标
+                imgElement.src = createDefaultSVGIcon(siteName);
+                imgElement.style.display = 'block';
+                return;
+            }
+        
+            try {
+                // 如果提供了logoPath，则直接使用本地logo
+                if (logoPath) {
+                    // 检查本地logo文件是否存在
+                    const response = await fetch(logoPath, { method: 'HEAD' });
+                    if (response.ok) {
+                        // 找到本地logo文件，直接使用
+                        imgElement.src = logoPath;
+                        imgElement.style.display = 'block';
+                        console.log(`找到本地logo文件: ${logoPath}`);
+                        return;
+                    } else {
+                        console.log(`本地logo文件不存在: ${logoPath}，尝试其他方法`);
+                    }
+                }
+        
+                // 如果没有提供logoPath或本地文件不存在，则继续原有逻辑
+                if (url) {
+                    // 确保URL有协议前缀
+                    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                        url = 'https://' + url;
+                    }
+            
+                    // 使用URL对象提取hostname，确保不包含路径
+                    const urlObj = new URL(url);
+                    const domain = urlObj.hostname; // 只获取域名部分，不包含路径
+                    
+                    // 首先检查本地是否有对应的logo文件
+                    const logoExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg'];
+                    let foundLocalLogo = false;
+                    
+                    for (const ext of logoExtensions) {
+                        // 构造本地logo文件路径，例如: logos/www.minecraft.net.png
+                        const localLogoPath = `/logos/${domain}${ext}`;
+                        
+                        // 检查本地logo文件是否存在
+                        const response = await fetch(localLogoPath, { method: 'HEAD' });
+                        if (response.ok) {
+                            // 找到本地logo文件，直接使用
+                            imgElement.src = localLogoPath;
+                            imgElement.style.display = 'block';
+                            console.log(`找到本地logo文件: ${localLogoPath}`);
+                            foundLocalLogo = true;
+                            break;
+                        }
+                    }
+                    
+                    // 如果没有找到本地logo文件，则使用在线服务获取图标
+                    if (!foundLocalLogo) {
+                        // 构造favicon.im的请求URL
+                        const logoUrl = `https://favicon.im/${domain}`;
+                        
+                        // 直接设置src属性
+                        imgElement.src = logoUrl;
+                        imgElement.style.display = 'block';
+                        
+                        console.log(`为 ${url} 加载图标: ${logoUrl}`);
+                    }
+                }
+            } catch (error) {
+                console.error('加载logo时出错:', error);
+                // 如果发生错误，使用默认SVG图标
+                imgElement.src = createDefaultSVGIcon(siteName);
+                imgElement.style.display = 'block';
+            }
+        }
+        
+// 从网站HTML中提取favicon的函数（优化版）
+async function extractFaviconFromHTML(url) {
+    console.log(`开始从 ${url} 提取图标`);
+    
+    try {
+        // 首先尝试获取网站HTML
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
+        
+        console.log(`尝试获取网站HTML: ${url}`);
+        
+        // 尝试使用代理服务器来绕过CORS限制
+        const proxyUrls = [
+            `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+            url  // 如果代理失败，直接尝试访问
+        ];
+        
+        let html = null;
+        let usedProxy = '';
+        
+        for (const proxyUrl of proxyUrls) {
+            try {
+                console.log(`尝试代理: ${proxyUrl.includes('allorigins') ? 'allorigins' : 'direct'}`);
+                
+                const response = await fetch(proxyUrl, {
+                    signal: controller.signal,
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                    }
+                });
+                
+                if (response.ok) {
+                    html = await response.text();
+                    usedProxy = proxyUrl;
+                    console.log(`成功通过${proxyUrl.includes('allorigins') ? 'allorigins代理' : '直接访问'}获取HTML，长度: ${html.length}`);
+                    break;
+                } else {
+                    console.log(`代理请求失败，状态码: ${response.status}`);
+                }
+            } catch (fetchError) {
+                console.log(`代理请求错误: ${fetchError.message}`);
+                continue;
+            }
+        }
+        
+        clearTimeout(timeoutId);
+        
+        if (!html) {
+            console.log(`所有方式都失败，返回标准favicon路径`);
+            // 如果所有方式都失败，返回标准favicon路径
+            const standardFavicon = new URL('/favicon.ico', url).href;
+            console.log(`使用标准路径: ${standardFavicon}`);
+            return standardFavicon;
+        }
+        
+        // 创建DOM解析器
+        const parser = new DOMParser();
+        let doc;
+        try {
+            doc = parser.parseFromString(html, 'text/html');
+        } catch (parseError) {
+            console.log(`解析HTML失败: ${parseError.message}`);
+            // 解析失败时返回标准favicon路径
+            const standardFavicon = new URL('/favicon.ico', url).href;
+            console.log(`使用标准路径: ${standardFavicon}`);
+            return standardFavicon;
+        }
+        
+        // 查找各种可能的图标链接（按照优先级顺序）
+        const iconSelectors = [
+            'link[rel="shortcut icon"]',  // 首先查找快捷方式图标
+            'link[rel="icon"]',           // 标准图标
+            'link[rel="icon shortcut"]',   // 替代表达
+            'link[rel="apple-touch-icon"]', // Apple触摸图标
+            'link[rel="apple-touch-icon-precomposed"]', // 预合成Apple图标
+            'link[rel*="icon"]',          // 包含icon的任何rel属性
+            'link[rel="mask-icon"]',      // Safari遮罩图标
+            'link[rel="fluid-icon"]'      // Fluid应用图标
+        ];
+        
+        for (const selector of iconSelectors) {
+            try {
+                console.log(`尝试选择器: ${selector}`);
+                const iconLink = doc.querySelector(selector);
+                if (iconLink) {
+                    const href = iconLink.getAttribute('href');
+                    if (href) {
+                        // 转换为绝对URL
+                        let absoluteUrl;
+                        if (usedProxy.includes('allorigins')) {
+                            // 如果使用了代理，需要特别处理相对URL
+                            absoluteUrl = new URL(href, url).href;
+                        } else {
+                            absoluteUrl = new URL(href, url).href;
+                        }
+                        
+                        console.log(`找到图标: ${absoluteUrl} (来自选择器: ${selector})`);
+                        return absoluteUrl;
+                    }
+                }
+            } catch (e) {
+                console.log(`查找选择器失败: ${selector} - ${e.message}`);
+                continue; // 继续尝试下一个选择器
+            }
+        }
+        
+        // 如果没有找到特定的图标链接，尝试标准favicon路径
+        const standardFavicon = new URL('/favicon.ico', url).href;
+        console.log(`未在HTML中找到图标，使用标准路径: ${standardFavicon}`);
+        return standardFavicon;
+    } catch (error) {
+        console.log(`从HTML中提取图标失败: ${error.message}`);
+        // 如果无法解析HTML，则返回标准favicon路径
+        const standardFavicon = new URL('/favicon.ico', url).href;
+        console.log(`使用标准路径: ${standardFavicon}`);
+        return standardFavicon;
+    }
+}
+        
+        // 处理logo加载错误的函数
+    function handleLogoError(img, originalUrl) {
+        // 如果已经是默认图标或SVG数据URL，则不再尝试
+        if (img.src.endsWith('/default-logo.svg') || img.src.includes('data:image/svg+xml')) {
+            return;
+        }
+        
+        // 从URL中提取域名首字母作为图标
+        try {
+            const domain = new URL(originalUrl).hostname.replace('www.', '');
+            const firstLetter = domain.charAt(0).toUpperCase();
+            
+            // 生成包含首字母的SVG数据URL，使用更美观的颜色方案
+            const colors = ['#4F46E5', '#10B981', '#EF4444', '#F59E0B', '#8B5CF6', '#EC4899'];
+            const color = colors[domain.length % colors.length]; // 根据域名长度选择颜色
+            
+            const svgData = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"><rect width="24" height="24" fill="${color}"/><text x="12" y="16" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white" font-weight="bold">${firstLetter}</text></svg>`;
+            
+            img.src = svgData;
+        } catch (e) {
+            // 如果URL无效，使用默认图标
+            img.src = '/default-logo.svg';
+        }
+    }
+        
+        // 获取域名
+        function getDomain(url) {
+            try {
+                const urlObj = new URL(url);
+                return urlObj.hostname;
+            } catch (e) {
+                // 如果URL无效，返回原始URL作为域名
+                return url;
+            }
+        }
+        
+        // 设置表单提交事件（仅作保留，实际无用）
+        function setupForm() {
+            // 此功能已移除
+        }
+    </script>
+
+    <script>
+        // 深板岩矿物背景生成代码
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查页面上是否存在背景容器
+            const baseLayer = document.getElementById('baseLayer');
+            const oresLayer = document.getElementById('oresLayer');
+            
+            // 如果没有找到相关容器，则不执行背景生成
+            if (!baseLayer || !oresLayer) {
+                return;
+            }
+            
+            // 页面尺寸计算
+            const pageWidth = window.innerWidth;
+            const pageHeight = window.innerHeight;
+            
+            // 计算网格行列数（基于32px的方块尺寸）
+            const cols = Math.ceil(pageWidth / 32);
+            const rows = Math.ceil(pageHeight / 32);
+            
+            // 计算分界线（深板岩从这里开始）
+            const deepslateStartRow = Math.floor(rows * 0.5); // 深板岩从50%位置开始
+            
+            // 创建基岩层（石头和深板岩，石头可以随机深入深板岩6格）
+            function createBaseLayers() {
+                // 创建石头层（上部）和随机深入深板岩的部分
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const cell = document.createElement('div');
+                        cell.style.left = `${col * 32}px`;
+                        cell.style.top = `${row * 32}px`;
+                        
+                        // 判断应该使用哪种材质
+                        if (row < deepslateStartRow) {
+                            // 在深板岩层开始前，全部使用石头
+                            cell.className = 'cell stone';
+                        } else if (row < deepslateStartRow + 6) {
+                            // 在深板岩层开始后的6格内，随机决定使用石头还是深板岩
+                            // 越靠近分界线，使用石头的概率越高
+                            const probability = 1 - (row - deepslateStartRow) / 6;
+                            if (Math.random() < probability) {
+                                cell.className = 'cell stone';
+                            } else {
+                                cell.className = 'cell deepslate';
+                            }
+                        } else {
+                            // 深板岩层主体部分，全部使用深板岩
+                            cell.className = 'cell deepslate';
+                        }
+                        
+                        baseLayer.appendChild(cell);
+                    }
+                }
+            }
+            
+            // 创建矿物生成函数（严格限制在指定层中）
+            function generateOreVein(oreClass, layer, veinCount, veinSize) {
+                for (let v = 0; v < veinCount; v++) {
+                    // 根据层确定生成范围
+                    let startY, endY;
+                    if (layer === 'stone') {
+                        // 石头层范围（包括可能延伸到深板岩的6格）
+                        startY = 0;
+                        endY = deepslateStartRow + 6;
+                    } else if (layer === 'deepslate') {
+                        // 深板岩层范围（不包括被石头延伸的部分）
+                        startY = deepslateStartRow + 6;
+                        endY = rows;
+                    }
+                    
+                    // 确保范围有效
+                    if (startY >= endY) return;
+                    
+                    // 随机选择一个起始点（在指定Y范围内）
+                    const startRowPos = startY + Math.floor(Math.random() * (endY - startY));
+                    const startColPos = Math.floor(Math.random() * cols);
+                    
+                    // 使用BFS算法生成连接的矿脉
+                    const queue = [{row: startRowPos, col: startColPos}];
+                    const visited = new Set();
+                    visited.add(`${startRowPos},${startColPos}`);
+                    let placedCount = 0;
+                    
+                    // 四个方向：上、下、左、右
+                    const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+                    
+                    while (queue.length > 0 && placedCount < veinSize) {
+                        // 随机选择队列中的一个点
+                        const randomIndex = Math.floor(Math.random() * queue.length);
+                        const current = queue[randomIndex];
+                        queue.splice(randomIndex, 1);
+                        
+                        const {row, col} = current;
+                        
+                        // 检查边界和层限制
+                        if (row < startY || row >= endY || col < 0 || col >= cols) continue;
+                        
+                        // 创建矿物元素
+                        const oreElement = document.createElement('div');
+                        oreElement.className = `ore ${oreClass}`;
+                        oreElement.style.left = `${col * 32}px`;
+                        oreElement.style.top = `${row * 32}px`;
+                        oresLayer.appendChild(oreElement);
+                        placedCount++;
+                        
+                        // 添加相邻位置到队列中
+                        for (const [dr, dc] of directions) {
+                            const newRow = row + dr;
+                            const newCol = col + dc;
+                            const key = `${newRow},${newCol}`;
+                            
+                            // 检查是否已访问过和层限制
+                            if (!visited.has(key) && newRow >= startY && newRow < endY && newCol >= 0 && newCol < cols) {
+                                visited.add(key);
+                                // 降低添加到队列的概率，使矿物更加分散
+                                if (Math.random() < 0.4) { // 从0.7降低到0.4，使矿物更分散
+                                    queue.push({row: newRow, col: newCol});
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 初始化基岩层
+            createBaseLayers();
+            
+            // 按照Minecraft真实规则严格生成矿物（确保矿物只在其对应的基岩类型中生成）
+            // 煤矿石 - 严格只在石头层中生成（包括延伸部分）
+            generateOreVein('coal-ore-stone', 'stone', 8, 4 + Math.floor(Math.random() * 3)); // 增加矿脉数量，减小单个矿脉大小
+            
+            // 铁矿石 - 主要在石头层中生成，少量在深板岩层中生成
+            generateOreVein('iron-ore-stone', 'stone', 7, 3 + Math.floor(Math.random() * 3)); // 增加矿脉数量，减小单个矿脉大小
+            generateOreVein('iron-ore-deepslate', 'deepslate', 2, 2 + Math.floor(Math.random() * 2)); // 增加深板岩层矿脉数量
+            
+            // 红石矿石 - 严格只在石头层中生成（包括延伸部分）
+            generateOreVein('redstone-ore-stone', 'stone', 6, 4 + Math.floor(Math.random() * 2)); // 增加矿脉数量，减小单个矿脉大小
+            
+            // 金矿石 - 石头层和深板岩层都有生成
+            generateOreVein('gold-ore-stone', 'stone', 2, 3 + Math.floor(Math.random() * 2)); // 增加石头层矿脉数量
+            generateOreVein('gold-ore-deepslate', 'deepslate', 2, 3 + Math.floor(Math.random() * 2)); // 增加深板岩层矿脉数量
+            
+            // 钻石矿石 - 主要在深板岩层中生成，少量在石头层中生成
+            generateOreVein('diamond-ore-stone', 'stone', 1, 2 + Math.floor(Math.random() * 2)); // 减小石头层矿脉大小
+            generateOreVein('diamond-ore-deepslate', 'deepslate', 4, 2 + Math.floor(Math.random() * 2)); // 增加深板岩层矿脉数量从2个到4个
+            
+            // 青金石矿石 - 严格只在深板岩层中生成
+            generateOreVein('lapis-ore-deepslate', 'deepslate', 5, 2 + Math.floor(Math.random() * 2)); // 增加矿脉数量从3个到5个
+            
+            // 背景生成完成后触发自定义事件
+            setTimeout(() => {
+                const event = new CustomEvent('backgroundGenerationComplete');
+                document.dispatchEvent(event);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图标获取测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .site-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .icon-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .icon-img {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+        .debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>图标获取测试</h1>
+        <p>此页面测试优化后的图标获取方法</p>
+        
+        <div>
+            <input type="text" id="urlInput" placeholder="输入网站URL，例如：https://www.example.com" style="width: 300px; padding: 8px;">
+            <button onclick="testSingleSite()">测试单个网站</button>
+            <button onclick="testAllSites()">测试所有网站</button>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // 从网站HTML中提取图标的函数（优化版，参考青略工具方法）
+        async function extractFaviconFromHTML(url) {
+            let debugInfo = `开始从 ${url} 提取图标\n`;
+            
+            try {
+                // 首先尝试获取网站HTML
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
+                
+                debugInfo += `尝试获取网站HTML: ${url}\n`;
+                
+                // 尝试使用代理服务器来绕过CORS限制
+                // 首先尝试使用公开的CORS代理（优先使用更稳定的代理）
+                const proxyUrls = [
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+                    url  // 如果代理失败，直接尝试访问
+                ];
+                
+                let html = null;
+                let usedProxy = '';
+                
+                for (const proxyUrl of proxyUrls) {
+                    try {
+                        debugInfo += `尝试代理: ${proxyUrl.includes('allorigins') ? 'allorigins' : proxyUrl.includes('cors-anywhere') ? 'cors-anywhere' : 'direct'}\n`;
+                        
+                        const response = await fetch(proxyUrl, {
+                            signal: controller.signal,
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            html = await response.text();
+                            usedProxy = proxyUrl;
+                            debugInfo += `成功通过${proxyUrl.includes('allorigins') ? 'allorigins代理' : proxyUrl.includes('cors-anywhere') ? 'cors-anywhere代理' : '直接访问'}获取HTML，长度: ${html.length}\n`;
+                            break;
+                        } else {
+                            debugInfo += `代理请求失败，状态码: ${response.status}\n`;
+                        }
+                    } catch (fetchError) {
+                        debugInfo += `代理请求错误: ${fetchError.message}\n`;
+                        continue;
+                    }
+                }
+                
+                clearTimeout(timeoutId);
+                
+                if (!html) {
+                    debugInfo += `所有代理方式都失败，使用回退方法\n`;
+                    // 如果所有代理都失败，尝试使用第三方服务
+                    const domain = new URL(url).hostname.replace('www.', '');
+                    const fallbackUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    debugInfo += `使用Google favicon服务: ${fallbackUrl}\n`;
+                    return { url: fallbackUrl, debug: debugInfo };
+                }
+                
+                // 创建DOM解析器
+                const parser = new DOMParser();
+                let doc;
+                try {
+                    doc = parser.parseFromString(html, 'text/html');
+                } catch (parseError) {
+                    debugInfo += `解析HTML失败: ${parseError.message}\n`;
+                    // 解析失败时尝试使用第三方服务
+                    const domain = new URL(url).hostname.replace('www.', '');
+                    const fallbackUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    debugInfo += `使用Google favicon服务: ${fallbackUrl}\n`;
+                    return { url: fallbackUrl, debug: debugInfo };
+                }
+                
+                // 查找各种可能的图标链接（按照优先级顺序，参考青略工具的策略）
+                const iconSelectors = [
+                    'link[rel="shortcut icon"]',  // 首先查找快捷方式图标
+                    'link[rel="icon"]',           // 标准图标
+                    'link[rel="icon shortcut"]',   // 替代表达
+                    'link[rel="apple-touch-icon"]', // Apple触摸图标
+                    'link[rel="apple-touch-icon-precomposed"]', // 预合成Apple图标
+                    'link[rel*="icon"]',          // 包含icon的任何rel属性
+                    'link[rel="mask-icon"]',      // Safari遮罩图标
+                    'link[rel="fluid-icon"]'      // Fluid应用图标
+                ];
+                
+                for (const selector of iconSelectors) {
+                    try {
+                        debugInfo += `尝试选择器: ${selector}\n`;
+                        const iconLink = doc.querySelector(selector);
+                        if (iconLink) {
+                            const href = iconLink.getAttribute('href');
+                            if (href) {
+                                // 转换为绝对URL
+                                let absoluteUrl;
+                                if (usedProxy.includes('allorigins') || usedProxy.includes('cors-anywhere')) {
+                                    // 如果使用了代理，需要特别处理相对URL
+                                    absoluteUrl = new URL(href, url).href;
+                                } else {
+                                    absoluteUrl = new URL(href, url).href;
+                                }
+                                
+                                debugInfo += `找到图标: ${absoluteUrl} (来自选择器: ${selector})\n`;
+                                return { url: absoluteUrl, debug: debugInfo };
+                            }
+                        }
+                    } catch (e) {
+                        debugInfo += `查找选择器失败: ${selector} - ${e.message}\n`;
+                        continue; // 继续尝试下一个选择器
+                    }
+                }
+                
+                // 如果没有找到特定的图标链接，尝试标准favicon路径
+                const standardFavicon = new URL('/favicon.ico', url).href;
+                debugInfo += `未在HTML中找到图标，使用标准路径: ${standardFavicon}\n`;
+                return { url: standardFavicon, debug: debugInfo };
+            } catch (error) {
+                debugInfo += `从HTML中提取图标失败: ${error.message}\n`;
+                // 如果无法解析HTML，则返回标准favicon路径
+                try {
+                    const domain = new URL(url).hostname.replace('www.', '');
+                    const fallbackUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    debugInfo += `使用Google favicon服务: ${fallbackUrl}\n`;
+                    return { url: fallbackUrl, debug: debugInfo };
+                } catch (fallbackError) {
+                    debugInfo += `所有方法都失败: ${fallbackError.message}\n`;
+                    return { url: '/default-logo.svg', debug: debugInfo };
+                }
+            }
+        }
+
+        // 测试单个网站
+        async function testSingleSite() {
+            const url = document.getElementById('urlInput').value.trim();
+            if (!url) {
+                alert('请输入一个网站URL');
+                return;
+            }
+            
+            // 验证URL格式
+            try {
+                new URL(url);
+            } catch (e) {
+                alert('请输入有效的URL');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>正在测试...</p>';
+            
+            const result = await extractFaviconFromHTML(url);
+            
+            const card = document.createElement('div');
+            card.className = 'site-card';
+            card.innerHTML = `
+                <h3>测试结果: ${url}</h3>
+                <div class="icon-container">
+                    <img src="${result.url}" alt="网站图标" class="icon-img" onerror="this.src='/default-logo.svg'; this.alt='默认图标'; console.log('图标加载失败: ${result.url}');">
+                    <div>
+                        <strong>提取的图标URL:</strong><br>
+                        <a href="${result.url}" target="_blank">${result.url}</a>
+                    </div>
+                </div>
+                <div class="debug-info">${result.debug}</div>
+            `;
+            
+            resultsDiv.innerHTML = '';
+            resultsDiv.appendChild(card);
+        }
+
+        // 测试所有网站
+        async function testAllSites() {
+            const sites = [
+                'https://www.minecraft.net/zh-hans',
+                'https://www.minebbs.com/',
+                'https://www.mgyggdrasill.com/',
+                'https://www.mcmod.cn/'
+            ];
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>正在测试所有网站...</p>';
+            
+            const allResults = [];
+            for (const site of sites) {
+                allResults.push(extractFaviconFromHTML(site));
+            }
+            
+            const results = await Promise.all(allResults);
+            
+            resultsDiv.innerHTML = '';
+            for (let i = 0; i < sites.length; i++) {
+                const result = results[i];
+                const card = document.createElement('div');
+                card.className = 'site-card';
+                card.innerHTML = `
+                    <h3>测试结果: ${sites[i]}</h3>
+                    <div class="icon-container">
+                        <img src="${result.url}" alt="网站图标" class="icon-img" onerror="this.src='/default-logo.svg'; this.alt='默认图标'; console.log('图标加载失败: ${result.url}');">
+                        <div>
+                            <strong>提取的图标URL:</strong><br>
+                            <a href="${result.url}" target="_blank">${result.url}</a>
+                        </div>
+                    </div>
+                    <div class="debug-info">${result.debug}</div>
+                `;
+                resultsDiv.appendChild(card);
+            }
+        }
+
+        // 页面加载时测试示例网站
+        window.onload = function() {
+            document.getElementById('urlInput').value = 'https://www.example.com';
+        };
+    </script>
+</body>
+</html>
