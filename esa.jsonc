@@ -1,6 +1,7 @@
 {
   "assetsDir": "dist",
-  "functionFile": "",
+  "functionFile": null,
   "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rootDirectory": "/"
 }
