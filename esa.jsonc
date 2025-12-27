@@ -1,17 +1,19 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@aliyun/fc-static",
-      "config": {
-        "distPath": "./dist"
-      }
-    }
-  ],
+  "version": 2,
+  "env": {},
   "routes": [
     {
       "src": "/(.*)",
       "dest": "/index.html"
+    }
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@aliyun/esa-build-static",
+      "config": {
+        "distPath": "dist"
+      }
     }
   ]
 }
