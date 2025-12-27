@@ -33,7 +33,7 @@ function copyFiles() {
     
     // 检查是否为排除的文件
     const shouldExclude = config.exclude.some(excludePattern => {
-      return minimatch(relativePath, excludePattern) || file.includes(excludePattern);
+      return simpleMatch(relativePath, excludePattern) || file.includes(excludePattern);
     });
     
     if (!shouldExclude) {
@@ -136,8 +136,8 @@ function installDependencies() {
   }
 }
 
-// 最小匹配函数（简化版）
-function minimatch(path, pattern) {
+// 简单的模式匹配函数
+function simpleMatch(path, pattern) {
   // 简单的模式匹配实现
   const regexPattern = pattern
     .replace(/\./g, '\\.')

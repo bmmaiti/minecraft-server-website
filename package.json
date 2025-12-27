@@ -11,7 +11,11 @@
   "dependencies": {
     "jsdom": "^27.3.0"
   },
-  "keywords": ["minecraft", "website", "server"],
+  "keywords": [
+    "minecraft",
+    "website",
+    "server"
+  ],
   "author": "bmmaiti",
   "license": "MIT"
 }
