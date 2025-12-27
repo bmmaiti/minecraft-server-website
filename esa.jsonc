@@ -4,5 +4,6 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "rootDirectory": "/",
-  "outputDir": "dist"
+  "outputDir": "dist",
+  "framework": "static"
 }
