@@ -1,9 +1,17 @@
 {
-  "assetsDir": "dist",
-  "functionFile": null,
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "rootDirectory": "/",
-  "outputDir": "dist",
-  "framework": "static"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@aliyun/fc-static",
+      "config": {
+        "distPath": "./dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
