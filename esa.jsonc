@@ -1,0 +1,6 @@
+{
+  "assetsDir": "dist",
+  "functionFile": "",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
+}
