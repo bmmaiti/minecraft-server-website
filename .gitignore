@@ -1,2 +1,5 @@
 # Ignore the minecraft-server-website directory as it's a separate repository
 minecraft-server-website/
+
+# Build output directory
+dist/

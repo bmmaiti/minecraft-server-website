@@ -1,5 +1,17 @@
 {
+  "name": "minecraft-server-website",
+  "version": "1.0.0",
+  "description": "A Minecraft-themed website for a server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js",
+    "dev": "python -m http.server 8000"
+  },
   "dependencies": {
     "jsdom": "^27.3.0"
-  }
+  },
+  "keywords": ["minecraft", "website", "server"],
+  "author": "bmmaiti",
+  "license": "MIT"
 }
