@@ -3,3 +3,7 @@ minecraft-server-website/
 
 # Build output directory
 dist/
+
+# Logo cache directory (optional, uncomment if needed)
+# logos/
+# *.json

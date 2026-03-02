@@ -1,0 +1,20 @@
+region: cn-hangzhou
+service:
+  name: logo-downloader-service
+  description: 下载友链 logo 的服务
+  role: acs:ram:::role/aliyunfcdefaultrole
+
+functions:
+  download-logos:
+    handler: index.handler
+    runtime: nodejs18
+    codeUri: ./
+    memory: 512
+    timeout: 300
+
+triggers:
+  - name: daily-trigger
+    type: schedule
+    config:
+      cronExpression: 0 2 * * *
+      enable: true

@@ -651,9 +651,9 @@
             return card;
         }
         
-        // 异步加载logo的函数（优化版）
+        // 异步加载logo的函数（自动从网站获取）
         async function loadLogoAsync(imgElement, url = '', siteName = '', logoPath = '') {
-            if (!imgElement || (!url && !logoPath)) {
+            if (!imgElement || !url) {
                 console.warn('缺少img元素或URL参数');
                 // 使用默认SVG图标
                 imgElement.src = createDefaultSVGIcon(siteName);
@@ -662,64 +662,35 @@
             }
         
             try {
-                // 如果提供了logoPath，则直接使用本地logo
-                if (logoPath) {
-                    // 检查本地logo文件是否存在
-                    const response = await fetch(logoPath, { method: 'HEAD' });
-                    if (response.ok) {
-                        // 找到本地logo文件，直接使用
+                // 确保URL有协议前缀
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
+        
+                // 使用URL对象提取hostname，确保不包含路径
+                const urlObj = new URL(url);
+                const domain = urlObj.hostname; // 只获取域名部分，不包含路径
+        
+                console.log(`开始加载 ${domain} 的 logo`);
+        
+                // 首先尝试从 links.json 中的 logoPath 加载（本地logo）
+                if (logoPath && logoPath.trim() !== '') {
+                    try {
                         imgElement.src = logoPath;
                         imgElement.style.display = 'block';
-                        console.log(`找到本地logo文件: ${logoPath}`);
+                        console.log(`使用 links.json 中配置的 logo: ${logoPath}`);
                         return;
-                    } else {
-                        console.log(`本地logo文件不存在: ${logoPath}，尝试其他方法`);
+                    } catch (e) {
+                        console.log(`配置的 logo 无效: ${logoPath}`);
                     }
                 }
         
-                // 如果没有提供logoPath或本地文件不存在，则继续原有逻辑
-                if (url) {
-                    // 确保URL有协议前缀
-                    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                        url = 'https://' + url;
-                    }
-            
-                    // 使用URL对象提取hostname，确保不包含路径
-                    const urlObj = new URL(url);
-                    const domain = urlObj.hostname; // 只获取域名部分，不包含路径
-                    
-                    // 首先检查本地是否有对应的logo文件
-                    const logoExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg'];
-                    let foundLocalLogo = false;
-                    
-                    for (const ext of logoExtensions) {
-                        // 构造本地logo文件路径，例如: logos/www.minecraft.net.png
-                        const localLogoPath = `/logos/${domain}${ext}`;
-                        
-                        // 检查本地logo文件是否存在
-                        const response = await fetch(localLogoPath, { method: 'HEAD' });
-                        if (response.ok) {
-                            // 找到本地logo文件，直接使用
-                            imgElement.src = localLogoPath;
-                            imgElement.style.display = 'block';
-                            console.log(`找到本地logo文件: ${localLogoPath}`);
-                            foundLocalLogo = true;
-                            break;
-                        }
-                    }
-                    
-                    // 如果没有找到本地logo文件，则使用在线服务获取图标
-                    if (!foundLocalLogo) {
-                        // 构造favicon.im的请求URL
-                        const logoUrl = `https://favicon.im/${domain}`;
-                        
-                        // 直接设置src属性
-                        imgElement.src = logoUrl;
-                        imgElement.style.display = 'block';
-                        
-                        console.log(`为 ${url} 加载图标: ${logoUrl}`);
-                    }
-                }
+                // 如果本地logo无效，使用 favicon.im 服务（网站logo）
+                const logoUrl = `https://favicon.im/${domain}`;
+                console.log(`使用 favicon.im 获取网站 logo: ${logoUrl}`);
+                imgElement.src = logoUrl;
+                imgElement.style.display = 'block';
+        
             } catch (error) {
                 console.error('加载logo时出错:', error);
                 // 如果发生错误，使用默认SVG图标

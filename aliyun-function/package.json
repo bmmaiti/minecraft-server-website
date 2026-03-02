@@ -1,0 +1,9 @@
+{
+  "name": "aliyun-logo-downloader",
+  "version": "1.0.0",
+  "description": "阿里云函数计算 - 每日自动下载友链 logo",
+  "main": "index.js",
+  "dependencies": {
+    "jsdom": "^27.3.0"
+  }
+}
