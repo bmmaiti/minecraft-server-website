@@ -2583,6 +2583,21 @@
             );
         }
         
+        // 检测连接信息模块是否在视口中（使用更早的触发点）
+        function isInViewportConnection(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+            
+            // 连接信息模块进入视口的条件 - 更早的触发点
+            return (
+                rect.top <= windowHeight * 0.3 &&
+                rect.bottom >= 0 &&
+                rect.left <= windowWidth &&
+                rect.right >= 0
+            );
+        }
+        
         // 处理滚动动画
         function handleScrollAnimations() {
             const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-left-alt, .slide-in-right-alt');
@@ -2621,11 +2636,11 @@
             const connSections = ['connection', 'server-status'];
             let connSectionVisible = false;
             
-            // 检查连接信息和状态模块
+            // 检查连接信息和状态模块（使用更早的触发点）
             connSections.forEach(sectionId => {
                 if (sections[sectionId]) {
                     const sectionElement = document.getElementById(sectionId);
-                    if (sectionElement && isInViewport(sectionElement)) {
+                    if (sectionElement && isInViewportConnection(sectionElement)) {
                         connSectionVisible = true;
                         sections[sectionId].forEach(element => {
                             element.classList.add('visible');
