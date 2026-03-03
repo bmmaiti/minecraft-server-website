@@ -2617,10 +2617,29 @@
                 }
             });
             
+            // 特殊处理：连接信息和状态视为同一个模块
+            const connSections = ['connection', 'server-status'];
+            let connSectionVisible = false;
+            
+            // 检查连接信息和状态模块
+            connSections.forEach(sectionId => {
+                if (sections[sectionId]) {
+                    const sectionElement = document.getElementById(sectionId);
+                    if (sectionElement && isInViewport(sectionElement)) {
+                        connSectionVisible = true;
+                        sections[sectionId].forEach(element => {
+                            element.classList.add('visible');
+                        });
+                    }
+                }
+            });
+            
             // 处理其他 section
             Object.keys(sections).forEach(sectionId => {
                 // 跳过展示模块，由上面统一处理
                 if (showSections.includes(sectionId)) return;
+                // 跳过连接信息和状态模块，由上面统一处理
+                if (connSections.includes(sectionId)) return;
                 
                 const sectionElement = document.getElementById(sectionId);
                 if (sectionElement) {
@@ -2629,8 +2648,8 @@
                             element.classList.add('visible');
                         });
                     } else {
-                        // 只有当展示模块也不可见时，才移除其他模块的 visible 类
-                        if (!showSectionVisible) {
+                        // 只有当展示模块和连接信息模块都不可见时，才移除其他模块的 visible 类
+                        if (!showSectionVisible && !connSectionVisible) {
                             sections[sectionId].forEach(element => {
                                 element.classList.remove('visible');
                             });
