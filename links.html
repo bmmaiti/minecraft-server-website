@@ -71,6 +71,10 @@
             --lapis-ore-deepslate: url('tietu3/Deepslate_Lapis_Lazuli_Ore_28texture_29_JE3_BE2.png');
         }
         
+        .text-shadow-lg {
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        }
+        
         .grass-texture {
             background-image: var(--texture-image);
             background-repeat: repeat;
@@ -122,12 +126,25 @@
         }
         
         .blocky-btn {
-            clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
             transition: all 0.2s ease;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
         }
+        
+        .mc-border {
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+            background-color: #1e293b;
+            border-radius: 6px !important;
+        }
+        
         .blocky-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .blocky-btn:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
         }
         
         /* 友链按钮样式 - 绿色背景黑色字体 */
@@ -138,6 +155,7 @@
             border-radius: 4px;
             background-color: #22c55e; /* 绿色背景 */
             color: #000; /* 黑色字体 */
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2); /* 添加立体感 */
         }
         .link-btn::after {
             content: '';
@@ -154,10 +172,12 @@
         .link-btn:hover {
             color: #000; /* 黑色字体 */
             background-color: #16a34a; /* 深一点的绿色背景 */
+            transform: translateY(-3px);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
         }
-        .link-btn:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        .link-btn:active {
+            box-shadow: none !important;
+            transform: translateY(2px) !important;
         }
         
         /* 赞助按钮样式 - 与index.html保持一致 */
@@ -167,7 +187,7 @@
             position: relative;
             overflow: hidden;
             border: 2px solid #000; /* 添加边框 */
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2); /* 添加立体感 */
         }
         .sponsor-btn::before {
             content: '';
@@ -183,8 +203,12 @@
             left: 100%;
         }
         .sponsor-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+        .sponsor-btn:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
         }
         
         /* 针对导航栏中的按钮增强样式 */
@@ -199,7 +223,7 @@
             overflow: hidden;
             transition: all 0.3s ease;
             border: 2px solid #000; /* mc-border */
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3); /* mc-border shadow */
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2); /* mc-border shadow with 3D effect */
             border-radius: 4px; /* 保持圆角 */
             background-color: #1e293b; /* bg-dark */
             color: white;
@@ -218,33 +242,69 @@
             transition: transform 0.3s ease;
         }
         
+        nav .nav-btn.blocky:hover {
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+        nav .nav-btn.blocky:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
+        }
+        
         nav .nav-btn.blocky:hover::after {
             transform: scaleX(1);
             transform-origin: left;
         }
         
         nav .link-btn.blocky {
-            background-color: #22c55e; /* 绿色背景 */
-            color: #000; /* 黑色字体 */
+            background-color: #1e293b; /* 与其它按钮一致的背景色 */
+            color: #22c55e; /* 绿色字体 */
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2); /* 添加立体感 */
         }
         
         nav .link-btn.blocky::after {
-            background: #000; /* 黑色下划线 */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #22c55e; /* 绿色下划线 */
+            transform: scaleX(1);
+            transform-origin: right;
         }
         
         nav .link-btn.blocky:hover {
-            color: #000; /* 黑色字体 */
-            background-color: #16a34a; /* 深一点的绿色背景 */
+            color: #22c55e; /* 绿色字体 */
+            background-color: #1e293b; /* 与其它按钮一致的背景色 */
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+        nav .link-btn.blocky:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
+        }
+        nav .link-btn.blocky:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
         }
         
         nav .sponsor-btn.blocky {
             background-color: #f59e0b; /* bg-secondary */
             color: #1e293b; /* text-dark */
             border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2); /* 添加立体感 */
         }
         
         nav .sponsor-btn.blocky:hover {
             background-color: #d97706; /* hover:bg-secondary/80 */
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+        nav .sponsor-btn.blocky:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
         }
         
         /* ==========================================
@@ -463,6 +523,15 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
         }
+        
+        /* 按压效果工具类 */
+        .active-press {
+            transition: box-shadow 0.1s ease, transform 0.1s ease;
+        }
+        .active-press:active {
+            box-shadow: none !important;
+            transform: translateY(4px) !important;
+        }
     </style>
     
     <!-- ==========================================
@@ -500,21 +569,21 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
-                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg text-white">Yggdrasill-世界树|友情链接</h1>
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg"><span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树|友情链接</h1>
                 </div>
                 
                 <!-- 桌面导航 - 方块按钮 -->
                 <div class="hidden md:flex space-x-2">
-                    <a href="index.html" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">首页</a>
-                    <a href="index.html#servers" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">服务器</a>
-                    <a href="index.html#scenery" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">风景展示</a>
-                    <a href="index.html#connection" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">连接信息</a>
-                    <a href="index.html#info" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">信息</a>
-                    <a href="index.html#rules" class="font-minecraft text-white hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">规则</a>
-                    <a href="links.html" class="font-minecraft hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky link-btn">友链</a>
-                    <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-4 py-1 mc-border transition-colors sponsor-btn blocky">
-                        <i class="fa fa-heart mr-1"></i> 赞助
-                    </a>
+                    <a href="index.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">首页</a>
+                    <a href="index.html#connection" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">连接信息</a>
+                    <a href="index.html#servers" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">类型</a>
+                    <a href="index.html#scenery" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">风景展示</a>
+                    <a href="index.html#info" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">信息</a>
+                    <a href="index.html#rules" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">规则</a>
+                    <a href="javascript:void(0)" class="font-minecraft text-green-500 nav-btn px-3 py-1 mc-border bg-dark blocky link-btn active-press">友链</a>
+                    <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft px-4 py-1 mc-border transition-colors sponsor-btn blocky active-press">
+                         <i class="fa fa-heart mr-1"></i> 赞助
+                     </a>
                 </div>
                 
                 <!-- 移动端菜单按钮 -->
@@ -525,12 +594,12 @@
             
             <!-- 移动端导航菜单 -->
             <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border hover-lift">
-                <a href="index.html" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">首页</a>
-                <a href="index.html#servers" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">服务器</a>
-                <a href="index.html#scenery" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">风景展示</a>
-                <a href="index.html#connection" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">连接信息</a>
-                <a href="index.html#info" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">信息</a>
-                <a href="index.html#rules" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky">规则</a>
+                <a href="index.html" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">首页</a>
+                <a href="index.html#servers" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">服务器</a>
+                <a href="index.html#scenery" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">风景展示</a>
+                <a href="index.html#connection" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">连接信息</a>
+                <a href="index.html#info" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">信息</a>
+                <a href="index.html#rules" class="block px-2 py-1 font-minecraft text-orange-500 hover:bg-primary/50 rounded transition-colors nav-btn blocky">规则</a>
                 <a href="links.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky link-btn">友链</a>
                 <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="block px-2 py-1 font-minecraft bg-secondary text-dark hover:bg-secondary/80 rounded text-center sponsor-btn blocky">
                     <i class="fa fa-heart mr-1"></i> 赞助
@@ -552,6 +621,75 @@
             
             <div class="grid md:grid-cols-4 gap-8" id="linksContainer">
                 <!-- 友链卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 自助提交友链表单 -->
+    <section id="submit-link" class="py-16 relative overflow-hidden slide-in-left">
+        <!-- 装饰性元素 -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-stone-texture opacity-10 rotate-12 animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-40 h-40 bg-grass-texture opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl mx-auto">
+                 <button id="toggleFormBtn" class="w-full font-minecraft px-4 py-2 transition-all duration-300 mb-6 active-press text-sm flex items-center justify-center gap-2 mc-border blocky bg-dark text-white">
+                     <i class="fa fa-plus"></i> 提交友链
+                 </button>
+                
+                <div id="submitFormContainer" class="hidden">
+                    <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-right rounded-lg">
+                        <div class="mb-6">
+                            <label for="linkName" class="block font-minecraft text-lg mb-2 text-white">网站名字</label>
+                            <input type="text" id="linkName" name="linkName" required 
+                                   class="w-full px-4 py-3 bg-dark border-2 border-gray-600 rounded text-white focus:border-primary focus:outline-none transition-colors mc-border blocky"
+                                   placeholder="例如：mcYggdrasill-世界树">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="linkUrl" class="block font-minecraft text-lg mb-2 text-white">网站地址</label>
+                            <input type="url" id="linkUrl" name="linkUrl" required 
+                                   class="w-full px-4 py-3 bg-dark border-2 border-gray-600 rounded text-white focus:border-primary focus:outline-none transition-colors mc-border blocky"
+                                   placeholder="例如：https://www.mcyggdrasill.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="linkDescription" class="block font-minecraft text-lg mb-2 text-white">网站简介</label>
+                            <textarea id="linkDescription" name="linkDescription" rows="3" required 
+                                      class="w-full px-4 py-3 bg-dark border-2 border-gray-600 rounded text-white focus:border-primary focus:outline-none transition-colors mc-border blocky"
+                                      placeholder="例如：一个我的世界服务器的网站"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="linkLogo" class="block font-minecraft text-lg mb-2 text-white">网站Logo（可选）</label>
+                            <input type="text" id="linkLogo" name="linkLogo" 
+                                   class="w-full px-4 py-3 bg-dark border-2 border-gray-600 rounded text-white focus:border-primary focus:outline-none transition-colors mc-border blocky"
+                                   placeholder="例如：https://www.mcyggdrasill.com/logo.png（留空则自动获取favicon）">
+                            <p class="text-sm text-gray-400 mt-1">留空则使用 favicon.im 自动获取网站图标</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="submitEmail" class="block font-minecraft text-lg mb-2 text-white">您的邮箱</label>
+                            <input type="email" id="submitEmail" name="submitEmail" required 
+                                   class="w-full px-4 py-3 bg-dark border-2 border-gray-600 rounded text-white focus:border-primary focus:outline-none transition-colors mc-border blocky"
+                                   placeholder="用于接收提交确认">
+                        </div>
+                        
+                        <!-- Web3Form 隐藏字段 -->
+                        <input type="hidden" name="subject" value="新友链提交请求">
+                        <input type="hidden" name="redirect" value="">
+                        <input type="hidden" name="to" value="bmmaiti@qq.com">
+                        
+                        <button type="submit" 
+                                class="w-full font-minecraft px-6 py-3 mc-border transition-colors blocky active-press">
+                            提交申请
+                        </button>
+                    </form>
+                    
+                    <div id="submitMessage" class="mt-6 text-center hidden">
+                        <p class="font-minecraft text-xl text-green-400">提交成功！我们会尽快审核您的友链申请。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -578,6 +716,74 @@
             }
             
             loadLinks();
+            
+            // 为展开/收起表单按钮添加事件监听
+             const toggleBtn = document.getElementById('toggleFormBtn');
+             const formContainer = document.getElementById('submitFormContainer');
+             if (toggleBtn && formContainer) {
+                 toggleBtn.addEventListener('click', function() {
+                     if (formContainer.classList.contains('hidden')) {
+                         formContainer.classList.remove('hidden');
+                         toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
+                         toggleBtn.classList.remove('bg-dark');
+                         toggleBtn.classList.add('bg-orange-500');
+                     } else {
+                         formContainer.classList.add('hidden');
+                         toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
+                         toggleBtn.classList.remove('bg-orange-500');
+                         toggleBtn.classList.add('bg-dark');
+                     }
+                 });
+             }
+            
+            // 为自助提交表单添加事件监听
+            const submitForm = document.getElementById('submitLinkForm');
+            if (submitForm) {
+                submitForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const email = formData.get('submitEmail');
+                    
+                    // 使用 Web3Form API
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            access_key: '98b0b002-f54c-49a5-8745-ccf691ae506e',
+                            subject: '新友链提交请求',
+                            email: email,
+                            message: `
+网站名字: ${formData.get('linkName')}
+网站地址: ${formData.get('linkUrl')}
+网站简介: ${formData.get('linkDescription')}
+网站Logo: ${formData.get('linkLogo') || '使用 favicon.im 自动获取'}
+                            `.trim()
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('submitMessage').classList.remove('hidden');
+                            submitForm.reset();
+                            
+                            // 3秒后隐藏成功消息
+                            setTimeout(() => {
+                                document.getElementById('submitMessage').classList.add('hidden');
+                            }, 5000);
+                        } else {
+                            alert('提交失败，请重试。错误信息：' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('提交错误:', error);
+                        alert('提交失败，请重试。');
+                    });
+                });
+            }
             
             // 为移动端菜单按钮添加点击事件（如果之前没有添加）
             const menuBtn = document.getElementById('menuBtn');
@@ -639,9 +845,9 @@
                         <h3 class="text-xl font-minecraft text-primary text-shadow slide-in-left blocky text-center">${link.name}</h3>
                     </div>
                     <p class="mb-4 slide-in-left flex-grow text-center">${link.description || '暂无描述'}</p>
-                    <a href="${link.url}" class="bg-primary text-dark hover:bg-primary/80 px-3 py-1.5 rounded mc-border cta-btn blocky text-center mt-auto text-sm" target="_blank" rel="noopener noreferrer">
-                        <i class="fa fa-external-link mr-1 text-xs"></i> 访问
-                    </a>
+                    <a href="${link.url}" class="bg-dark text-white hover:bg-orange-500 px-2 py-2 border-2 border-gray-600 transition-all duration-300 active-press text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky" target="_blank" rel="noopener noreferrer">
+                         <i class="fa fa-external-link"></i> 访问
+                     </a>
                 </div>
             `;
             

@@ -6,13 +6,13 @@
          ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yggdrasill-世界树-我的世界</title>
+    <title>mcYggdrasill-世界树-我的世界</title>
     
     <!-- ==========================================
          SEO优化关键词（对用户不可见）
          ========================================== -->
-    <meta name="keywords" content="欢迎来到我的世界《Yggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
-    <meta name="description" content="欢迎来到我的世界《Yggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
+    <meta name="keywords" content="欢迎来到我的世界《mcYggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
+    <meta name="description" content="欢迎来到我的世界《mcYggdrasill-世界树》服务器官网,我们是一个公益性的我的世界Java版服务器,提供稳定的游戏环境和丰富的游戏内容,加入我们的世界树服务器,体验独特的群组服玩法。">
     
     <!-- ==========================================
          外部资源引入
@@ -79,16 +79,32 @@
             .blocky:hover {
                 transform: translateY(-5px);
             }
+            .blocky:active {
+                transform: translateY(4px);
+            }
             .mc-border {
                 border: 2px solid #000;
-                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-                border-radius: 3px;
+                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+                border-radius: 6px !important;
+            }
+            .mc-border:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
             }
             
             .minecraft-border {
                 border: 2px solid #000;
                 box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
                 border-radius: 3px;
+            }
+            
+            /* 按压效果工具类 */
+            .active-press {
+                transition: box-shadow 0.1s ease, transform 0.1s ease;
+            }
+            .active-press:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
             }
             
             /* 添加我的世界风格字体类 */
@@ -448,7 +464,6 @@
             
             /* ==================== 方块按钮样式 ==================== */
             .blocky-btn {
-                clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
                 transition: all 0.2s ease;
             }
             .blocky-btn:hover {
@@ -461,8 +476,10 @@
             .nav-btn {
                 position: relative;
                 overflow: hidden;
-                transition: all 0.3s ease;
+                transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
                 border-radius: 4px;
+                background-color: #1e293b;
+                color: #ffffff;
             }
             .nav-btn::after {
                 content: '';
@@ -477,12 +494,23 @@
                 transition: transform 0.3s ease;
             }
             .nav-btn:hover {
-                color: var(--secondary-color, #f0a500);
-                background-color: rgba(240, 165, 0, 0.1);
+                color: #1e293b !important;
+                background-color: #f0a500 !important;
             }
-            .nav-btn:hover::after {
+            .nav-btn.active {
+                color: var(--primary-color, #22c55e) !important;
+            }
+            .nav-btn.active::after {
                 transform: scaleX(1);
                 transform-origin: left;
+                background: var(--primary-color, #22c55e);
+            }
+            .nav-btn:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
+            }
+            .nav-btn:hover:active {
+                transform: translateY(4px) !important;
             }
             
             /* ==================== 友链按钮样式 ==================== */
@@ -521,6 +549,7 @@
                 transition: all 0.3s ease;
                 position: relative;
                 overflow: hidden;
+                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
             }
             .sponsor-btn::before {
                 content: '';
@@ -536,8 +565,12 @@
                 left: 100%;
             }
             .sponsor-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                transform: translateY(-5px);
+                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+            }
+            .sponsor-btn:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
             }
             /* 为底部支持服务器按钮添加特定样式，防止发光效果 */
             footer .sponsor-btn {
@@ -632,8 +665,12 @@
                 left: 100%;
             }
             .cta-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+                transform: translateY(-5px);
+                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+            }
+            .cta-btn:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
             }
             
             /* ==================== 功能按钮样式 ==================== */
@@ -661,8 +698,12 @@
                 transform-origin: left;
             }
             .function-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                transform: translateY(-5px);
+                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+            }
+            .function-btn:active {
+                box-shadow: none !important;
+                transform: translateY(4px) !important;
             }
             
             /* ==================== 服务器标签样式 ==================== */
@@ -738,11 +779,18 @@
                 border-radius: 0.25rem;
                 cursor: pointer;
                 transition: all 0.2s ease;
+                box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
             }
             
             .plugin-page-btn:hover {
                 background-color: #4b5563;
                 color: #fbbf24;
+                transform: translateY(-3px);
+                box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+            }
+            .plugin-page-btn:active {
+                box-shadow: none !important;
+                transform: translateY(2px) !important;
             }
             
             .plugin-page-btn.active {
@@ -940,19 +988,19 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
-                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg">Yggdrasill-世界树|我的世界</h1>
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg"><span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树|我的世界</h1>
                 </div>
                 
                 <!-- 桌面导航 - 方块按钮 -->
                 <div class="hidden md:flex space-x-2">
-                    <a href="#home" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">首页</a>
-                    <a href="#servers" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">类型</a>
-                    <a href="#scenery" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">风景展示</a>
-                    <a href="#connection" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">连接信息</a>
-                    <a href="#info" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">信息</a>
-                    <a href="#rules" class="font-minecraft hover:text-secondary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky">规则</a>
-                    <a href="links.html" class="font-minecraft hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky link-btn">友链</a>
-                    <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-4 py-1 mc-border transition-colors sponsor-btn blocky">
+                    <a href="#home" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">首页</a>
+                    <a href="#connection" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">连接信息</a>
+                    <a href="#servers" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">类型</a>
+                    <a href="#scenery" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">风景展示</a>
+                    <a href="#info" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">信息</a>
+                    <a href="#rules" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">规则</a>
+                    <a href="links.html" class="font-minecraft text-white hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky link-btn active-press">友链</a>
+                    <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="font-minecraft bg-secondary text-dark hover:bg-secondary/80 px-4 py-1 mc-border transition-colors sponsor-btn blocky active-press">
                         <i class="fa fa-heart mr-1"></i> 赞助
                     </a>
                 </div>
@@ -965,14 +1013,14 @@
             
             <!-- 移动端导航菜单 -->
             <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border hover-lift">
-                <a href="#home" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">首页</a>
-                <a href="#servers" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">类型</a>
-                <a href="#scenery" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">风景展示</a>
-                <a href="#connection" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">连接信息</a>
-                <a href="#info" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">信息</a>
-                <a href="#rules" class="block px-2 py-1 font-minecraft hover:bg-primary/50 rounded transition-colors nav-btn blocky">规则</a>
-                <a href="links.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky link-btn">友链</a>
-                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="block px-2 py-1 font-minecraft bg-secondary text-dark hover:bg-secondary/80 rounded text-center sponsor-btn blocky">
+                <a href="#home" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">首页</a>
+                <a href="#connection" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">连接信息</a>
+                <a href="#servers" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">类型</a>
+                <a href="#scenery" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">风景展示</a>
+                <a href="#info" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">信息</a>
+                <a href="#rules" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">规则</a>
+                <a href="links.html" class="block px-2 py-1 font-minecraft text-white hover:bg-green-500/50 rounded transition-colors nav-btn blocky link-btn active-press">友链</a>
+                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="block px-2 py-1 font-minecraft bg-secondary text-dark hover:bg-secondary/80 rounded text-center sponsor-btn blocky active-press">
                     <i class="fa fa-heart mr-1"></i> 赞助
                 </a>
             </div>
@@ -1023,7 +1071,7 @@
             .catch(error => {
                 console.error('加载公告内容失败:', error);
                 // 如果加载失败，显示默认内容
-                document.getElementById('announcement-text').textContent = '欢迎来到Yggdrasill世界树服务器！最新版本已上线，修复了若干已知问题。';
+                document.getElementById('announcement-text').textContent = '欢迎来到mcYggdrasill世界树服务器！最新版本已上线，修复了若干已知问题。';
             });
             
         // 显示当前公告
@@ -1071,11 +1119,11 @@
             <div class="max-w-3xl mx-auto text-center">
                 <!-- 世界树Logo -->
                 <div class="w-32 h-32 md:w-40 md:h-40 mb-6 mx-auto animate-float">
-                    <img src="logos/yggdrasill_logo.png" alt="Yggdrasill世界树" class="w-full h-full object-contain">
+                    <img src="logos/yggdrasill_logo.png" alt="mcYggdrasill世界树" class="w-full h-full object-contain">
                 </div>
                 
                 <div class="relative inline-block">
-                    <h1 class="font-minecraft text-4xl md:text-6xl mb-2 text-shadow-lg text-primary blocky">Yggdrasill-世界树</h1>
+                    <h1 class="font-minecraft text-4xl md:text-6xl mb-2 text-shadow-lg text-primary blocky"><span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树</h1>
                     <!-- 添加我的世界风格徽章 -->
                     <div class="absolute -top-4 -right-16 text-yellow-400 text-xl font-bold badge-animation" style="padding: 0.5rem 0.5rem; background: transparent; border: none; outline: none;">
                         主世界永不删档
@@ -1096,21 +1144,21 @@
                 
                 <!-- 注册第三方登录账号按钮 -->
                 <div class="flex justify-center mt-2 mb-6">
-                    <a href="https://littleskin.cn/user/player" target="_blank" class="bg-secondary text-dark hover:bg-secondary/80 px-6 py-3 text-lg rounded mc-border cta-btn blocky">
-                        <i class="fa fa-user-plus mr-2"></i> 注册第三方登录账号
+                    <a href="https://littleskin.cn/user/player" target="_blank" class="bg-gradient-to-r from-orange-500 to-orange-400 text-dark hover:from-orange-400 hover:to-orange-300 px-6 py-3 border-2 border-orange-700 transition-all duration-300 shadow-[0_4px_0_rgb(194,53,10)] active-press text-lg font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                        <i class="fa fa-user-plus"></i> 注册第三方登录账号
                     </a>
                 </div>
                 
                 <!-- 快速操作按钮 -->
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#connection" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
-                        <i class="fa fa-plug mr-2"></i> 连接
+                    <a href="#connection" class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-6 py-3 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active-press text-lg font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                        <i class="fa fa-plug"></i> 连接
                     </a>
-                    <a href="http://dt.mcyggdrasill.com:8100/" target="_blank" class="bg-blue-300 text-dark hover:bg-blue-200 px-6 py-3 rounded mc-border cta-btn blocky">
-                        <i class="fa fa-map mr-2"></i> 世界地图
+                    <a href="http://dt.mcyggdrasill.com:8100/" target="_blank" class="bg-gradient-to-r from-blue-500 to-blue-400 text-dark hover:from-blue-400 hover:to-blue-300 px-6 py-3 border-2 border-blue-700 transition-all duration-300 shadow-[0_4px_0_rgb(29,78,216)] active-press text-lg font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                        <i class="fa fa-map"></i> 世界地图
                     </a>
-                    <a href="#servers" class="bg-primary text-dark hover:bg-primary/80 px-6 py-3 rounded mc-border cta-btn blocky">
-                        <i class="fa fa-gamepad mr-2"></i> 介绍
+                    <a href="#servers" class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-6 py-3 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active-press text-lg font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                        <i class="fa fa-gamepad"></i> 介绍
                     </a>
                 </div>
             </div>
@@ -1147,9 +1195,9 @@
                     </div>
                     <p class="font-minecraft text-base mb-3 slide-in-left blocky" style="transition-delay: 0.2s;">地址</p>
                     <p class="text-xl md:text-2xl font-minecraft text-secondary mb-4 py-2 border-y-2 border-primary/50 glow slide-in-left blocky" style="transition-delay: 0.3s;" id="server-address">mcyggdrasill.com</p>
-                    <button class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-3 py-1.5 rounded mc-border text-sm function-btn slide-in-left blocky" style="transition-delay: 0.4s;" onclick="copyToClipboard('mcyggdrasill.com')">
-                            <i class="fa fa-copy mr-1"></i>复制地址
-                        </button>
+                    <button class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-4 py-2 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active-press text-sm font-minecraft flex items-center justify-center gap-2 inline-block mx-auto mc-border blocky" style="transition-delay: 0.4s; transition: box-shadow 0.1s ease, transform 0.1s ease !important;" onclick="copyToClipboard('mcyggdrasill.com')">
+                        <i class="fa fa-copy"></i>复制地址
+                    </button>
                 </div>
             </div>
         </div>
@@ -1177,9 +1225,11 @@
                     <div class="text-center md:text-right slide-in-right" style="transition-delay: 0.3s;">
                         <img id="server-logo" src="" alt="服务器Logo" class="max-h-24 max-w-24 h-auto w-auto rounded mx-auto md:mx-0 mc-border hidden hover-lift">
                         <p class="font-minecraft mt-2">版本: <span id="server-version" class="text-secondary">加载中...</span></p>
-                        <button id="refresh-status" class="mt-2 bg-secondary hover:bg-secondary/80 text-dark font-minecraft px-4 py-1 rounded mc-border function-btn blocky">
-                            <i class="fa fa-refresh mr-1"></i>刷新
-                        </button>
+                        <div class="flex justify-center md:justify-end">
+                            <button id="refresh-status" class="bg-gradient-to-r from-orange-500 to-orange-400 text-dark hover:from-orange-400 hover:to-orange-300 px-4 py-1 border-2 border-orange-700 transition-all duration-300 shadow-[0_4px_0_rgb(194,53,10)] active-press text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                                <i class="fa fa-refresh"></i>刷新
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
@@ -1272,25 +1322,6 @@
                     </div>
                 </div>
                 
-                <!-- Mod休闲生存 -->
-                <div class="bg-dark mc-border rounded-lg overflow-hidden blocky hover-lift transition-all slide-in-left" style="transition-delay: 0.5s;">
-                    
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-2xl font-minecraft text-primary text-shadow slide-in-left blocky" style="transition-delay: 0.6s;">Mod休闲生存</h3>
-                            <div class="bg-secondary text-dark px-2 py-1 text-sm font-minecraft mc-border blocky function-btn server-tag">
-                                模组冒险
-                            </div>
-                        </div>
-                        
-                        <p class="mb-4 slide-in-left" style="transition-delay: 0.7s;">添加精选mod，丰富游戏内容，轻松愉快的生存体验</p>
-                        <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky" style="transition-delay: 0.8s;">
-                            <p class="font-minecraft">客户端下载:</p>
-                            <p class="text-sm text-primary">无需客户端，原版可进</p>
-                        </div>
-                    </div>
-                </div>
-                
                 <!-- 天空网格 高难度生存 -->
                 <div class="bg-dark mc-border rounded-lg overflow-hidden blocky hover-lift transition-all slide-in-left" style="transition-delay: 0.9s;">
                     
@@ -1330,6 +1361,11 @@
                         <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky mt-2" style="transition-delay: 1.7s;">
                             <p class="font-minecraft text-yellow-400">
                                 <i class="fa fa-info-circle mr-1"></i>背刺
+                            </p>
+                        </div>
+                        <div class="bg-dark p-3 rounded mc-border hover-lift transition-all slide-in-left blocky mt-2" style="transition-delay: 1.8s;">
+                            <p class="font-minecraft text-yellow-400">
+                                <i class="fa fa-info-circle mr-1"></i>生化模式
                             </p>
                         </div>
                     </div>
@@ -1465,8 +1501,8 @@
                     </div>
                     
                     <div class="text-center flex items-center justify-center slide-in-right" style="transition-delay: 0.6s;">
-                        <a href="https://qm.qq.com/q/ONdIYiYqo8" target="_blank" class="inline-block bg-secondary hover:bg-secondary/80 text-dark font-minecraft px-6 py-2 rounded mc-border blocky">
-                            <i class="fa fa-users mr-2"></i>加入QQ群
+                        <a href="https://qm.qq.com/q/ONdIYiYqo8" target="_blank" class="bg-gradient-to-r from-blue-500 to-blue-400 text-dark hover:from-blue-400 hover:to-blue-300 px-6 py-2 border-2 border-blue-700 transition-all duration-300 shadow-[0_4px_0_rgb(29,78,216)] active-press text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky">
+                            <i class="fa fa-users"></i>加入QQ群
                         </a>
                     </div>
                 </div>
@@ -1639,22 +1675,22 @@
             
             <!-- 赞助按钮 -->
             <div class="mb-6">
-                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="bg-secondary hover:bg-secondary/80 text-dark font-minecraft py-2 px-6 rounded mc-border transition-all sponsor-btn blocky">
-                    <i class="fa fa-heart mr-2"></i>支持一下
+                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="bg-gradient-to-r from-orange-500 to-orange-400 text-dark hover:from-orange-400 hover:to-orange-300 px-4 py-1.5 border-2 border-orange-700 transition-all duration-300 shadow-[0_4px_0_rgb(194,53,10)] active-press text-sm font-minecraft inline-block w-auto max-w-[120px] mc-border blocky">
+                    <i class="fa fa-heart"></i>支持一下
                 </a>
             </div>
             
             
 
             <div class="mb-4 text-center">
-                <a href="links.html" class="bg-primary hover:bg-primary/80 text-dark font-minecraft py-2 px-6 rounded mc-border transition-all blocky">
-                    <i class="fa fa-link mr-2"></i>友情链接
+                <a href="links.html" class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-4 py-1.5 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active-press text-sm font-minecraft inline-block w-auto max-w-[120px] mc-border blocky">
+                    <i class="fa fa-link"></i>友链
                 </a>
             </div>
             <p class="text-sm mb-2">
                 <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号</a>
             </p>
-            <p class="text-sm font-minecraft">© 2020 Yggdrasill-世界树-公益群组服 - 保留所有权利</p>
+            <p class="text-sm font-minecraft">© 2020 <span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树-公益群组服 - 保留所有权利</p>
 			
         </div>
     </footer>
@@ -1797,10 +1833,7 @@
                 if (i === 1) {
                     extensionsToTry = ['.jpg', '.png', '.jpeg'];
                 } else if (i >= 2 && i <= 10) {
-                    extensionsToTry = ['.png'];
-                } else if (i === 6) {
-                    // 6只有带括号的文件，跳过不带括号的尝试
-                    extensionsToTry = [];
+                    extensionsToTry = ['.png', '.jpg', '.jpeg'];
                 } else {
                     extensionsToTry = ['.png', '.jpg', '.jpeg'];
                 }
@@ -2664,6 +2697,53 @@
                         element.classList.remove('show');
                     }
                 });
+                
+                // 导航栏滚动变换颜色功能
+                const navButtons = document.querySelectorAll('.md\\:flex .nav-btn');
+                const sections = Array.from(document.querySelectorAll('section')).filter(section => section.id);
+                const scrollPosition = window.scrollY + 100;
+                
+                let activeSectionId = null;
+                
+                // 按导航按钮的顺序来匹配 sections
+                navButtons.forEach(button => {
+                    const buttonHref = button.getAttribute('href');
+                    if (buttonHref && buttonHref.startsWith('#')) {
+                        const buttonSectionId = buttonHref.substring(1);
+                        const section = sections.find(s => s.id === buttonSectionId);
+                        if (section) {
+                            const rect = section.getBoundingClientRect();
+                            const sectionTop = rect.top + window.scrollY;
+                            const sectionBottom = sectionTop + rect.height;
+                            
+                            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                                activeSectionId = buttonSectionId;
+                            }
+                        }
+                    }
+                });
+                
+                navButtons.forEach(button => {
+                    button.classList.remove('active');
+                    const buttonHref = button.getAttribute('href');
+                    if (buttonHref && buttonHref.startsWith('#')) {
+                        const buttonSectionId = buttonHref.substring(1);
+                        if (buttonSectionId === activeSectionId) {
+                            button.classList.add('active');
+                        }
+                    }
+                });
+                
+                // 调试信息
+                console.log('Scroll position:', scrollPosition);
+                console.log('Active section:', activeSectionId);
+                console.log('Sections:', sections.length);
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = rect.top + window.scrollY;
+                    const sectionBottom = sectionTop + rect.height;
+                    console.log('Section:', section.id, 'Top:', sectionTop, 'Bottom:', sectionBottom);
+                });
             });
             
             // 生成插件列表
@@ -2677,7 +2757,7 @@
             
             // 公告栏轮播功能
             const announcements = [
-                "欢迎来到Yggdrasill世界树服务器！最新版本已上线，修复了若干已知问题。",
+                "欢迎来到mcYggdrasill世界树服务器！最新版本已上线，修复了若干已知问题。",
                 "服务器维护时间：每周三上午9:00-11:00",
                 "注意：请遵守服务器规则，共同维护良好的游戏环境。"
             ];
@@ -2952,12 +3032,12 @@
             if (totalPages > 1) {
                 sponsorsHTML += `
                 <div class="flex justify-center items-center mt-8 space-x-4 slide-in-left-alt">
-                    <button id="prev-page" class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-4 py-2 rounded mc-border transition-all blocky ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === 1 ? 'disabled' : ''}>
-                        <i class="fa fa-chevron-left mr-2"></i>上一页
+                    <button id="prev-page" class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-4 py-2 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active:shadow-none active:translate-y-1 text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === 1 ? 'disabled' : ''}>
+                        <i class="fa fa-chevron-left"></i>上一页
                     </button>
                     <span class="font-minecraft text-lg">第 ${currentPage} 页 / 共 ${totalPages} 页</span>
-                    <button id="next-page" class="bg-primary hover:bg-primary/80 text-dark font-minecraft px-4 py-2 rounded mc-border transition-all blocky ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === totalPages ? 'disabled' : ''}>
-                        下一页<i class="fa fa-chevron-right ml-2"></i>
+                    <button id="next-page" class="bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-4 py-2 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active:shadow-none active:translate-y-1 text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" ${currentPage === totalPages ? 'disabled' : ''}>
+                        下一页<i class="fa fa-chevron-right"></i>
                     </button>
                 </div>`;
             }
@@ -2966,8 +3046,8 @@
             sponsorsHTML += `
             <div class="mt-8 text-center slide-in-right-alt">
                 <p class="mb-4">感谢所有赞助者对服务器的支持！</p>
-                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="inline-block bg-secondary hover:bg-secondary/80 text-dark font-minecraft px-6 py-2 rounded mc-border transition-all sponsor-btn blocky">
-                    <i class="fa fa-heart mr-2"></i>成为赞助者
+                <a href="https://afdian.com/a/mcYggdrasill" target="_blank" class="inline-block bg-gradient-to-r from-orange-500 to-orange-400 text-dark hover:from-orange-400 hover:to-orange-300 px-4 py-1.5 border-2 border-orange-700 transition-all duration-300 shadow-[0_4px_0_rgb(194,53,10)] active-press text-sm font-minecraft block mx-auto mc-border blocky">
+                    <i class="fa fa-heart"></i>赞助
                 </a>
             </div>`;
             
@@ -3035,7 +3115,7 @@
     </style>
 
     <!-- 我的世界风格固定返回顶部按钮 -->
-    <button id="minecraft-back-to-top" class="fixed bottom-6 right-4 bg-primary hover:bg-primary/80 text-dark font-minecraft py-3 px-3 rounded mc-border transition-all blocky z-50 hidden" title="回到顶部">
+    <button id="minecraft-back-to-top" class="fixed bottom-6 right-4 bg-gradient-to-r from-green-600 to-green-400 text-dark hover:from-green-500 hover:to-green-300 px-3 py-3 border-2 border-green-800 transition-all duration-300 shadow-[0_4px_0_rgb(21,128,61)] active:shadow-none active:translate-y-1 text-sm font-minecraft flex items-center justify-center gap-2 mc-border blocky z-50 hidden" title="回到顶部">
         <i class="fa fa-arrow-up text-xl"></i>
     </button>
 </body>
