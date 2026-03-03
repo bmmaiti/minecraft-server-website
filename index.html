@@ -2587,15 +2587,60 @@
         function handleScrollAnimations() {
             const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-left-alt, .slide-in-right-alt');
             
+            // 将元素按 section 分组
+            const sections = {};
             animatedElements.forEach(element => {
-                if (isInViewport(element)) {
-                    if (!element.classList.contains('visible')) {
-                        element.classList.add('visible');
+                const section = element.closest('section');
+                if (section) {
+                    const sectionId = section.id;
+                    if (!sections[sectionId]) {
+                        sections[sectionId] = [];
                     }
-                } else {
-                    // 元素离开视口时移除visible类，使其重新收起
-                    if (element.classList.contains('visible')) {
-                        element.classList.remove('visible');
+                    sections[sectionId].push(element);
+                }
+            });
+            
+            // 特殊处理：风景展示和玩家动态视为同一个展示模块
+            const showSections = ['scenery', 'photos'];
+            let showSectionVisible = false;
+            
+            // 先检查展示模块
+            showSections.forEach(sectionId => {
+                if (sections[sectionId]) {
+                    const sectionElement = document.getElementById(sectionId);
+                    if (sectionElement && isInViewport(sectionElement)) {
+                        showSectionVisible = true;
+                        sections[sectionId].forEach(element => {
+                            if (!element.classList.contains('visible')) {
+                                element.classList.add('visible');
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // 处理其他 section
+            Object.keys(sections).forEach(sectionId => {
+                // 跳过展示模块，由上面统一处理
+                if (showSections.includes(sectionId)) return;
+                
+                const sectionElement = document.getElementById(sectionId);
+                if (sectionElement) {
+                    if (isInViewport(sectionElement)) {
+                        sections[sectionId].forEach(element => {
+                            if (!element.classList.contains('visible')) {
+                                element.classList.add('visible');
+                            }
+                        });
+                    } else {
+                        // 只有当展示模块也不可见时，才移除其他模块的 visible 类
+                        if (!showSectionVisible) {
+                            sections[sectionId].forEach(element => {
+                                if (element.classList.contains('visible')) {
+                                    element.classList.remove('visible');
+                                }
+                            });
+                        }
                     }
                 }
             });
