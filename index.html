@@ -778,16 +778,34 @@
                 border: 1px solid #4b5563;
                 border-radius: 0.25rem;
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .plugin-page-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s ease;
             }
             
             .plugin-page-btn:hover {
                 background-color: #4b5563;
                 color: #fbbf24;
                 transform: translateY(-3px);
-                box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+                box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
             }
+            
+            .plugin-page-btn:hover::before {
+                left: 100%;
+            }
+            
             .plugin-page-btn:active {
                 box-shadow: none !important;
                 transform: translateY(2px) !important;
@@ -797,6 +815,16 @@
                 background-color: #fbbf24;
                 color: #1f2937;
                 border-color: #fbbf24;
+            }
+            
+            .plugin-page-btn.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                transform: none;
+            }
+            
+            .plugin-page-btn.disabled:hover {
+                box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 0 rgba(0, 0, 0, 0.2);
             }
             
             .plugin-page-info {
@@ -2584,19 +2612,34 @@
         }
         
         // 检测连接信息模块是否在视口中（使用更早的触发点）
-        function isInViewportConnection(element) {
-            const rect = element.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-            
-            // 连接信息模块进入视口的条件 - 更早的触发点
-            return (
-                rect.top <= windowHeight * 0.3 &&
-                rect.bottom >= 0 &&
-                rect.left <= windowWidth &&
-                rect.right >= 0
-            );
-        }
+         function isInViewportConnection(element) {
+             const rect = element.getBoundingClientRect();
+             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+             const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+             
+             // 连接信息模块进入视口的条件 - 刚进入视口就触发
+             return (
+                 rect.top <= windowHeight * 0.2 &&
+                 rect.bottom >= 0 &&
+                 rect.left <= windowWidth &&
+                 rect.right >= 0
+             );
+         }
+         
+         // 检测状态模块是否在视口中
+         function isInViewportStatus(element) {
+             const rect = element.getBoundingClientRect();
+             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+             const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+             
+             // 状态模块进入视口的条件
+             return (
+                 rect.top <= windowHeight &&
+                 rect.bottom >= 0 &&
+                 rect.left <= windowWidth &&
+                 rect.right >= 0
+             );
+         }
         
         // 处理滚动动画
         function handleScrollAnimations() {
@@ -2635,16 +2678,41 @@
             // 特殊处理：连接信息和状态视为同一个模块
             const connSections = ['connection', 'server-status'];
             let connSectionVisible = false;
+            let connSectionAnimating = false;
+            let connectionInSection = false; // 连接信息模块是否在视口中
+            let connectionAnimated = false; // 连接信息模块是否已触发动画
             
             // 检查连接信息和状态模块（使用更早的触发点）
             connSections.forEach(sectionId => {
                 if (sections[sectionId]) {
                     const sectionElement = document.getElementById(sectionId);
-                    if (sectionElement && isInViewportConnection(sectionElement)) {
-                        connSectionVisible = true;
-                        sections[sectionId].forEach(element => {
-                            element.classList.add('visible');
-                        });
+                    if (sectionElement) {
+                        // 检查连接信息模块是否在视口中
+                        if (sectionId === 'connection') {
+                            if (isInViewportConnection(sectionElement)) {
+                                connSectionVisible = true;
+                                connSectionAnimating = true;
+                                connectionInSection = true;
+                                connectionAnimated = true;
+                                sections[sectionId].forEach(element => {
+                                    element.classList.add('visible');
+                                });
+                            } else if (connectionAnimated && !isInViewportStatus(document.getElementById('server-status'))) {
+                                // 连接信息模块已离开视口，但状态模块还没进入，保持动画可见
+                                connSectionAnimating = true;
+                                sections[sectionId].forEach(element => {
+                                    element.classList.add('visible');
+                                });
+                            }
+                        }
+                        // 检查状态模块是否在视口中
+                        if (sectionId === 'server-status' && isInViewportStatus(sectionElement)) {
+                            connSectionVisible = true;
+                            connSectionAnimating = true;
+                            sections[sectionId].forEach(element => {
+                                element.classList.add('visible');
+                            });
+                        }
                     }
                 }
             });
@@ -2664,7 +2732,7 @@
                         });
                     } else {
                         // 只有当展示模块和连接信息模块都不可见时，才移除其他模块的 visible 类
-                        if (!showSectionVisible && !connSectionVisible) {
+                        if (!showSectionVisible && !connSectionAnimating) {
                             sections[sectionId].forEach(element => {
                                 element.classList.remove('visible');
                             });
