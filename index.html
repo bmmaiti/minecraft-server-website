@@ -2611,9 +2611,7 @@
                     if (sectionElement && isInViewport(sectionElement)) {
                         showSectionVisible = true;
                         sections[sectionId].forEach(element => {
-                            if (!element.classList.contains('visible')) {
-                                element.classList.add('visible');
-                            }
+                            element.classList.add('visible');
                         });
                     }
                 }
@@ -2628,17 +2626,13 @@
                 if (sectionElement) {
                     if (isInViewport(sectionElement)) {
                         sections[sectionId].forEach(element => {
-                            if (!element.classList.contains('visible')) {
-                                element.classList.add('visible');
-                            }
+                            element.classList.add('visible');
                         });
                     } else {
                         // 只有当展示模块也不可见时，才移除其他模块的 visible 类
                         if (!showSectionVisible) {
                             sections[sectionId].forEach(element => {
-                                if (element.classList.contains('visible')) {
-                                    element.classList.remove('visible');
-                                }
+                                element.classList.remove('visible');
                             });
                         }
                     }
