@@ -804,20 +804,21 @@
                      if (formContainer.classList.contains('hidden')) {
                          const buttonRect = toggleBtn.getBoundingClientRect();
                          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-                         const formHeight = 400;
                          const formTop = buttonRect.bottom;
-                         
-                         if (formTop + formHeight > viewportHeight) {
-                             const scrollTarget = formTop - 50;
-                             window.scrollTo({
-                                 top: scrollTarget,
-                                 behavior: 'smooth'
-                             });
-                         }
                          
                          formContainer.classList.remove('hidden');
                          requestAnimationFrame(() => {
                              const actualHeight = formContainer.scrollHeight;
+                             const formHeightWithMargin = actualHeight + 50;
+                             
+                             if (formTop + formHeightWithMargin > viewportHeight) {
+                                 const scrollTarget = formTop + actualHeight - viewportHeight + 50;
+                                 window.scrollTo({
+                                     top: scrollTarget,
+                                     behavior: 'smooth'
+                                 });
+                             }
+                             
                              formContainer.style.maxHeight = '0';
                              setTimeout(() => {
                                  formContainer.classList.add('slide-in-down');
