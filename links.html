@@ -771,40 +771,42 @@
                                 <div id="submitMessage" class="mt-6 text-center hidden">
                                     <p class="font-minecraft text-xl text-green-400">提交成功！我们会尽快审核您的友链申请。</p>
                                 </div>
-                                
-                                <div class="mt-6 p-6 bg-dark mc-border rounded-lg">
-                                    <div class="flex items-center justify-between mb-4">
-                                        <h3 class="font-minecraft text-xl text-white">本站信息</h3>
-                                        <button id="copyAllInfoBtn" class="font-minecraft px-4 py-2 bg-primary text-dark mc-border blocky active-press hover:bg-primary/80 transition-colors text-sm">
-                                            一键复制
-                                        </button>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <div>
-                                            <label class="font-minecraft text-sm text-gray-400">网站名字：</label>
-                                            <input type="text" id="copy-site-name" value="mcYggdrasill-世界树" readonly 
-                                                   class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
-                                        </div>
-                                        <div>
-                                            <label class="font-minecraft text-sm text-gray-400">网站链接：</label>
-                                            <input type="text" id="copy-site-url" value="https://www.mcyggdrasill.com/" readonly 
-                                                   class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
-                                        </div>
-                                        <div>
-                                            <label class="font-minecraft text-sm text-gray-400">Logo链接：</label>
-                                            <input type="text" id="copy-logo-url" value="https://www.mcyggdrasill.com/favicon.ico" readonly 
-                                                   class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
-                                        </div>
-                                        <div>
-                                            <label class="font-minecraft text-sm text-gray-400">网站简介：</label>
-                                            <input type="text" id="copy-site-desc" value="一个友善的MC社区" readonly 
-                                                   class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
-                                        </div>
-                                    </div>
-                                    <div id="copyMessage" class="mt-4 text-center hidden">
-                                        <p class="font-minecraft text-sm text-green-400">复制成功！</p>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="siteInfoContainer" class="hidden lg:block">
+                        <div class="p-6 bg-dark mc-border rounded-lg">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-minecraft text-xl text-white">本站信息</h3>
+                                <button id="copyAllInfoBtn" class="font-minecraft px-4 py-2 bg-primary text-dark mc-border blocky active-press hover:bg-primary/80 transition-colors text-sm">
+                                    一键复制
+                                </button>
+                            </div>
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="font-minecraft text-sm text-gray-400">网站名字：</label>
+                                    <input type="text" id="copy-site-name" value="mcYggdrasill-世界树" readonly 
+                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
                                 </div>
+                                <div>
+                                    <label class="font-minecraft text-sm text-gray-400">网站链接：</label>
+                                    <input type="text" id="copy-site-url" value="https://www.mcyggdrasill.com/" readonly 
+                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="font-minecraft text-sm text-gray-400">Logo链接：</label>
+                                    <input type="text" id="copy-logo-url" value="https://www.mcyggdrasill.com/favicon.ico" readonly 
+                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="font-minecraft text-sm text-gray-400">网站简介：</label>
+                                    <input type="text" id="copy-site-desc" value="一个友善的MC社区" readonly 
+                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                </div>
+                            </div>
+                            <div id="copyMessage" class="mt-4 text-center hidden">
+                                <p class="font-minecraft text-sm text-green-400">复制成功！</p>
                             </div>
                         </div>
                     </div>
@@ -839,6 +841,7 @@
             // 为展开/收起表单按钮添加事件监听
              const toggleBtn = document.getElementById('toggleFormBtn');
              const formContainer = document.getElementById('submitFormContainer');
+             const siteInfoContainer = document.getElementById('siteInfoContainer');
              if (toggleBtn && formContainer) {
                  toggleBtn.addEventListener('click', function() {
                      if (formContainer.classList.contains('hidden')) {
@@ -847,6 +850,9 @@
                          const formTop = buttonRect.bottom;
                          
                          formContainer.classList.remove('hidden');
+                         if (siteInfoContainer) {
+                             siteInfoContainer.classList.remove('hidden');
+                         }
                          requestAnimationFrame(() => {
                              const actualHeight = formContainer.scrollHeight;
                              const formHeightWithMargin = actualHeight + 50;
@@ -882,6 +888,9 @@
                              formContainer.classList.add('hidden');
                              formContainer.classList.remove('slide-out-up');
                              formContainer.style.maxHeight = 'none';
+                             if (siteInfoContainer) {
+                                 siteInfoContainer.classList.add('hidden');
+                             }
                          }, 550);
                          toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
                          toggleBtn.classList.remove('bg-orange-500');
