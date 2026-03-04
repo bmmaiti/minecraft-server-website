@@ -802,6 +802,18 @@
              if (toggleBtn && formContainer) {
                  toggleBtn.addEventListener('click', function() {
                      if (formContainer.classList.contains('hidden')) {
+                         const buttonRect = toggleBtn.getBoundingClientRect();
+                         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                         const formHeight = 400;
+                         const formTop = buttonRect.bottom;
+                         
+                         if (formTop + formHeight > viewportHeight) {
+                             window.scrollTo({
+                                 top: formTop - 50,
+                                 behavior: 'smooth'
+                             });
+                         }
+                         
                          formContainer.classList.remove('hidden');
                          formContainer.style.maxHeight = '0';
                          setTimeout(() => {
@@ -810,16 +822,6 @@
                          }, 50);
                          setTimeout(() => {
                              formContainer.style.maxHeight = 'none';
-                             const formHeight = formContainer.scrollHeight;
-                             const buttonRect = toggleBtn.getBoundingClientRect();
-                             const formTop = buttonRect.bottom;
-                             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-                             if (formTop + formHeight > viewportHeight) {
-                                 window.scrollTo({
-                                     top: formTop + formHeight - viewportHeight + 50,
-                                     behavior: 'smooth'
-                                 });
-                             }
                          }, 550);
                          toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
                          toggleBtn.classList.remove('bg-dark');
