@@ -551,6 +551,21 @@
             }
         }
         
+        .slide-out-up {
+            animation: slideOutUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes slideOutUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+        
         .slide-in-left {
             animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
@@ -777,8 +792,10 @@
                          toggleBtn.classList.add('bg-orange-500');
                      } else {
                          formContainer.classList.remove('slide-in-down');
+                         formContainer.classList.add('slide-out-up');
                          setTimeout(() => {
                              formContainer.classList.add('hidden');
+                             formContainer.classList.remove('slide-out-up');
                          }, 500);
                          toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
                          toggleBtn.classList.remove('bg-orange-500');
