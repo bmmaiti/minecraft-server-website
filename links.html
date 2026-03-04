@@ -566,6 +566,23 @@
             }
         }
         
+        .slide-in-down {
+            animation: slideInDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        @keyframes slideInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .slide-in-left {
             animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
@@ -699,7 +716,7 @@
                      <i class="fa fa-plus"></i> 提交友链
                  </button>
                 
-                <div id="submitFormContainer" class="hidden">
+                <div id="submitFormContainer" class="hidden overflow-hidden transition-all duration-500 ease-in-out">
                     <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-down rounded-lg">
                         <div class="mb-6">
                             <label for="linkName" class="block font-minecraft text-lg mb-2 text-white">网站名字</label>
@@ -786,17 +803,29 @@
                  toggleBtn.addEventListener('click', function() {
                      if (formContainer.classList.contains('hidden')) {
                          formContainer.classList.remove('hidden');
-                         formContainer.classList.add('slide-in-down');
+                         formContainer.style.maxHeight = '0';
+                         setTimeout(() => {
+                             formContainer.classList.add('slide-in-down');
+                             formContainer.style.maxHeight = formContainer.scrollHeight + 'px';
+                         }, 50);
+                         setTimeout(() => {
+                             formContainer.style.maxHeight = 'none';
+                         }, 550);
                          toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
                          toggleBtn.classList.remove('bg-dark');
                          toggleBtn.classList.add('bg-orange-500');
                      } else {
-                         formContainer.classList.remove('slide-in-down');
-                         formContainer.classList.add('slide-out-up');
+                         formContainer.style.maxHeight = formContainer.scrollHeight + 'px';
+                         setTimeout(() => {
+                             formContainer.classList.remove('slide-in-down');
+                             formContainer.classList.add('slide-out-up');
+                             formContainer.style.maxHeight = '0';
+                         }, 50);
                          setTimeout(() => {
                              formContainer.classList.add('hidden');
                              formContainer.classList.remove('slide-out-up');
-                         }, 500);
+                             formContainer.style.maxHeight = 'none';
+                         }, 550);
                          toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
                          toggleBtn.classList.remove('bg-orange-500');
                          toggleBtn.classList.add('bg-dark');
