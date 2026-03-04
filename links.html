@@ -75,6 +75,17 @@
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
         }
         
+        .fa-fw {
+            width: 1.28571429em;
+            text-align: center;
+        }
+        
+        .toggle-text {
+            display: inline-block;
+            text-align: center;
+            min-width: 6em;
+        }
+        
         .grass-texture {
             background-image: var(--texture-image);
             background-repeat: repeat;
@@ -712,17 +723,16 @@
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                        <div class="max-w-2xl mx-auto">
-                             <button id="toggleFormBtn" class="w-full font-minecraft px-4 py-2 transition-all duration-300 mb-6 active-press text-sm flex items-center justify-center gap-2 mc-border blocky bg-dark text-white">
-                                 <i class="fa fa-plus"></i> 提交友链
-                             </button>
-                            
-                            <div id="submitFormContainer" class="hidden overflow-hidden transition-all duration-500 ease-in-out">
-                                <div class="flex flex-col lg:flex-row gap-8 items-start">
-                                    <div class="w-full lg:w-1/2">
-                                        <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-down rounded-lg">
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-2xl">
+                         <button id="toggleFormBtn" class="w-full font-minecraft px-4 py-2 transition-all duration-300 mb-6 active-press text-sm flex items-center justify-center gap-2 mc-border blocky bg-dark text-white">
+                             <i class="fa fa-plus fa-fw"></i> <span class="toggle-text">提交友链</span>
+                         </button>
+                        
+                        <div id="submitFormContainer" class="hidden overflow-hidden transition-all duration-500 ease-in-out">
+                            <div class="flex flex-col lg:flex-row gap-8 items-start justify-center">
+                                <div class="w-full lg:w-3/5">
+                                    <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-down rounded-lg max-w-md w-full mx-auto">
                                             <div class="mb-6">
                                                 <label for="linkName" class="block font-minecraft text-lg mb-2 text-white">网站名字</label>
                                                 <input type="text" id="linkName" name="linkName" required 
@@ -775,38 +785,38 @@
                                         </div>
                                     </div>
                                     
-                                    <div id="siteInfoContainer" class="hidden w-full lg:w-1/2 overflow-hidden transition-all duration-500 ease-in-out">
-                                        <div class="p-6 bg-dark mc-border slide-in-down rounded-lg">
-                                            <div class="flex items-center justify-between mb-4">
-                                                <h3 class="font-minecraft text-xl text-white">本站信息</h3>
-                                                <button id="copyAllInfoBtn" class="font-minecraft px-4 py-2 bg-primary text-dark mc-border blocky active-press hover:bg-primary/80 transition-colors text-sm">
+                                    <div id="siteInfoContainer" class="hidden w-full lg:w-2/5 overflow-hidden transition-all duration-500 ease-in-out">
+                                        <div class="p-4 bg-dark mc-border slide-in-down rounded-lg">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <h3 class="font-minecraft text-lg text-white">本站信息</h3>
+                                                <button id="copyAllInfoBtn" class="font-minecraft px-3 py-1.5 bg-primary text-dark mc-border blocky active-press hover:bg-primary/80 transition-colors text-xs">
                                                     一键复制
                                                 </button>
                                             </div>
-                                            <div class="space-y-2">
+                                            <div class="space-y-1.5">
                                                 <div>
-                                                    <label class="font-minecraft text-sm text-gray-400">网站名字：</label>
+                                                    <label class="font-minecraft text-xs text-gray-400">网站名字：</label>
                                                     <input type="text" id="copy-site-name" value="mcYggdrasill-世界树" readonly 
-                                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                                           class="w-full px-2 py-1.5 bg-dark border border-gray-600 rounded text-white text-xs focus:outline-none focus:border-primary">
                                                 </div>
                                                 <div>
-                                                    <label class="font-minecraft text-sm text-gray-400">网站链接：</label>
+                                                    <label class="font-minecraft text-xs text-gray-400">网站链接：</label>
                                                     <input type="text" id="copy-site-url" value="https://www.mcyggdrasill.com/" readonly 
-                                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                                           class="w-full px-2 py-1.5 bg-dark border border-gray-600 rounded text-white text-xs focus:outline-none focus:border-primary">
                                                 </div>
                                                 <div>
-                                                    <label class="font-minecraft text-sm text-gray-400">Logo链接：</label>
+                                                    <label class="font-minecraft text-xs text-gray-400">Logo链接：</label>
                                                     <input type="text" id="copy-logo-url" value="https://www.mcyggdrasill.com/favicon.ico" readonly 
-                                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                                           class="w-full px-2 py-1.5 bg-dark border border-gray-600 rounded text-white text-xs focus:outline-none focus:border-primary">
                                                 </div>
                                                 <div>
-                                                    <label class="font-minecraft text-sm text-gray-400">网站简介：</label>
+                                                    <label class="font-minecraft text-xs text-gray-400">网站简介：</label>
                                                     <input type="text" id="copy-site-desc" value="一个友善的MC社区" readonly 
-                                                           class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
+                                                           class="w-full px-2 py-1.5 bg-dark border border-gray-600 rounded text-white text-xs focus:outline-none focus:border-primary">
                                                 </div>
                                             </div>
-                                            <div id="copyMessage" class="mt-4 text-center hidden">
-                                                <p class="font-minecraft text-sm text-green-400">复制成功！</p>
+                                            <div id="copyMessage" class="mt-3 text-center hidden">
+                                                <p class="font-minecraft text-xs text-green-400">复制成功！</p>
                                             </div>
                                         </div>
                                     </div>
@@ -859,15 +869,6 @@
                          }
                          requestAnimationFrame(() => {
                              const actualHeight = formContainer.scrollHeight;
-                             const formHeightWithMargin = actualHeight + 50;
-                             
-                             if (formTop + formHeightWithMargin > viewportHeight) {
-                                 const scrollTarget = formTop + actualHeight - viewportHeight + 50;
-                                 window.scrollTo({
-                                     top: scrollTarget,
-                                     behavior: 'smooth'
-                                 });
-                             }
                              
                              formContainer.style.maxHeight = '0';
                              setTimeout(() => {
@@ -877,12 +878,23 @@
                              setTimeout(() => {
                                  formContainer.style.maxHeight = 'none';
                              }, 550);
+                             
+                             setTimeout(() => {
+                                 const submitLinkSection = document.getElementById('submit-link');
+                                 if (submitLinkSection) {
+                                     window.scrollTo({
+                                         top: submitLinkSection.offsetTop,
+                                         behavior: 'smooth'
+                                     });
+                                 }
+                             }, 300);
                          });
-                         toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
+                         toggleBtn.innerHTML = '<i class="fa fa-minus fa-fw"></i> <span class="toggle-text">收起表单</span>';
                          toggleBtn.classList.remove('bg-dark');
                          toggleBtn.classList.add('bg-orange-500');
                      } else {
-                         formContainer.style.maxHeight = formContainer.scrollHeight + 'px';
+                         const formHeight = formContainer.scrollHeight;
+                         formContainer.style.maxHeight = formHeight + 'px';
                          setTimeout(() => {
                              formContainer.classList.remove('slide-in-down');
                              formContainer.classList.add('slide-out-up');
@@ -896,7 +908,7 @@
                                  siteInfoContainer.classList.add('hidden');
                              }
                          }, 550);
-                         toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
+                         toggleBtn.innerHTML = '<i class="fa fa-plus fa-fw"></i> <span class="toggle-text">提交友链</span>';
                          toggleBtn.classList.remove('bg-orange-500');
                          toggleBtn.classList.add('bg-dark');
                      }
