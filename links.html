@@ -773,28 +773,36 @@
                                 </div>
                                 
                                 <div class="mt-6 p-6 bg-dark mc-border rounded-lg">
-                                    <h3 class="font-minecraft text-xl mb-4 text-white">本站信息</h3>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-minecraft text-xl text-white">本站信息</h3>
+                                        <button id="copyAllInfoBtn" class="font-minecraft px-4 py-2 bg-primary text-dark mc-border blocky active-press hover:bg-primary/80 transition-colors text-sm">
+                                            一键复制
+                                        </button>
+                                    </div>
                                     <div class="space-y-2">
                                         <div>
                                             <label class="font-minecraft text-sm text-gray-400">网站名字：</label>
-                                            <input type="text" value="mcYggdrasill-世界树" readonly 
+                                            <input type="text" id="copy-site-name" value="mcYggdrasill-世界树" readonly 
                                                    class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
                                         </div>
                                         <div>
                                             <label class="font-minecraft text-sm text-gray-400">网站链接：</label>
-                                            <input type="text" value="https://www.mcyggdrasill.com/" readonly 
+                                            <input type="text" id="copy-site-url" value="https://www.mcyggdrasill.com/" readonly 
                                                    class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
                                         </div>
                                         <div>
                                             <label class="font-minecraft text-sm text-gray-400">Logo链接：</label>
-                                            <input type="text" value="https://www.mcyggdrasill.com/favicon.ico" readonly 
+                                            <input type="text" id="copy-logo-url" value="https://www.mcyggdrasill.com/favicon.ico" readonly 
                                                    class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
                                         </div>
                                         <div>
                                             <label class="font-minecraft text-sm text-gray-400">网站简介：</label>
-                                            <input type="text" value="一个友善的MC社区" readonly 
+                                            <input type="text" id="copy-site-desc" value="一个友善的MC社区" readonly 
                                                    class="w-full px-3 py-2 bg-dark border border-gray-600 rounded text-white focus:outline-none focus:border-primary">
                                         </div>
+                                    </div>
+                                    <div id="copyMessage" class="mt-4 text-center hidden">
+                                        <p class="font-minecraft text-sm text-green-400">复制成功！</p>
                                     </div>
                                 </div>
                             </div>
@@ -927,6 +935,31 @@
                     .catch(error => {
                         console.error('提交错误:', error);
                         alert('提交失败，请重试。');
+                    });
+                });
+            }
+            
+            // 为一键复制按钮添加事件监听
+            const copyBtn = document.getElementById('copyAllInfoBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const siteName = document.getElementById('copy-site-name').value;
+                    const siteUrl = document.getElementById('copy-site-url').value;
+                    const logoUrl = document.getElementById('copy-logo-url').value;
+                    const siteDesc = document.getElementById('copy-site-desc').value;
+                    
+                    const copyText = `网站名字：${siteName}\n网站链接：${siteUrl}\nLogo链接：${logoUrl}\n网站简介：${siteDesc}`;
+                    
+                    navigator.clipboard.writeText(copyText).then(function() {
+                        const copyMessage = document.getElementById('copyMessage');
+                        copyMessage.classList.remove('hidden');
+                        
+                        setTimeout(function() {
+                            copyMessage.classList.add('hidden');
+                        }, 2000);
+                    }, function(err) {
+                        console.error('复制失败:', err);
+                        alert('复制失败，请手动复制');
                     });
                 });
             }
