@@ -3,19 +3,19 @@
     "name": "mcYggdrasill-世界树",
     "url": "https://www.mcyggdrasill.com",
     "description": "一个我的世界服务器的网站",
-    "logo": "logos/yggdrasill_logo.png"
+    "logo": "https://www.mcyggdrasill.com"
   },
   {
     "name": "MINEBBS",
     "url": "https://minebbs.com",
     "description": "我的世界国内中文论坛，提供各种资源下载",
-    "logo": "https://favicon.im/minebbs.com"
+    "logo": "https://favicon.im/minebbs.com?larger=true"
   },
   {
     "name": "我的世界官网",
     "url": "https://www.minecraft.net",
     "description": "Minecraft官网，我的世界国际版官网",
-    "logo": "https://favicon.im/minecraft.net"
+    "logo": "https://favicon.im/minecraft.net?larger=true"
   },
   {
     "name": "Rockaz's Wonderland",
@@ -27,37 +27,37 @@
     "name": "MC百科",
     "url": "https://www.mcmod.cn",
     "description": "我的世界百科，可以下载模组或者查找服务器和整合包玩",
-    "logo": "https://favicon.im/mcmod.cn"
+    "logo": "https://favicon.im/mcmod.cn?larger=true"
   },
   {
     "name": "Timeless永恒社区服务器",
     "url": "https://www.20070223.xyz",
     "description": "Timeless永恒服务器，正如其名，致力于打造一个跨越时间、纯净而持久的Minecraft游戏体验",
-    "logo": "https://favicon.im/20070223.xyz"
+    "logo": "https://favicon.im/20070223.xyz?larger=true"
   },
   {
     "name": "MineDomain",
     "url": "https://8mc.top",
     "description": "创建你的 Minecraft 服务器专属短域名",
-    "logo": "https://favicon.im/8mc.top"
+    "logo": "https://favicon.im/8mc.top?larger=true"
   },
   {
     "name": "MC灵依资源网",
     "url": "https://mcres.cn",
     "description": "灵依资源网，是一个长期运营且持续更新的专注于为Minecraft开服用户提供相关资源下载的资源站，内容全面，信息丰富，旨在一个网站解决用户的所有下载需求",
-    "logo": "https://favicon.im/mcres.cn"
+    "logo": "https://favicon.im/mcres.cn?larger=true"
   },
   {
     "name": "阻击者联盟",
     "url": "https://blog.h-acker.cn",
     "description": "我们分享关于绿色软件,网络运维、安服支持、Linux、WordPress优化、CDN加速以及网络安全策略的实用教程和资源",
-    "logo": "https://favicon.im/blog.h-acker.cn"
+    "logo": "https://favicon.im/blog.h-acker.cn?larger=true"
   },
   {
     "name": "洛水一畔，谈天说地",
     "url": "https://blog.mcsci.cn",
     "description": "cinderybell6765的博客",
-    "logo": "https://favicon.im/blog.mcsci.cn"
+    "logo": "https://favicon.im/blog.mcsci.cn?larger=true"
   },
   {
     "name": "午夜的Blog",
@@ -69,6 +69,6 @@
     "name": "次元乌托邦",
     "url": "https://www.cywtb.cn",
     "description": "次元乌托邦是一个承载着我们所有幻想的永恒乌托邦",
-    "logo": "https://favicon.im/https://www.cywtb.cn"
+    "logo": "https://favicon.im/www.cywtb.cn?larger=true"
   }
 ]
