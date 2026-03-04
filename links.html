@@ -532,6 +532,55 @@
             box-shadow: none !important;
             transform: translateY(4px) !important;
         }
+        
+        /* 表单展开动画 */
+        .slide-in-right {
+            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
     
     <!-- ==========================================
@@ -722,11 +771,15 @@
                  toggleBtn.addEventListener('click', function() {
                      if (formContainer.classList.contains('hidden')) {
                          formContainer.classList.remove('hidden');
+                         formContainer.classList.add('fade-in');
                          toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
                          toggleBtn.classList.remove('bg-dark');
                          toggleBtn.classList.add('bg-orange-500');
                      } else {
-                         formContainer.classList.add('hidden');
+                         formContainer.classList.remove('fade-in');
+                         setTimeout(() => {
+                             formContainer.classList.add('hidden');
+                         }, 500);
                          toggleBtn.innerHTML = '<i class="fa fa-plus mr-2"></i> 提交友链';
                          toggleBtn.classList.remove('bg-orange-500');
                          toggleBtn.classList.add('bg-dark');
