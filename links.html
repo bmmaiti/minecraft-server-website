@@ -534,20 +534,20 @@
         }
         
         /* 表单展开动画 */
-        .slide-in-right {
-            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .slide-in-down {
+            animation: slideInDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
-            transform: translateX(-20px);
+            transform: translateY(-20px);
         }
         
-        @keyframes slideInRight {
+        @keyframes slideInDown {
             0% {
                 opacity: 0;
-                transform: translateX(-20px);
+                transform: translateY(-20px);
             }
             100% {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
         
@@ -685,7 +685,7 @@
                  </button>
                 
                 <div id="submitFormContainer" class="hidden">
-                    <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-right rounded-lg">
+                    <form id="submitLinkForm" class="bg-dark p-8 mc-border slide-in-down rounded-lg">
                         <div class="mb-6">
                             <label for="linkName" class="block font-minecraft text-lg mb-2 text-white">网站名字</label>
                             <input type="text" id="linkName" name="linkName" required 
@@ -771,12 +771,12 @@
                  toggleBtn.addEventListener('click', function() {
                      if (formContainer.classList.contains('hidden')) {
                          formContainer.classList.remove('hidden');
-                         formContainer.classList.add('fade-in');
+                         formContainer.classList.add('slide-in-down');
                          toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
                          toggleBtn.classList.remove('bg-dark');
                          toggleBtn.classList.add('bg-orange-500');
                      } else {
-                         formContainer.classList.remove('fade-in');
+                         formContainer.classList.remove('slide-in-down');
                          setTimeout(() => {
                              formContainer.classList.add('hidden');
                          }, 500);
