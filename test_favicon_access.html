@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon 访问测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .test-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+        }
+        .test-card img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        .test-card p {
+            margin: 5px 0;
+            word-break: break-all;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: left;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <h1>Favicon 访问测试</h1>
+    <p>测试不同方式获取网站图标的效果</p>
+    <div class="test-container">
+        <div class="test-card">
+            <img id="test1" alt="测试1" onerror="handleError(this, 'test1')">
+            <p>直接使用 favicon.ico</p>
+            <p>https://www.mcyggdrasill.com/favicon.ico</p>
+            <div id="result1" class="result">测试中...</div>
+        </div>
+        <div class="test-card">
+            <img id="test2" alt="测试2" onerror="handleError(this, 'test2')">
+            <p>使用 favicon.im</p>
+            <p>https://favicon.im/www.mcyggdrasill.com</p>
+            <div id="result2" class="result">测试中...</div>
+        </div>
+        <div class="test-card">
+            <img id="test3" alt="测试3" onerror="handleError(this, 'test3')">
+            <p>使用 yggdrasill_logo.png</p>
+            <p>https://www.mcyggdrasill.com/logos/yggdrasill_logo.png</p>
+            <div id="result3" class="result">测试中...</div>
+        </div>
+    </div>
+
+    <script>
+        function testImage(imgId, url, resultId) {
+            const img = document.getElementById(imgId);
+            const resultDiv = document.getElementById(resultId);
+            
+            img.onload = function() {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = '✓ 图片加载成功<br>图片尺寸: ' + img.width + 'x' + img.height;
+            };
+            
+            img.onerror = function() {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '✗ 图片加载失败<br>可能原因：<br>1. CORS 限制<br>2. 文件不存在<br>3. 服务器配置问题';
+            };
+            
+            img.src = url + '?' + new Date().getTime(); // 添加时间戳避免缓存
+        }
+        
+        function handleError(img, testId) {
+            const resultDiv = document.getElementById('result' + testId.replace('test', ''));
+            if (resultDiv) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '✗ 图片加载失败<br>图片已损坏或无法访问';
+            }
+        }
+        
+        // 测试三种方式
+        testImage('test1', 'https://www.mcyggdrasill.com/favicon.ico', 'result1');
+        testImage('test2', 'https://favicon.im/www.mcyggdrasill.com', 'result2');
+        testImage('test3', 'https://www.mcyggdrasill.com/logos/yggdrasill_logo.png', 'result3');
+    </script>
+</body>
+</html>
