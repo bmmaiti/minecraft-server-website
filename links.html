@@ -810,6 +810,16 @@
                          }, 50);
                          setTimeout(() => {
                              formContainer.style.maxHeight = 'none';
+                             const formHeight = formContainer.scrollHeight;
+                             const buttonRect = toggleBtn.getBoundingClientRect();
+                             const formTop = buttonRect.bottom;
+                             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                             if (formTop + formHeight > viewportHeight) {
+                                 window.scrollTo({
+                                     top: formTop + formHeight - viewportHeight + 50,
+                                     behavior: 'smooth'
+                                 });
+                             }
                          }, 550);
                          toggleBtn.innerHTML = '<i class="fa fa-minus mr-2"></i> 收起表单';
                          toggleBtn.classList.remove('bg-dark');
