@@ -816,11 +816,12 @@
                          }
                          
                          formContainer.classList.remove('hidden');
-                         formContainer.style.maxHeight = '0';
                          requestAnimationFrame(() => {
+                             const actualHeight = formContainer.scrollHeight;
+                             formContainer.style.maxHeight = '0';
                              setTimeout(() => {
                                  formContainer.classList.add('slide-in-down');
-                                 formContainer.style.maxHeight = formContainer.scrollHeight + 'px';
+                                 formContainer.style.maxHeight = actualHeight + 'px';
                              }, 50);
                              setTimeout(() => {
                                  formContainer.style.maxHeight = 'none';
