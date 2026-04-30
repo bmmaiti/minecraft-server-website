@@ -1,122 +1,73 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mcYggdrasill-世界树</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#22c55e',
-                        secondary: '#f59e0b',
-                        dark: '#1e293b',
-                        grass: '#7cfc00',
-                    },
-                }
-            }
-        }
-    </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .mc-border {
-                border: 2px solid #000;
-                box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-                border-radius: 6px;
-            }
-            .text-shadow {
-                text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
-            }
-        }
-    </style>
-</head>
-<body class="bg-gray-900 text-white min-h-screen">
-    <!-- 背景装饰 -->
-    <div class="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-90"></div>
-    
-    <!-- 主内容 -->
-    <div class="relative z-10 container mx-auto px-4 py-8 max-w-md">
-        <!-- Logo区域 -->
-        <div class="text-center mb-8">
-            <div class="w-24 h-24 mx-auto mb-4 rounded-lg overflow-hidden mc-border bg-gray-800">
-                <img src="https://www.mcyggdrasill.com/logos/yggdrasill_logo.png" alt="世界树" class="w-full h-full object-cover">
-            </div>
-            <h1 class="text-2xl font-bold text-primary text-shadow">mcYggdrasill</h1>
-            <p class="text-gray-400">世界树服务器</p>
-        </div>
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:PCL;assembly=Plain Craft Launcher 2">
+    <Border Background="#1e293b" CornerRadius="8" Padding="16">
+        <!-- Logo -->
+        <StackPanel HorizontalAlignment="Center" Margin="0,0,0,12">
+            <Image Source="https://www.mcyggdrasill.com/logos/yggdrasill_logo.png" Width="96" Height="96" Stretch="Uniform" />
+            <TextBlock Text="mcYggdrasill" FontSize="20" FontWeight="Bold" Foreground="#22c55e" HorizontalAlignment="Center" Margin="0,8,0,2"/>
+            <TextBlock Text="世界树服务器" FontSize="12" Foreground="#9ca3af" HorizontalAlignment="Center"/>
+        </StackPanel>
         
-        <!-- 服务器信息卡片 -->
-        <div class="mc-border bg-gray-800/80 p-4 mb-4">
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-gray-400"><i class="fa fa-server"></i> 服务器状态</span>
-                <span class="px-2 py-1 rounded text-xs font-bold bg-green-500 text-black">在线</span>
-            </div>
-            <div class="text-sm text-gray-300">
-                <p><i class="fa fa-globe"></i> IP: play.mcyggdrasill.com</p>
-                <p><i class="fa fa-users"></i> 在线人数: <span id="playerCount">--</span></p>
-            </div>
-        </div>
+        <!-- 服务器状态卡片 -->
+        <Border Background="#334155" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                    <TextBlock Text="服务器状态" Foreground="#9ca3af" FontSize="12"/>
+                    <Border Background="#22c55e" CornerRadius="4" Padding="4,2,4,2" HorizontalAlignment="Right">
+                        <TextBlock Text="在线" Foreground="#000" FontSize="11" FontWeight="Bold"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock Text="IP: play.mcyggdrasill.com" Foreground="#e5e7eb" FontSize="12"/>
+                <TextBlock Text="在线人数: " Foreground="#e5e7eb" FontSize="12">
+                    <Run Text="--" Foreground="#f59e0b"/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
         
         <!-- 服务器特色 -->
-        <div class="mc-border bg-gray-800/80 p-4 mb-4">
-            <h3 class="text-lg font-bold text-secondary mb-3"><i class="fa fa-star"></i> 服务器特色</h3>
-            <ul class="space-y-2 text-sm text-gray-300">
-                <li><i class="fa fa-check text-green-500"></i> 公益性服务器，永久免费</li>
-                <li><i class="fa fa-check text-green-500"></i> 群组服玩法，多种游戏模式</li>
-                <li><i class="fa fa-check text-green-500"></i> 稳定运行，定期备份</li>
-                <li><i class="fa fa-check text-green-500"></i> 友好社区，活跃管理</li>
-            </ul>
-        </div>
+        <Border Background="#334155" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+            <StackPanel>
+                <TextBlock Text="服务器特色" Foreground="#f59e0b" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
+                        <TextBlock Text="公益性服务器，永久免费" Foreground="#e5e7eb" FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
+                        <TextBlock Text="群组服玩法，多种游戏模式" Foreground="#e5e7eb" FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
+                        <TextBlock Text="稳定运行，定期备份" Foreground="#e5e7eb" FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
+                        <TextBlock Text="友好社区，活跃管理" Foreground="#e5e7eb" FontSize="12"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
         
         <!-- 公告区域 -->
-        <div class="mc-border bg-gray-800/80 p-4 mb-4">
-            <h3 class="text-lg font-bold text-secondary mb-2"><i class="fa fa-bullhorn"></i> 最新公告</h3>
-            <p class="text-sm text-gray-300" id="announcement">服务器运行正常，欢迎加入！</p>
-        </div>
+        <Border Background="#334155" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+            <StackPanel>
+                <TextBlock Text="最新公告" Foreground="#f59e0b" FontSize="14" FontWeight="Bold" Margin="0,0,0,4"/>
+                <TextBlock Text="服务器运行正常，欢迎加入！" Foreground="#e5e7eb" FontSize="12"/>
+            </StackPanel>
+        </Border>
         
         <!-- 快捷链接 -->
-        <div class="mc-border bg-gray-800/80 p-4">
-            <h3 class="text-lg font-bold text-secondary mb-3"><i class="fa fa-link"></i> 快捷链接</h3>
-            <div class="grid grid-cols-2 gap-2">
-                <a href="https://www.mcyggdrasill.com" target="_blank" class="flex items-center justify-center gap-2 px-3 py-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors text-sm">
-                    <i class="fa fa-home"></i> 官网
-                </a>
-                <a href="#" onclick="copyIP()" class="flex items-center justify-center gap-2 px-3 py-2 bg-gray-700 rounded hover:bg-gray-600 transition-colors text-sm">
-                    <i class="fa fa-copy"></i> 复制IP
-                </a>
-            </div>
-        </div>
+        <Border Background="#334155" CornerRadius="6" Padding="12">
+            <StackPanel>
+                <TextBlock Text="快捷链接" Foreground="#f59e0b" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Gap="8">
+                    <Button Content="官网" Background="#475569" Foreground="#e5e7eb" FontSize="12" Padding="8,4,8,4" CornerRadius="4" HorizontalAlignment="Stretch"/>
+                    <Button Content="复制IP" Background="#475569" Foreground="#e5e7eb" FontSize="12" Padding="8,4,8,4" CornerRadius="4" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
         
         <!-- 版本信息 -->
-        <div class="text-center mt-6 text-xs text-gray-500">
-            <p>版本: 1.0.1 | mcYggdrasill</p>
-        </div>
-    </div>
-    
-    <script>
-        // 复制IP到剪贴板
-        function copyIP() {
-            navigator.clipboard.writeText('play.mcyggdrasill.com').then(() => {
-                alert('IP已复制到剪贴板！');
-            });
-        }
-        
-        // 模拟获取在线人数
-        function fetchPlayerCount() {
-            // 这里可以替换为实际的API调用
-            document.getElementById('playerCount').textContent = Math.floor(Math.random() * 50) + 10;
-        }
-        
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchPlayerCount();
-        });
-    </script>
-</body>
-</html>
+        <TextBlock Text="版本: v1.0.3 | mcYggdrasill" FontSize="10" Foreground="#64748b" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+    </Border>
+</StackPanel>
