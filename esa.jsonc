@@ -1,10 +1,7 @@
 {
   "name": "minecraft-server-website",
-  "entry": "./index.html",
-  "installCommand": "npm install",
-  "buildCommand": "npm run build",
   "assets": {
-    "directory": "./dist",
+    "directory": "./",
     "notFoundStrategy": "singlePageApplication"
   }
 }
