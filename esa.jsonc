@@ -1,5 +1,7 @@
 {
   "name": "minecraft-server-website",
+  "installCommand": "",
+  "buildCommand": "",
   "assets": {
     "directory": "./",
     "notFoundStrategy": "singlePageApplication"
