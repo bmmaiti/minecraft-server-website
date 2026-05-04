@@ -4,6 +4,40 @@ minecraft-server-website/
 # Build output directory
 dist/
 
-# Logo cache directory (optional, uncomment if needed)
-# logos/
-# *.json
+# Node modules
+node_modules/
+
+# Test files
+test_*.html
+
+# Scripts and build files
+*.js
+*.py
+*.bat
+package*.json
+BUILD.md
+README.md
+
+# Temp files
+temp_*.jsonc
+
+# Logs
+Log*.txt
+
+# Large image files that aren't essential
+photos/
+scenery/
+lizi/
+tietu3/
+logos/effect.gif
+logos/firework.gif
+logos/xx1.jpg
+logos/xx2.png
+logos/minebbs_logo.png
+logos/minecraft_logo.png
+fonts/CKTKingkong.ttf
+
+# Sync and upload scripts
+sync-logos/
+upload-to-oss/
+aliyun-function/
