@@ -1,4 +1,0 @@
-runtime: nodejs18
-handler: index.handler
-memory: 512
-timeout: 300

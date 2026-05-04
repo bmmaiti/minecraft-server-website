@@ -1,9 +1,0 @@
-{
-  "name": "upload-to-oss",
-  "version": "1.0.0",
-  "description": "上传 logo 到阿里云 OSS",
-  "main": "upload-to-oss.js",
-  "dependencies": {
-    "ali-oss": "^6.17.1"
-  }
-}
