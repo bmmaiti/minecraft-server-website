@@ -1,52 +1,75 @@
-<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:PCL;assembly=Plain Craft Launcher 2" Background="#1e293b">
-    <Border Background="#1e293b" Padding="20">
-        <StackPanel>
-            <!-- Title -->
-            <TextBlock Text="mcYggdrasill" FontSize="24" FontWeight="Bold" Foreground="#22c55e" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBlock Text="世界树服务器" FontSize="14" Foreground="#9ca3af" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            
-            <!-- Server Status Card -->
-            <Border Background="#334155" CornerRadius="8" Padding="12" Margin="0,0,0,12">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <TextBlock Text="服务器状态" Foreground="#9ca3af" FontSize="12"/>
-                        <Border Background="#22c55e" CornerRadius="4" Padding="4,2,4,2" HorizontalAlignment="Right">
-                            <TextBlock Text="在线" Foreground="#000" FontSize="11" FontWeight="Bold"/>
-                        </Border>
-                    </StackPanel>
-                    <TextBlock Text="IP: play.mcyggdrasill.com" Foreground="#e5e7eb" FontSize="12" Margin="0,8,0,0"/>
-                </StackPanel>
-            </Border>
-            
-            <!-- Features -->
-            <Border Background="#334155" CornerRadius="8" Padding="12" Margin="0,0,0,12">
-                <StackPanel>
-                    <TextBlock Text="服务器特色" Foreground="#f59e0b" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
-                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
-                        <TextBlock Text="公益性服务器，永久免费" Foreground="#e5e7eb" FontSize="12"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
-                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
-                        <TextBlock Text="群组服玩法，多种模式" Foreground="#e5e7eb" FontSize="12"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="✓" Foreground="#22c55e" Margin="0,0,6,0"/>
-                        <TextBlock Text="稳定运行，定期备份" Foreground="#e5e7eb" FontSize="12"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            
-            <!-- Announcement -->
-            <Border Background="#334155" CornerRadius="8" Padding="12" Margin="0,0,0,12">
-                <StackPanel>
-                    <TextBlock Text="最新公告" Foreground="#f59e0b" FontSize="14" FontWeight="Bold" Margin="0,0,0,4"/>
-                    <TextBlock Text="服务器运行正常，欢迎加入！" Foreground="#e5e7eb" FontSize="12"/>
-                </StackPanel>
-            </Border>
-            
-            <!-- Version -->
-            <TextBlock Text="Version: v1.0.6 | mcYggdrasill" FontSize="10" Foreground="#64748b" HorizontalAlignment="Center"/>
-        </StackPanel>
-    </Border>
-</StackPanel>
+<!--
+     \- mcYggdrasill Mainpage -\
+      \- Version: 1.0.9 -\
+       \- For PCL2 Launcher -\
+-->
+
+<!-- 服务器状态 -->
+<local:MyCard Margin="0,-6,0,12" Title="服务器状态">
+     <StackPanel Margin="24,35,24,15">
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/GoldBlock.png"
+               Title="mcYggdrasill"
+               Info="世界树服务器"
+               Type="Info" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/GreenConcrete.png"
+               Title="状态: 在线"
+               Info="IP: play.mcyggdrasill.com"
+               Type="Info" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/Grass.png"
+               Title="版本: 1.7.2-1.21.11"
+               Info="群组服"
+               Type="Info" />
+     </StackPanel>
+</local:MyCard>
+
+<!-- 快捷操作 -->
+<local:MyCard Margin="0,0,0,8">
+     <StackPanel Margin="24,6,24,12">
+          <Grid>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               <local:MyIconTextButton Margin="0,5,0,6" Height="35" HorizontalAlignment="Center"
+                    Text="加入服务器" EventType="直接启动" Grid.Column="0"
+                    LogoScale="0.8" ColorType="Highlight"
+                    Logo="M17.8,14L15,14L14,12L14,8A2,2 0 0,0 12,6A2,2 0 0,0 10,8L10,12L9,14L6.2,14A0.2,0.2 0 0,0 6,14.2L6,21.8A0.2,0.2 0 0,0 6.2,22L17.8,22A0.2,0.2 0 0,0 18,21.8L18,14.2A0.2,0.2 0 0,0 17.8,14Z" />
+               <local:MyIconTextButton Margin="0,5,0,6" Height="35" HorizontalAlignment="Center"
+                    Text="刷新主页" EventType="刷新主页" Grid.Column="1"
+                    LogoScale="0.8" ColorType="Highlight"
+                    Logo="M256.455,8C322.724,8.119,382.892,34.233,427.314,76.685L463.029,40.97C478.149,25.851,504,36.559,504,57.941L504,192C504,205.255,493.255,216,480,216L345.941,216C324.559,216,313.851,190.149,328.97,175.029L370.72,133.279C339.856,104.38 299.919,88.372 257.49,88.006 165.092,87.208 87.207,161.983 88.0059999999999,257.448 88.764,348.009 162.184,424 256,424 297.127,424 335.997,409.322 366.629,382.444 371.372,378.283 378.535,378.536 382.997,382.997L422.659,422.659C427.531,427.531 427.29,435.474 422.177,440.092 378.202,479.813 319.926,504 256,504 119.034,504 8.001,392.967 8,256.002 7.999,119.193 119.646,7.755 256.455,8z" />
+          </Grid>
+     </StackPanel>
+</local:MyCard>
+
+<!-- 服务器特色 -->
+<local:MyCard Margin="0,0,0,12" Title="服务器特色" CanSwap="True" IsSwaped="True">
+     <StackPanel Margin="24,40,24,15">
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/DiamondBlock.png"
+               Title="公益性服务器"
+               Info="永久免费"
+               Type="Info" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/EmeraldBlock.png"
+               Title="群组服玩法"
+               Info="多种模式"
+               Type="Info" />
+          <local:MyListItem Margin="-2,0,0,0"
+               Logo="pack://application:,,,/images/blocks/NetherStar.png"
+               Title="稳定运行"
+               Info="定期备份"
+               Type="Info" />
+     </StackPanel>
+</local:MyCard>
+
+<!-- 最新公告 -->
+<local:MyCard Margin="0,0,0,8" Title="最新公告" CanSwap="True" IsSwaped="True">
+     <StackPanel Margin="24,40,24,15">
+          <local:MyHint IsWarn="False" Text="服务器运行正常，欢迎加入！" />
+          <local:MyHint IsWarn="False" Text="当前版本: v1.0.9" />
+     </StackPanel>
+</local:MyCard>
