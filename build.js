@@ -7,7 +7,7 @@ const config = {
   srcDir: './',
   buildDir: './dist',
   assets: ['*.html', 'css/*.css', 'js/*.js', 'logos/*', 'logo/*', 'fonts/*', '*.svg', '*.json', 'lizi/*', 'photos/*', 'scenery/*', 'tietu3/*'],
-  exclude: ['node_modules', 'dist', 'build.js', 'package-lock.json', '*.log', '.git']
+  exclude: ['node_modules', 'dist', 'build.js', 'package-lock.json', '*.log', '.git', '*.bat', '*.py', 'web.config', 'start_server.py']
 };
 
 // 清理构建目录
