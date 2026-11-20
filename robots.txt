@@ -1,0 +1,5 @@
+# mcYggdrasill-世界树 服务器官网
+User-agent: *
+Allow: /
+
+Sitemap: https://www.mcyggdrasill.com/sitemap.xml

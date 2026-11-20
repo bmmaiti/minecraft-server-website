@@ -1,0 +1,6 @@
+增加 sitemap.xml / robots.txt，补 canonical 与 Open Graph 标签
+
+- sitemap.xml 收录首页与友链页，供搜索引擎抓取
+- robots.txt 指向 sitemap 并允许全站抓取
+- 两个页面补 <link rel="canonical">，避免 ESA 的 SPA 回落策略导致同一内容多个 URL
+- 补 og:title / og:description / og:image，分享到群或社交平台时有正确的标题与摘要
