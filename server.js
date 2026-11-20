@@ -1,94 +1,112 @@
+/**
+ * 本地预览服务器（无第三方依赖）
+ *   node server.js          默认端口 3000
+ *   PORT=8080 node server.js
+ *
+ * 说明：原版本 require('./auto-compress-images.js') 这个文件并不存在，
+ * 会导致 npm start 直接崩溃，这里去掉该依赖，只保留静态文件服务。
+ */
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { checkAndCompressImages, MAX_IMAGE_SIZE } = require('./auto-compress-images.js');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const ROOT = __dirname;
+const HOST = process.env.HOST || '127.0.0.1';
+const PORT = Number(process.env.PORT) || 3000;
 
-// MIME types
-const mimeTypes = {
-  '.html': 'text/html',
-  '.js': 'text/javascript',
-  '.css': 'text/css',
-  '.json': 'application/json',
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
+  '.md': 'text/plain; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.png': 'image/png',
-  '.jpg': 'image/jpg',
+  '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.gif': 'image/gif',
+  '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
   '.wav': 'audio/wav',
+  '.mp3': 'audio/mpeg',
   '.mp4': 'video/mp4',
-  '.woff': 'application/font-woff',
-  '.ttf': 'application/font-ttf',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.otf': 'font/otf',
   '.eot': 'application/vnd.ms-fontobject',
-  '.otf': 'application/font-otf',
   '.wasm': 'application/wasm'
 };
 
-// 检查是否为图片请求
-function isImageRequest(url) {
-  const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
-  return imageExtensions.some(ext => url.toLowerCase().endsWith(ext));
+function send(res, status, body, headers = {}) {
+  res.writeHead(status, {
+    'Content-Type': 'text/plain; charset=utf-8',
+    'Content-Length': Buffer.byteLength(body),
+    ...headers
+  });
+  res.end(body);
 }
 
-const server = http.createServer(async (req, res) => {
-  let filePath = '.' + req.url;
-  
-  // 如果请求根目录，返回index.html
-  if (filePath === './') {
-    filePath = './index.html';
+const server = http.createServer((req, res) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return send(res, 405, '405 Method Not Allowed', { Allow: 'GET, HEAD' });
   }
-  
-  // 如果是图片请求，检查文件大小
-  if (isImageRequest(filePath)) {
-    try {
-      if (fs.existsSync(filePath)) {
-        const stats = fs.statSync(filePath);
-        // 如果图片超过2MB，触发压缩检查
-        if (stats.size > MAX_IMAGE_SIZE) {
-          console.log(`检测到大图片: ${filePath} (${(stats.size / 1024 / 1024).toFixed(2)} MB)`);
-          // 在后台执行压缩检查
-          checkAndCompressImages().catch(err => {
-            console.error('后台压缩任务出错:', err);
-          });
+
+  let pathname;
+  try {
+    pathname = decodeURIComponent(new URL(req.url, `http://${req.headers.host || HOST}`).pathname);
+  } catch {
+    return send(res, 400, '400 Bad Request：URL 编码无效');
+  }
+
+  // 归一化后必须仍落在站点根目录内，防止 ../ 穿越
+  const relative = pathname.replace(/^\/+/, '');
+  const filePath = path.join(ROOT, relative);
+  if (filePath !== ROOT && !filePath.startsWith(ROOT + path.sep)) {
+    return send(res, 403, '403 Forbidden');
+  }
+
+  fs.stat(filePath, (err, stat) => {
+    let target = filePath;
+
+    // 目录 → 取其中的 index.html
+    if (!err && stat.isDirectory()) {
+      target = path.join(filePath, 'index.html');
+    }
+
+    fs.readFile(target, (readErr, content) => {
+      if (readErr) {
+        const code = readErr.code === 'ENOENT' || readErr.code === 'EISDIR' ? 404 : 500;
+        if (code === 404) {
+          return send(res, 404, `404 Not Found：${pathname}`);
         }
+        console.error(`读取失败 ${target}:`, readErr);
+        return send(res, 500, '500 Internal Server Error');
       }
-    } catch (err) {
-      console.error('检查文件大小时出错:', err);
-    }
-  }
-  
-  const extname = String(path.extname(filePath)).toLowerCase();
-  const contentType = mimeTypes[extname] || 'application/octet-stream';
-  
-  fs.readFile(filePath, (error, content) => {
-    if (error) {
-      if (error.code === 'ENOENT') {
-        // 文件未找到
-        fs.readFile('./404.html', (err, content) => {
-          res.writeHead(404, { 'Content-Type': 'text/html' });
-          res.end(content, 'utf-8');
-        });
-      } else {
-        // 服务器错误
-        res.writeHead(500);
-        res.end('Sorry, check with the site admin for error: ' + error.code + ' ..\n');
-      }
-    } else {
-      // 成功
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
-    }
+
+      const type = MIME_TYPES[path.extname(target).toLowerCase()] || 'application/octet-stream';
+      res.writeHead(200, {
+        'Content-Type': type,
+        'Content-Length': content.length,
+        'Cache-Control': 'no-cache'
+      });
+      res.end(req.method === 'HEAD' ? undefined : content);
+    });
   });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`服务器运行在 http://${hostname}:${port}/`);
-  console.log('自动图片压缩功能已启用');
-  
-  // 启动时检查一次图片
-  checkAndCompressImages().catch(err => {
-    console.error('初始图片检查出错:', err);
-  });
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`端口 ${PORT} 已被占用，可换端口启动：PORT=3001 node server.js`);
+    process.exit(1);
+  }
+  throw err;
+});
+
+server.listen(PORT, HOST, () => {
+  console.log(`本地预览已启动：http://${HOST}:${PORT}/`);
+  console.log(`站点根目录：${ROOT}`);
 });
