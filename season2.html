@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二周目玩法 - 精英怪 / 四季 / 列车 / 职业 - mcYggdrasill-世界树</title>
+    <link rel="canonical" href="https://www.mcyggdrasill.com/season2.html">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="世界树二周目插件服玩法介绍：精英怪（僵尸王 / 骷髅领主 / 凋灵骑士）掉落附魔材料、四季温度会中暑失温、玩家可自建列车线路、mcMMO 职业技能、1400 余件自定义家具与料理系统。">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="mcYggdrasill-世界树">
+    <meta property="og:title" content="二周目玩法 - mcYggdrasill-世界树">
+    <meta property="og:description" content="精英怪掉落附魔材料、四季温度、玩家列车、mcMMO 职业、1400 余件自定义家具。">
+    <meta property="og:url" content="https://www.mcyggdrasill.com/season2.html">
+    <meta property="og:image" content="https://www.mcyggdrasill.com/logos/opt/mcyggdrasill.webp">
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @font-face {
+            font-family: 'CKTKingkong';
+            src: url('fonts/CKTKingkong.subset.woff2') format('woff2'),
+                 url('fonts/CKTKingkong.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        :root {
+            --minecraft-font-family: 'CKTKingkong', monospace, 'Courier New', Courier, monospace;
+        }
+        body {
+            cursor: url('logos/xx2.png'), auto;
+        }
+    </style>
+    <link rel="icon" href="logos/yggdrasill_logo.png" type="image/png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="site.webmanifest">
+</head>
+<body class="text-light font-sans">
+    <nav class="bg-primary/90 backdrop-blur-sm fixed top-0 w-full z-50 transition-all duration-300 max-w-full" style="background-image: url('logos/xx1.jpg'); background-size: contain; background-repeat: repeat-x; background-position: center; box-shadow: 0 4px 6px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06);">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-all duration-300 blocky">
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg"><span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树</h1>
+                </a>
+                <div class="hidden md:flex space-x-2">
+                    <a href="index.html#connection" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">连接信息</a>
+                    <a href="index.html#servers" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">类型</a>
+                    <a href="guide.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">指南</a>
+                    <a href="commands.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">指令</a>
+                    <a href="faq.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">问答</a>
+                    <a href="links.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">友链</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-2xl mc-border blocky"><i class="fa fa-cube"></i></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border">
+                <a href="index.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">首页</a>
+                <a href="guide.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">新人指南</a>
+                <a href="commands.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">指令速查</a>
+                <a href="season2.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">二周目玩法</a>
+                <a href="faq.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">常见问题</a>
+                <a href="links.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">友链</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-16">
+        <article class="container mx-auto px-4 max-w-4xl">
+            <h1 class="font-minecraft text-3xl md:text-4xl text-primary text-shadow-lg mb-4">二周目玩法</h1>
+            <p class="text-light/80 mb-10 leading-relaxed">
+                二周目是<strong>插件服</strong>，和原版服的存档分开。核心玩法是精英怪与附魔材料、四季温度、玩家自建列车、mcMMO 职业技能，以及 1400 余件自定义家具。
+            </p>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">一、精英怪</h2>
+                <p class="text-light/80 mb-4 leading-relaxed">普通怪会随机变成精英怪，血量、伤害和掉落都更高。击杀后掉落附魔材料。</p>
+                <div class="bg-dark mc-border rounded-lg p-5 md:p-6 blocky overflow-x-auto">
+                    <table class="w-full text-sm md:text-base">
+                        <thead>
+                            <tr class="text-primary border-b-2 border-primary/40">
+                                <th class="text-left py-2 pr-4 font-minecraft">怪物</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">血量</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">伤害</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">生成率</th>
+                                <th class="text-left py-2 font-minecraft">掉落</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-light/90">
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">僵尸王</td><td class="py-2 pr-4">200</td><td class="py-2 pr-4">14</td><td class="py-2 pr-4">3%</td><td class="py-2">附魔材料</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">骷髅领主</td><td class="py-2 pr-4">160</td><td class="py-2 pr-4">12</td><td class="py-2 pr-4">3%</td><td class="py-2">附魔材料</td></tr>
+                            <tr><td class="py-2 pr-4">凋灵骑士</td><td class="py-2 pr-4">260</td><td class="py-2 pr-4">16</td><td class="py-2 pr-4">1%</td><td class="py-2">附魔材料</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-light/75 text-sm mt-3">掉落三选一随机：祛魔石 / 抽魔卷轴 / 净咒符。末影龙三件全掉。</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">二、附魔材料</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">祛魔石</p>
+                        <p class="text-sm text-light/80">紫水晶碎片外观，移除附魔并返还。</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">抽魔卷轴</p>
+                        <p class="text-sm text-light/80">纸的外观，把附魔抽到书上。</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">净咒符</p>
+                        <p class="text-sm text-light/80">回响碎片外观，清除诅咒。</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">圣净符</p>
+                        <p class="text-sm text-light/80">下界之星外观，高级净化。</p>
+                    </div>
+                </div>
+                <p class="text-light/75 text-sm mt-3">这些材料<strong>会被消耗</strong>，不是无限用的。</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">三、四季温度</h2>
+                <p class="text-light/80 mb-4 leading-relaxed">服务器有真实的季节轮回，夏天会热、冬天会冷，温度过高会中暑、过低会失温，都会掉血和减速。</p>
+                <div class="bg-dark mc-border rounded-lg p-5 md:p-6 blocky overflow-x-auto mb-4">
+                    <table class="w-full text-sm md:text-base">
+                        <thead>
+                            <tr class="text-primary border-b-2 border-primary/40">
+                                <th class="text-left py-2 pr-4 font-minecraft">季节</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">温度范围</th>
+                                <th class="text-left py-2 font-minecraft">特点</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-light/90">
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">春</td><td class="py-2 pr-4">8 ~ 22°C</td><td class="py-2">舒适</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">夏</td><td class="py-2 pr-4">19 ~ 34°C</td><td class="py-2">会热，要防中暑</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">秋</td><td class="py-2 pr-4">10 ~ 24°C</td><td class="py-2">舒适</td></tr>
+                            <tr><td class="py-2 pr-4">冬</td><td class="py-2 pr-4">-4 ~ 8°C</td><td class="py-2">会冷，要保暖</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-2">降温</p>
+                        <p class="text-sm text-light/80 leading-relaxed">泡进水里、靠近冰或蓝冰、少穿衣服。</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-2">保暖</p>
+                        <p class="text-sm text-light/80 leading-relaxed">靠近火源或篝火、穿皮革装备、待在室内、吃有温度修正的食物。</p>
+                    </div>
+                </div>
+                <p class="text-light/75 text-sm mt-3">查温度：<code class="bg-black/40 px-1 rounded">/seasons temperature</code></p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">四、玩家自建列车</h2>
+                <p class="text-light/80 mb-3 leading-relaxed">二周目有完整的铁路系统，玩家可以自己铺轨道、建线路，然后像坐地铁一样坐自己的车。</p>
+                <div class="bg-dark mc-border rounded-lg p-5 blocky font-mono text-sm space-y-2">
+                    <p><span class="text-secondary">/train</span> 或 <span class="text-secondary">/lc</span> <span class="text-light/60">— 打开列车面板</span></p>
+                    <p><span class="text-secondary">/st create</span> <span class="text-light/60">— 创建线路（需先铺轨道）</span></p>
+                    <p><span class="text-secondary">/stcs</span> <span class="text-light/60">— 列车调度</span></p>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">五、mcMMO 职业</h2>
+                <p class="text-light/80 mb-4 leading-relaxed">挖矿、砍树、战斗都会升级，等级越高技能越强。</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky"><p class="font-minecraft text-primary mb-1">挖矿</p><p class="text-sm text-light/80">双倍掉落</p></div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky"><p class="font-minecraft text-primary mb-1">砍树</p><p class="text-sm text-light/80">整棵树一次砍掉</p></div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky"><p class="font-minecraft text-primary mb-1">战斗</p><p class="text-sm text-light/80">剑 / 斧 额外伤害</p></div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky"><p class="font-minecraft text-primary mb-1">杂技</p><p class="text-sm text-light/80">减少摔落伤害</p></div>
+                </div>
+                <p class="text-light/75 text-sm mt-3">查看技能：<code class="bg-black/40 px-1 rounded">/mcmenu</code> 或 <code class="bg-black/40 px-1 rounded">/skills</code></p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">六、料理与家具</h2>
+                <p class="text-light/80 mb-3 leading-relaxed">二周目可以做饭，也有 1417 件自定义家具 / 建材，全部可合成，用金币购买。</p>
+                <div class="bg-dark mc-border rounded-lg p-5 md:p-6 blocky overflow-x-auto mb-4">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-primary border-b-2 border-primary/40">
+                                <th class="text-left py-2 pr-4 font-minecraft">家具分类</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">数量</th>
+                                <th class="text-left py-2 font-minecraft">例子</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-light/90">
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">街机游乐厅</td><td class="py-2 pr-4">52</td><td class="py-2">街机机台、抓娃娃机、弹球机</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">温馨咖啡馆</td><td class="py-2 pr-4">52</td><td class="py-2">咖啡机、大理石桌、糕点柜</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">日式神社</td><td class="py-2 pr-4">41</td><td class="py-2">鸟居、石灯笼、绘马</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">花园与庭院</td><td class="py-2 pr-4">687</td><td class="py-2">拱门、花架、果树、篱笆</td></tr>
+                            <tr><td class="py-2 pr-4">木结构与建材</td><td class="py-2 pr-4">585</td><td class="py-2">木板砖、立柱、梁架、屋顶</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-light/75 text-sm">
+                    家具商店：<code class="bg-black/40 px-1 rounded">/jiuju_main</code>　
+                    食谱：<code class="bg-black/40 px-1 rounded">/shipu</code>　
+                    图鉴查配方：<code class="bg-black/40 px-1 rounded">/ce</code>
+                </p>
+            </section>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="guide.html" class="bg-dark mc-border rounded-lg p-4 blocky hover-lift transition-all">
+                    <p class="font-minecraft text-primary mb-1"><i class="fa fa-arrow-left text-xs mr-1"></i> 新人指南</p>
+                    <p class="text-sm text-light/75">先进服、再圈地、然后跑地标</p>
+                </a>
+                <a href="faq.html" class="bg-dark mc-border rounded-lg p-4 blocky hover-lift transition-all">
+                    <p class="font-minecraft text-primary mb-1">常见问题 <i class="fa fa-arrow-right text-xs"></i></p>
+                    <p class="text-sm text-light/75">太冷太热怎么办、材料哪来</p>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="py-8 border-t-4 border-primary/40 text-center">
+        <p class="text-sm mb-2">
+            <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号</a>
+        </p>
+        <p class="text-sm font-minecraft">© 2020 <span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树-公益群组服</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+    </script>
+</body>
+</html>

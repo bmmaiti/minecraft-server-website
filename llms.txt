@@ -1,0 +1,28 @@
+# mcYggdrasill-世界树
+
+> 公益的我的世界（Minecraft）Java 版群组服，支持正版与 LittleSkin 外置登录双通道进服，无任何付费点。
+> 分原版服与二周目插件服两个世界，进服后在登录大厅选择世界。
+
+## 基本信息
+
+- 服务器地址：mcyggdrasill.com（具体进服地址与直连方式请看群公告）
+- 官网：https://www.mcyggdrasill.com/
+- 在线地图：dt.mcyggdrasill.com:8100
+- 玩家群：861682120
+- 主世界永不删档（核心承诺）
+- 原版服人数上限 10；二周目人数上限 40；登录大厅 121
+
+## 玩法
+
+- 原版服：以红石机器与建筑为主，几十处公共机器（刷铁机、猪人塔、小黑塔、袭击塔等）注册为公共地标，免费传送使用。
+- 二周目：插件服，精英怪掉落附魔材料、四季温度会中暑失温、玩家可自建列车线路、mcMMO 职业技能、1400 余件自定义家具与料理系统。
+- 天空网格服目前不开放。
+
+## 页面
+
+- [首页](https://www.mcyggdrasill.com/)：服务器介绍与连接信息
+- [新人指南](https://www.mcyggdrasill.com/guide.html)：进服方式、圈地、公共地标、经济与铁路
+- [指令速查](https://www.mcyggdrasill.com/commands.html)：按服务器分类的常用指令
+- [二周目玩法](https://www.mcyggdrasill.com/season2.html)：精英怪、四季、列车、职业、家具
+- [常见问题](https://www.mcyggdrasill.com/faq.html)：进不去、被拆家、赚钱、飞行、温度、删档
+- [友链](https://www.mcyggdrasill.com/links.html)

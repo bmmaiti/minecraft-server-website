@@ -15,6 +15,31 @@
     <meta property="og:description" content="公益的我的世界 Java 版群组服：原版服以红石机器与建筑为主，公共机器免费传送，主世界永不删档；二周目插件服有精英怪、四季、列车、mcMMO 职业与 1400 余件自定义家具。支持正版与 LittleSkin 双通道进服。">
     <meta property="og:url" content="https://www.mcyggdrasill.com/">
     <meta property="og:image" content="https://www.mcyggdrasill.com/logos/opt/mcyggdrasill.webp">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.mcyggdrasill.com/#website",
+          "url": "https://www.mcyggdrasill.com/",
+          "name": "mcYggdrasill-世界树",
+          "description": "公益的我的世界 Java 版群组服，含原版服与二周目插件服，支持正版与 LittleSkin 双通道进服。",
+          "inLanguage": "zh-CN"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.mcyggdrasill.com/#organization",
+          "name": "mcYggdrasill-世界树",
+          "alternateName": "世界树服务器",
+          "url": "https://www.mcyggdrasill.com/",
+          "logo": "https://www.mcyggdrasill.com/logos/opt/mcyggdrasill.webp",
+          "description": "公益的我的世界 Java 版服务器，原版服主世界永不删档，二周目为插件服。",
+          "sameAs": ["https://github.com/bmmaiti/minecraft-server-website"]
+        }
+      ]
+    }
+    </script>
     
     <!-- ==========================================
          SEO优化关键词（对用户不可见）
@@ -148,6 +173,7 @@
                 <div class="hidden md:flex space-x-2">
                     <a href="#connection" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">连接信息</a>
                     <a href="#servers" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">类型</a>
+                    <a href="guide.html" class="font-minecraft text-white hover:text-green-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">指南</a>
                     <a href="#scenery" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">展示</a>
                     <a href="#info" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">信息</a>
                     <a href="#rules" class="font-minecraft text-white hover:text-primary transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">规则</a>
@@ -164,6 +190,10 @@
             <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border hover-lift">
                 <a href="#connection" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">连接信息</a>
                 <a href="#servers" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">类型</a>
+                <a href="guide.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky active-press">新人指南</a>
+                <a href="commands.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky active-press">指令速查</a>
+                <a href="season2.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky active-press">二周目玩法</a>
+                <a href="faq.html" class="block px-2 py-1 font-minecraft hover:bg-green-500/50 rounded transition-colors nav-btn blocky active-press">常见问题</a>
                 <a href="#scenery" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">展示</a>
                 <a href="#info" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">信息</a>
                 <a href="#rules" class="block px-2 py-1 font-minecraft text-white hover:bg-primary/50 rounded transition-colors nav-btn blocky active-press">规则</a>
@@ -545,6 +575,32 @@
                     </div>
                 </div>
                 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 新手指南 -->
+        <section id="guides" class="py-16 relative overflow-hidden slide-in-left">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-minecraft text-center mb-4 text-primary text-shadow-lg slide-in-left">新手指南</h2>
+            <p class="text-center text-light/80 mb-12 max-w-2xl mx-auto">从进服到上手：怎么登录、怎么防止被拆家、指令怎么用、二周目玩什么。</p>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <a href="guide.html" class="bg-dark mc-border rounded-lg p-6 blocky hover-lift transition-all slide-in-left">
+                    <h3 class="font-minecraft text-xl text-primary mb-2"><i class="fa fa-compass mr-2"></i>新人指南</h3>
+                    <p class="text-sm text-light/80 leading-relaxed">进服方式、登录大厅选世界、圈地防拆家、公共地标免费传送、经济与铁路。</p>
+                </a>
+                <a href="commands.html" class="bg-dark mc-border rounded-lg p-6 blocky hover-lift transition-all slide-in-left">
+                    <h3 class="font-minecraft text-xl text-primary mb-2"><i class="fa fa-terminal mr-2"></i>指令速查</h3>
+                    <p class="text-sm text-light/80 leading-relaxed">通用指令、原版服专属、二周目专属，按服务器分类整理。</p>
+                </a>
+                <a href="season2.html" class="bg-dark mc-border rounded-lg p-6 blocky hover-lift transition-all slide-in-left">
+                    <h3 class="font-minecraft text-xl text-primary mb-2"><i class="fa fa-snowflake-o mr-2"></i>二周目玩法</h3>
+                    <p class="text-sm text-light/80 leading-relaxed">精英怪与附魔材料、四季温度、玩家自建列车、mcMMO 职业、1417 件自定义家具。</p>
+                </a>
+                <a href="faq.html" class="bg-dark mc-border rounded-lg p-6 blocky hover-lift transition-all slide-in-left">
+                    <h3 class="font-minecraft text-xl text-primary mb-2"><i class="fa fa-question-circle mr-2"></i>常见问题</h3>
+                    <p class="text-sm text-light/80 leading-relaxed">进不去、被拆家、怎么赚钱、飞行怎么开、太冷太热、会不会删档。</p>
+                </a>
             </div>
         </div>
     </section>

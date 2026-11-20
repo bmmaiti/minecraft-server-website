@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新人指南 - mcYggdrasill-世界树 我的世界公益服务器</title>
+    <link rel="canonical" href="https://www.mcyggdrasill.com/guide.html">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="世界树服务器新人指南：怎么进服（正版直连 / LittleSkin 外置登录）、第一件事圈地防拆家、公共地标免费传送、经济与铁路系统、常用指令一览。">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="mcYggdrasill-世界树">
+    <meta property="og:title" content="新人指南 - mcYggdrasill-世界树">
+    <meta property="og:description" content="世界树服务器新人指南：怎么进服、圈地防拆家、公共地标、经济与铁路、常用指令。">
+    <meta property="og:url" content="https://www.mcyggdrasill.com/guide.html">
+    <meta property="og:image" content="https://www.mcyggdrasill.com/logos/opt/mcyggdrasill.webp">
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @font-face {
+            font-family: 'CKTKingkong';
+            src: url('fonts/CKTKingkong.subset.woff2') format('woff2'),
+                 url('fonts/CKTKingkong.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        :root {
+            --minecraft-font-family: 'CKTKingkong', monospace, 'Courier New', Courier, monospace;
+        }
+        body {
+            cursor: url('logos/xx2.png'), auto;
+        }
+    </style>
+    <link rel="icon" href="logos/yggdrasill_logo.png" type="image/png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="site.webmanifest">
+</head>
+<body class="text-light font-sans">
+    <nav class="bg-primary/90 backdrop-blur-sm fixed top-0 w-full z-50 transition-all duration-300 max-w-full" style="background-image: url('logos/xx1.jpg'); background-size: contain; background-repeat: repeat-x; background-position: center; box-shadow: 0 4px 6px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06);">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-all duration-300 blocky">
+                    <h1 class="font-minecraft text-xl md:text-2xl text-shadow-lg"><span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树</h1>
+                </a>
+                <div class="hidden md:flex space-x-2">
+                    <a href="index.html#connection" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">连接信息</a>
+                    <a href="index.html#servers" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">类型</a>
+                    <a href="guide.html" class="font-minecraft text-green-500 nav-btn px-3 py-1 mc-border bg-dark blocky active-press">指南</a>
+                    <a href="commands.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">指令</a>
+                    <a href="faq.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">问答</a>
+                    <a href="links.html" class="font-minecraft text-orange-500 hover:text-orange-500 transition-colors nav-btn px-3 py-1 mc-border bg-dark blocky active-press">友链</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-2xl mc-border blocky"><i class="fa fa-cube"></i></button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-3 py-2 space-y-2 grass-texture rounded mc-border">
+                <a href="index.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">首页</a>
+                <a href="guide.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">新人指南</a>
+                <a href="commands.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">指令速查</a>
+                <a href="season2.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">二周目玩法</a>
+                <a href="faq.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">常见问题</a>
+                <a href="links.html" class="block px-2 py-1 font-minecraft text-orange-500 rounded blocky">友链</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-16">
+        <article class="container mx-auto px-4 max-w-4xl">
+            <h1 class="font-minecraft text-3xl md:text-4xl text-primary text-shadow-lg mb-4">新人指南</h1>
+            <p class="text-light/80 mb-10 leading-relaxed">
+                世界树是一个公益的我的世界 Java 版群组服，分<strong>原版服</strong>和<strong>二周目</strong>两个世界。
+                只用一个地址进服，进去以后在登录大厅选世界，不需要装额外的模组。
+            </p>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">一、先搞清楚有几台服务器</h2>
+                <div class="bg-dark mc-border rounded-lg p-5 md:p-6 blocky overflow-x-auto">
+                    <table class="w-full text-sm md:text-base">
+                        <thead>
+                            <tr class="text-primary border-b-2 border-primary/40">
+                                <th class="text-left py-2 pr-4 font-minecraft">服务器</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">定位</th>
+                                <th class="text-left py-2 font-minecraft">人数上限</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-light/90">
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4">登录大厅</td>
+                                <td class="py-2 pr-4">进服的第一个场景，选择去哪</td>
+                                <td class="py-2">121</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4">世界树（原版服）</td>
+                                <td class="py-2 pr-4">主服，红石机器 / 建筑 / 生存</td>
+                                <td class="py-2">10</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4">二周目（插件服）</td>
+                                <td class="py-2 pr-4">精英怪、四季、列车、职业</td>
+                                <td class="py-2">40</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4">机械动力</td>
+                                <td class="py-2 pr-4">机械动力模组服</td>
+                                <td class="py-2">—</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 pr-4">天空网格</td>
+                                <td class="py-2 pr-4">目前不开放</td>
+                                <td class="py-2">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">二、怎么进服</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-dark mc-border rounded-lg p-5 blocky">
+                        <h3 class="font-minecraft text-lg text-primary mb-3"><i class="fa fa-check-circle mr-2"></i>正版账号</h3>
+                        <p class="text-light/80 text-sm leading-relaxed">直接用正版登录器进服，自动走正版验证，什么都不用配置。</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-5 blocky">
+                        <h3 class="font-minecraft text-lg text-primary mb-3"><i class="fa fa-key mr-2"></i>离线账号（LittleSkin）</h3>
+                        <ol class="text-light/80 text-sm leading-relaxed list-decimal list-inside space-y-1">
+                            <li>去 LittleSkin（littleskin.cn）注册账号</li>
+                            <li>认证方式选「外置登录 / Yggdrasil」</li>
+                            <li>认证服务器填 <code class="bg-black/40 px-1 rounded">https://littleskin.cn/api/yggdrasil</code></li>
+                            <li>用 LittleSkin 的账号密码登录</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="mt-4 bg-dark mc-border rounded-lg p-4 blocky border-l-4 border-secondary">
+                    <p class="text-sm text-light/85"><i class="fa fa-exclamation-triangle text-secondary mr-2"></i>
+                        <strong>同一个名字不要混用两种认证方式。</strong>
+                        先用离线后改用 LittleSkin，UUID 会变，插件会报数据冲突，需要找管理迁移数据。
+                    </p>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">三、第一件事：圈地</h2>
+                <p class="text-light/80 mb-4 leading-relaxed">不圈地就可能被拆家。进服先拿一根<strong>木棍</strong>，左键点一个角、右键点对角，然后执行：</p>
+                <div class="bg-dark mc-border rounded-lg p-5 blocky font-mono text-sm space-y-2">
+                    <p><span class="text-secondary">/dom create 我的家</span> <span class="text-light/60">— 创建领地</span></p>
+                    <p><span class="text-secondary">/dom list</span> <span class="text-light/60">— 查看自己的领地</span></p>
+                    <p><span class="text-secondary">/dom trust 玩家名</span> <span class="text-light/60">— 给某个玩家权限</span></p>
+                    <p><span class="text-secondary">/dom delete 名字</span> <span class="text-light/60">— 删除领地</span></p>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">四、公共地标：免费传送去用别人的机器</h2>
+                <p class="text-light/80 mb-4 leading-relaxed">
+                    这是世界树最大的特色：玩家建好的机器可以注册成地标，任何人执行 <code class="bg-black/40 px-1 rounded">/plw</code> 就能传送过去免费用。
+                </p>
+                <div class="bg-dark mc-border rounded-lg p-5 md:p-6 blocky overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-primary border-b-2 border-primary/40">
+                                <th class="text-left py-2 pr-4 font-minecraft">地标</th>
+                                <th class="text-left py-2 pr-4 font-minecraft">说明</th>
+                                <th class="text-left py-2 font-minecraft">传送次数</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-light/90">
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">旧主城</td><td class="py-2 pr-4">出生点，所有设施集中</td><td class="py-2">716</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">小黑塔</td><td class="py-2 pr-4">末影人刷怪塔，经验 + 珍珠</td><td class="py-2">444</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">雪镇南广场</td><td class="py-2 pr-4">养老建筑小镇，适合新人安家</td><td class="py-2">371</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">村民交易所</td><td class="py-2 pr-4">换附魔书的地方</td><td class="py-2">310</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">堆门猪人塔</td><td class="py-2 pr-4">高效经验塔</td><td class="py-2">187</td></tr>
+                            <tr class="border-b border-gray-700"><td class="py-2 pr-4">刷铁机</td><td class="py-2 pr-4">免费铁</td><td class="py-2">114</td></tr>
+                            <tr><td class="py-2 pr-4">袭击塔</td><td class="py-2 pr-4">绿宝石 + 不死图腾</td><td class="py-2">113</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">五、经济与日常</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">金币</p>
+                        <p class="text-sm text-light/80"><code>/bal</code> 查余额，<code>/pay</code> 转账</p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">商店</p>
+                        <p class="text-sm text-light/80">箱子商店左键看价、右键买；全球市场 <code>/pm</code></p>
+                    </div>
+                    <div class="bg-dark mc-border rounded-lg p-4 blocky">
+                        <p class="font-minecraft text-primary mb-1">铁路</p>
+                        <p class="text-sm text-light/80">玩家自建地铁，右键盘石/按钮召车</p>
+                    </div>
+                </div>
+                <p class="text-light/75 text-sm mt-4">起手没钱很正常：先去地标用别人的机器刷资源，再拿去市场卖。</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-minecraft text-2xl text-secondary mb-4">六、继续看</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="commands.html" class="bg-dark mc-border rounded-lg p-4 blocky hover-lift transition-all">
+                        <p class="font-minecraft text-primary mb-1">指令速查 <i class="fa fa-arrow-right text-xs"></i></p>
+                        <p class="text-sm text-light/75">通用 / 原版服 / 二周目 指令一览</p>
+                    </a>
+                    <a href="season2.html" class="bg-dark mc-border rounded-lg p-4 blocky hover-lift transition-all">
+                        <p class="font-minecraft text-primary mb-1">二周目玩法 <i class="fa fa-arrow-right text-xs"></i></p>
+                        <p class="text-sm text-light/75">精英怪、四季、列车、mcMMO、家具</p>
+                    </a>
+                    <a href="faq.html" class="bg-dark mc-border rounded-lg p-4 blocky hover-lift transition-all">
+                        <p class="font-minecraft text-primary mb-1">常见问题 <i class="fa fa-arrow-right text-xs"></i></p>
+                        <p class="text-sm text-light/75">进不去、被拆家、怎么赚钱</p>
+                    </a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="py-8 border-t-4 border-primary/40 text-center">
+        <p class="text-sm mb-2">
+            <a href="https://beian.miit.gov.cn" target="_blank" class="text-secondary hover:text-primary transition-colors">ICP备案号：粤ICP备2025476020号</a>
+        </p>
+        <p class="text-sm font-minecraft">© 2020 <span class="text-green-400">mc</span><span class="text-white">Yggdrasill</span>-世界树-公益群组服</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+    </script>
+</body>
+</html>
