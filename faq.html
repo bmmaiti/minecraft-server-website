@@ -124,6 +124,12 @@
     </script>
 </head>
 <body class="text-light font-sans">
+    <!-- 深板岩矿物背景 -->
+    <div class="background-container" style="background-color: #1e293b;">
+        <div class="base-layer" id="baseLayer"></div>
+        <div class="ores-layer" id="oresLayer"></div>
+    </div>
+
     <nav class="bg-primary/90 backdrop-blur-sm fixed top-0 w-full z-50 transition-all duration-300 max-w-full" style="background-image: url('logos/xx1.jpg'); background-size: contain; background-repeat: repeat-x; background-position: center; box-shadow: 0 4px 6px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06);">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
@@ -230,5 +236,6 @@
             menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         }
     </script>
+    <script src="background.js"></script>
 </body>
 </html>
