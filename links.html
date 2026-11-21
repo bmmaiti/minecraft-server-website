@@ -19,6 +19,15 @@
     <link href="fonts/font-awesome.min.css" rel="stylesheet">
     
     <style>
+        /* 像素字体（与首页同一份子集，links.html 之前漏了声明） */
+        @font-face {
+            font-family: 'CKTKingkong';
+            src: url('fonts/CKTKingkong.subset.woff2?v=2') format('woff2'),
+                 url('fonts/CKTKingkong.ttf?v=2') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
         /* 添加我的世界风格字体和样式 */
         :root {
             --minecraft-font-family: 'CKTKingkong', monospace, 'Courier New', Courier, monospace;
